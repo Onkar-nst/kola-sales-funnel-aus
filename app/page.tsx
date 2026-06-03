@@ -3,7 +3,6 @@ import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
 import { ProblemSolution } from "@/components/ProblemSolution";
 import { Showcase } from "@/components/Showcase";
-import { WhoThisIsFor } from "@/components/WhoThisIsFor";
 import { Pricing } from "@/components/Pricing";
 import { HowItWorks } from "@/components/Process";
 import { Scarcity } from "@/components/Scarcity";
@@ -22,7 +21,6 @@ export default function Page() {
       <HowItWorks />
       <Showcase />
       <ResultsFAQ />
-      <WhoThisIsFor />
       <ProblemSolution />
       <Scarcity />
       <CTA />
