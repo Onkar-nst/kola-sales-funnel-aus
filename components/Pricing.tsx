@@ -212,7 +212,7 @@ export function Pricing() {
               What does the A$99 Launch offer include?
             </h4>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              The A$99 Launch package is a fully built, 1-page conversion website. It is <strong>not a deposit</strong> — it is the complete price. You get a custom-designed, hand-coded, mobile-responsive website delivered in 48 hours. If you're not happy, you get a full refund within 30 days. No catches.
+              The A$99 Launch package is a fully built, 1-page conversion website. It is <strong>not a deposit</strong> it is the complete price. You get a custom-designed, hand-coded, mobile-responsive website delivered in 48 hours. If you're not happy, you get a full refund within 30 days. No catches.
             </p>
           </div>
         </div>

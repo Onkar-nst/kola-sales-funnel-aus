@@ -144,7 +144,7 @@ export function Hero() {
                   <span>Catering</span>
                 </div>
                 <div className="hidden items-center gap-2 sm:flex">
-                  <span className="text-[9px] font-medium text-foreground">Call Us</span>
+                  <span className="text-[9px] font-medium text-foreground"></span>
                   <div className="rounded bg-brand px-2.5 py-1 text-[9px] font-semibold text-white">Book a Table</div>
                 </div>
                 <Menu className="h-4 w-4 text-muted-foreground sm:hidden" />
