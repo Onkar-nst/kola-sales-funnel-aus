@@ -14,6 +14,13 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { Section, SectionHeader, Eyebrow } from "./Primitives";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -290,11 +297,31 @@ export function ResultsFAQ() {
         </div>
 
         {/* ── Testimonial Cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
+        <div className="hidden md:grid md:grid-cols-3 gap-5 relative z-10">
           {reviews.map((r, idx) => (
             <ReviewCard key={r.name} r={r} i={idx} />
           ))}
         </div>
+
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="relative z-10 md:hidden"
+        >
+          <CarouselContent className="-ml-3">
+            {reviews.map((r, idx) => (
+              <CarouselItem key={r.name} className="pl-3 basis-[88%]">
+                <ReviewCard r={r} i={idx} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="mt-5 flex items-center justify-center gap-3">
+            <CarouselPrevious className="static translate-y-0 border-hairline bg-surface-elevated text-foreground hover:bg-surface" />
+            <CarouselNext className="static translate-y-0 border-hairline bg-surface-elevated text-foreground hover:bg-surface" />
+          </div>
+        </Carousel>
 
         {/* Rating trust strip */}
         <motion.div
