@@ -9,7 +9,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
@@ -24,9 +24,8 @@ export function Nav() {
       className="fixed inset-x-0 top-3 z-50 px-3"
     >
       <div
-        className={`mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-2 transition-all ${
-          scrolled ? "glass hairline shadow-soft" : "bg-transparent"
-        }`}
+        className={`mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-2 transition-all ${scrolled ? "glass hairline shadow-soft" : "bg-transparent"
+          }`}
       >
         <a href="#top" className="flex items-center gap-2 font-display text-sm md:text-lg font-semibold tracking-tight">
           <img
@@ -55,7 +54,7 @@ export function Nav() {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-[#E60012] px-5 py-2 text-xs font-semibold text-white transition-transform hover:scale-[1.02] sm:text-sm sm:px-6 sm:py-2.5"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-[#0f172a] px-5 py-2 text-xs font-semibold text-white transition-transform hover:scale-[1.02] sm:text-sm sm:px-6 sm:py-2.5"
           >
             <span>Get in Touch</span>
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
