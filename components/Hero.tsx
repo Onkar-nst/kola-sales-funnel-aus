@@ -32,7 +32,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface-elevated/80 px-3 py-1.5 text-xs font-semibold text-foreground backdrop-blur"
           >
             <Timer className="h-3.5 w-3.5 text-accent-coral animate-pulse" />
-            Custom Website Funnel · Live in 48 Hours
+            📈 Conversion-Focused Websites
           </motion.div>
 
           <motion.h1

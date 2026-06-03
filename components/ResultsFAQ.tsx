@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Star,
@@ -12,15 +12,8 @@ import {
   Users,
   BarChart3,
   MessageCircle,
+  HelpCircle,
 } from "lucide-react";
-import { Section, SectionHeader, Eyebrow } from "./Primitives";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -265,110 +258,75 @@ function FAQItem({
 
 /* ─────────────────────── Main Component ─────────────────────── */
 
+const extendedReviews = [
+  ...reviews,
+  {
+    quote: "Clean, fast, and works perfectly on mobile. Best decision for our yoga studio.",
+    name: "Sarah Mitchell",
+    role: "North Yoga, Perth",
+    avatarGrad: "from-orange-400 to-red-500",
+    metricValue: "Top Tier",
+  },
+  {
+    quote: "Professional service, no BS. The site looks amazing and brings in real leads.",
+    name: "Daniel Hughes",
+    role: "Carpet Cuts, Melbourne",
+    avatarGrad: "from-blue-400 to-cyan-500",
+    metricValue: "No BS",
+  },
+  {
+    quote: "Super easy process and great communication. Our new site is already getting results!!",
+    name: "Priya Sharma",
+    role: "Café Culture, Sydney",
+    avatarGrad: "from-green-400 to-emerald-500",
+    metricValue: "Easy",
+  }
+];
+
 export function ResultsFAQ() {
   const [open, setOpen] = useState<number | null>(0);
+  const [activeReview, setActiveReview] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % extendedReviews.length);
+    }, 4000); // 4 seconds interval
+    return () => clearInterval(timer);
+  }, []);
+
+  const getOffset = (index: number, currentIndex: number, total: number) => {
+    let offset = (index - currentIndex) % total;
+    if (offset < -Math.floor(total / 2)) offset += total;
+    if (offset > Math.floor(total / 2)) offset -= total;
+    return offset;
+  };
 
   return (
-    <>
-      {/* ═══════════════ SECTION 1: CLIENT RESULTS ═══════════════ */}
-      <Section id="results" className="relative overflow-hidden">
-        {/* Background glows */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <div className="absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[140px]" />
-          <div className="absolute -left-40 bottom-0 h-[500px] w-[500px] rounded-full bg-accent-coral/5 blur-[140px]" />
-        </div>
+    <section id="results-faq" className="relative px-6 py-12 md:py-16 bg-surface/20 overflow-hidden">
+      {/* Backgrounds */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[140px]" />
+        <div className="absolute right-0 bottom-0 h-[500px] w-[500px] rounded-full bg-accent-coral/5 blur-[140px]" />
+      </div>
 
-        <SectionHeader
-          eyebrow="Client Results"
-          title={
-            <>
-              Websites that pay for{" "}
-              <span className="text-gradient">themselves.</span>
-            </>
-          }
-          subtitle="See how Aussie business owners turn ads and search traffic into paying customers."
-        />
-
-        {/* ── Stats Grid ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14 relative z-10">
-          {stats.map((stat, i) => (
-            <StatCard key={stat.label} stat={stat} i={i} />
-          ))}
-        </div>
-
-        {/* ── Testimonial Cards ── */}
-        <div className="hidden md:grid md:grid-cols-3 gap-5 relative z-10">
-          {reviews.map((r, idx) => (
-            <ReviewCard key={r.name} r={r} i={idx} />
-          ))}
-        </div>
-
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="relative z-10 md:hidden"
-        >
-          <CarouselContent className="-ml-3">
-            {reviews.map((r, idx) => (
-              <CarouselItem key={r.name} className="pl-3 basis-[88%]">
-                <ReviewCard r={r} i={idx} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="mt-5 flex items-center justify-center gap-3">
-            <CarouselPrevious className="static translate-y-0 border-hairline bg-surface-elevated text-foreground hover:bg-surface" />
-            <CarouselNext className="static translate-y-0 border-hairline bg-surface-elevated text-foreground hover:bg-surface" />
-          </div>
-        </Carousel>
-
-        {/* Rating trust strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-6 relative z-10"
-        >
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-hairline bg-surface-elevated/80 px-4 py-2 shadow-soft backdrop-blur-xs">
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-3.5 w-3.5 fill-current text-accent-coral" />
-              ))}
+      <div className="mx-auto max-w-5xl relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-start">
+        
+        {/* ═══════════════ LEFT COLUMN: FAQ ═══════════════ */}
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col items-center lg:items-center text-center gap-4">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-brand/10 bg-brand/5 px-3 py-1 text-[12px] font-semibold text-brand shadow-soft">
+              <HelpCircle className="h-3.5 w-3.5" /> FAQs
             </div>
-            <div className="h-4 w-[1px] bg-hairline" />
-            <span className="text-xs font-bold text-foreground">4.9/5</span>
-            <span className="text-muted-foreground text-[10px] font-medium">
-              · Verified Clients
-            </span>
-          </div>
-        </motion.div>
-      </Section>
-
-      {/* ═══════════════ SECTION 2: FAQ ═══════════════ */}
-      <section id="faq" className="relative px-6 py-16 md:py-24 bg-surface/20 overflow-hidden">
-        {/* Background mesh */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 h-[400px] w-[800px] bg-gradient-to-b from-brand/4 to-transparent rounded-full blur-[100px]" />
-        </div>
-
-        <div className="mx-auto max-w-3xl relative z-10">
-          {/* Header */}
-          <div className="flex flex-col items-center text-center gap-4 mb-12">
-            <Eyebrow>FAQ</Eyebrow>
-            <h2 className="max-w-2xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-5xl">
-              Got questions?{" "}
-              <span className="text-gradient">We&apos;ve got answers.</span>
+            <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl">
+              Got questions?<br />
+              <span className="text-brand text-gradient">We&apos;ve got answers.</span>
             </h2>
-            <p className="max-w-lg text-balance text-muted-foreground">
-              Everything you need to know about our $99 website, process,
-              hosting, and guarantees.
+            <p className="max-w-md text-balance text-muted-foreground font-medium">
+              Everything you need to know about our $99 website, process, hosting, and guarantees.
             </p>
           </div>
 
-          {/* FAQ list */}
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2.5 mt-2">
             {faqs.map((f, i) => (
               <FAQItem
                 key={f.q}
@@ -380,36 +338,83 @@ export function ResultsFAQ() {
             ))}
           </div>
 
-          {/* CTA under FAQ */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 rounded-3xl border border-hairline/50 bg-surface-elevated/60 px-6 py-5 backdrop-blur-xs"
+            className="mt-2 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-[20px] border border-hairline/50 bg-surface-elevated/80 px-6 py-5 backdrop-blur-md shadow-soft"
           >
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
-              <MessageCircle className="h-5 w-5" />
+            <div className="flex items-center gap-4 text-center sm:text-left">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
+                <MessageCircle className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-foreground">
+                  Still have questions?
+                </p>
+                <p className="text-[13px] text-muted-foreground mt-0.5 font-medium">
+                  We&apos;re here to help.
+                </p>
+              </div>
             </div>
-            <div className="text-center sm:text-left">
-              <p className="text-sm font-semibold text-foreground">
-                Still have questions?
-              </p>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                <a
-                  href="https://calendly.com/kola-communications"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand hover:underline font-medium"
-                >
-                  Book a free 15-minute call
-                </a>{" "}
-                — we&apos;re happy to walk you through everything.
-              </p>
-            </div>
+            <a
+              href="https://calendly.com/kola-communications"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center justify-center rounded-xl bg-[#0f172a] px-5 text-[13px] font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand/20 whitespace-nowrap"
+            >
+              Book a 15-Minute Call →
+            </a>
           </motion.div>
         </div>
-      </section>
-    </>
+
+        {/* ═══════════════ RIGHT COLUMN: TESTIMONIALS ═══════════════ */}
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col items-center lg:items-center text-center gap-4">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[12px] font-semibold text-emerald-600 shadow-soft">
+              <Star className="h-3.5 w-3.5" /> Testimonials
+            </div>
+            <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl">
+              Loved by Aussie<br />
+              <span className="text-brand text-gradient">business owners.</span>
+            </h2>
+            <p className="max-w-md text-balance text-muted-foreground font-medium">
+              Real results. Real people. Real businesses.
+            </p>
+          </div>
+
+          <div className="relative h-[640px] w-full flex justify-center items-center mt-2 overflow-hidden pointer-events-none">
+            {/* Gradient mask for smooth fade at edges */}
+            <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-surface/80 via-transparent to-surface/80 dark:from-[oklch(var(--surface)/0.8)] dark:to-[oklch(var(--surface)/0.8)]" />
+
+            {extendedReviews.map((r, i) => {
+              const offset = getOffset(i, activeReview, extendedReviews.length);
+              const isActive = offset === 0;
+              const isAdjacent = Math.abs(offset) === 1;
+
+              return (
+                <motion.div
+                  key={r.name + i}
+                  initial={false}
+                  animate={{
+                    y: offset * 260, // Vertical spacing between cards
+                    scale: isActive ? 1 : 0.95,
+                    opacity: isActive ? 1 : isAdjacent ? 0.35 : 0,
+                    filter: isActive ? "blur(0px)" : "blur(3px)",
+                    zIndex: isActive ? 10 : 1,
+                  }}
+                  transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+                  className="absolute w-full max-w-md pointer-events-auto"
+                >
+                  <ReviewCard r={r} i={i} />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }

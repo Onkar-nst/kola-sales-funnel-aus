@@ -9,9 +9,9 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export function TrustBar() {
   const items = [
     { k: 48, suffix: "h", v: "Average delivery time", isCounter: true },
-    { k: 98, suffix: "/100", v: "Google PageSpeed score", isCounter: true },
+    { k: 4.2, suffix: "/5", v: "Google rating", isCounter: true },
     { k: 150, suffix: "+", v: "Aussie businesses launched", isCounter: true },
-    { text: "Secure & Fast", v: "Enterprise-grade hosting", isCounter: false },
+    { text: "Reliable", v: "Always Online", isCounter: false },
   ];
 
   return (

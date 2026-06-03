@@ -103,6 +103,7 @@ export function Pricing() {
         "Basic SEO setup",
         "48-hour delivery",
         "1 round of same-day revisions",
+        "Free hosting & domain (1 year)"
       ],
     },
     {
@@ -115,13 +116,14 @@ export function Pricing() {
       features: [
         "Up to 5-page custom website",
         "Everything in Launch package",
-        "Free hosting (1 year)",
+        "Google Analytics",
         "Booking / calendar integration",
         "Stripe or PayPal payments",
         "Newsletter signup / lead form",
         "Advanced on-page SEO",
         "2 rounds of revisions",
         "5-day delivery",
+        "Free hosting & domain (1 year)"
       ],
     },
     {
@@ -134,11 +136,14 @@ export function Pricing() {
       features: [
         "Up to 10-page custom website",
         "Everything in Growth package",
+        "Google Analytics",
+        "Google Search Console",
         "Full Blog / CMS setup",
         "Custom illustrations & icons",
         "Advanced SEO & speed optimization",
         "Priority Australian-based support",
         "Unlimited revisions (14 days)",
+        "Free hosting & domain (1 year)"
       ],
     },
   ];
@@ -260,7 +265,7 @@ export function Pricing() {
             </button>
             <ul className="mt-7 space-y-3 px-1 text-sm">
               {t.features.map((feat) => {
-                const isHosting = feat === "Free hosting (1 year)";
+                const isHosting = feat === "Google Analytics" || feat === "Google Search Console";
                 return (
                   <li
                     key={feat}
@@ -319,7 +324,7 @@ export function Pricing() {
           <Code2 className="h-3.5 w-3.5" /> You own 100% of the code
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <Globe className="h-3.5 w-3.5" /> Australian hosting from $19/mo (optional)
+          {/* <Globe className="h-3.5 w-3.5" /> Australian hosting from $19/mo (optional) */}
         </span>
       </div>
 
