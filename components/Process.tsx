@@ -12,18 +12,18 @@ export function HowItWorks() {
       n: "01",
       icon: ClipboardList,
       t: "Tell Us About Your Brand",
-      d: "Complete a simple 5-minute online questionnaire about your services, target areas, and business style. No technical jargon.",
+      d: "Complete a simple 5 minute online questionnaire about your services, target areas, and business style. No technical jargon.",
     },
     {
       n: "02",
       icon: Code2,
       t: "We Hand-Code Your Site",
-      d: "Our local Sydney team builds your site entirely from scratch. Fully responsive, optimized for lightning-fast loading, and conversion-ready.",
+      d: "Our local Sydney team builds your site entirely from scratch. Fully responsive, optimized for lightning fast loading, and conversion ready.",
     },
     {
       n: "03",
       icon: Eye,
-      t: "Review & Refine Same-Day",
+      t: "Review & Refine Same Day",
       d: "We send you a private live preview link. Request any changes, and we will update your site immediately. You must be 100% happy.",
     },
     {

@@ -91,7 +91,7 @@ export function Showcase() {
       url: "https://purvadesai.com",
       img: "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Purva-Desai-Co.jpg",
       description:
-        "A creative social media and branding agency helping businesses grow through impactful digital campaigns. We crafted a portfolio-first WordPress website with immersive animations, video storytelling, and premium project showcases to elevate brand perception.",
+        "A creative social media and branding agency helping businesses grow through impactful digital campaigns. We crafted a portfolio first WordPress website with immersive animations, video storytelling, and premium project showcases to elevate brand perception.",
       features: [
         "Video Showreel Homepage",
         "Interactive Animations",
@@ -198,7 +198,7 @@ export function Showcase() {
             <span className="text-gradient">Real Aussie businesses.</span>
           </>
         }
-        subtitle="Every single one of these custom websites was designed, hand-coded, and launched in under 48 hours."
+        subtitle="Every single one of these custom websites was designed, hand coded, and launched in under 48 hours."
       />
 
       <div className="relative w-full py-4 mt-8">

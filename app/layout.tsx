@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Kola Communications — Premium Websites for Australian Businesses | Live in 48 Hours",
-  description: "Get a premium, hand-coded, conversion-focused website for your Australian local business. Live in 48 hours. Sydney built & verified. From just A$99.",
+  description: "Get a premium, hand coded, conversion focused website for your Australian local business. Live in 48 hours. Sydney built & verified. From just A$99.",
 };
 
 export default function RootLayout({

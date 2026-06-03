@@ -55,7 +55,7 @@ export function Scarcity() {
           </h2>
 
           <p className="mt-2.5 max-w-lg text-balance text-xs leading-relaxed text-background/85">
-            To maintain quality and guarantee direct oversight, we refuse to run a high-volume template factory. We only take on what we can hand-craft perfectly.
+            To maintain quality and guarantee direct oversight, we refuse to run a high volume template factory. We only take on what we can hand-craft perfectly.
           </p>
 
           {/* Availability Status Card */}
@@ -90,9 +90,9 @@ export function Scarcity() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
               {[
                 "Founder reviews every line of code",
-                "Same-day revision turnaround",
-                "Guaranteed 48-hour delivery",
-                "Hand-coded speed, no templates",
+                "Same day revision turnaround",
+                "Guaranteed 48 hour delivery",
+                "Hand coded speed, no templates",
               ].map((reason, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <div className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-background/10 text-background">

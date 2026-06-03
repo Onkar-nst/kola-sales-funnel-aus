@@ -101,8 +101,8 @@ export function Pricing() {
         "Contact form + email alerts",
         "Google Maps & social embeds",
         "Basic SEO setup",
-        "48-hour delivery",
-        "1 round of same-day revisions",
+        "48 hour delivery",
+        "1 round of same day revisions",
         "Free hosting & domain (1 year)"
       ],
     },
@@ -120,9 +120,9 @@ export function Pricing() {
         "Booking / calendar integration",
         "Stripe or PayPal payments",
         "Newsletter signup / lead form",
-        "Advanced on-page SEO",
+        "Advanced on page SEO",
         "2 rounds of revisions",
-        "5-day delivery",
+        "5 day delivery",
         "Free hosting & domain (1 year)"
       ],
     },
@@ -141,7 +141,7 @@ export function Pricing() {
         "Full Blog / CMS setup",
         "Custom illustrations & icons",
         "Advanced SEO & speed optimization",
-        "Priority Australian-based support",
+        "Priority Australian based support",
         "Unlimited revisions (14 days)",
         "Free hosting & domain (1 year)"
       ],
@@ -192,7 +192,7 @@ export function Pricing() {
             <span className="text-gradient">&nbsp;fees, ever.</span>
           </>
         }
-        subtitle="One-time payment. GST included. No subscriptions. No lock-in contracts."
+        subtitle="One time payment. GST included. No subscriptions. No lock in contracts."
       />
 
       {/* Explainer Panel */}
@@ -212,7 +212,7 @@ export function Pricing() {
               What does the A$99 Launch offer include?
             </h4>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              The A$99 Launch package is a fully built, 1-page conversion website. It is <strong>not a deposit</strong> it is the complete price. You get a custom-designed, hand-coded, mobile-responsive website delivered in 48 hours. If you're not happy, you get a full refund within 30 days. No catches.
+              The A$99 Launch package is a fully built, 1 page conversion website. It is <strong>not a deposit</strong> it is the complete price. You get a custom designed, hand coded, mobile responsive website delivered in 48 hours. If you're not happy, you get a full refund within 30 days. No catches.
             </p>
           </div>
         </div>
@@ -318,7 +318,7 @@ export function Pricing() {
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1.5">
-          <Shield className="h-3.5 w-3.5" /> 30-Day Money-Back Guarantee
+          <Shield className="h-3.5 w-3.5" /> 30 Day Money Back Guarantee
         </span>
         <span className="inline-flex items-center gap-1.5">
           <Code2 className="h-3.5 w-3.5" /> You own 100% of the code
@@ -359,7 +359,7 @@ export function Pricing() {
                         Checkout: {selectedTier.name}
                       </DialogTitle>
                       <DialogDescription>
-                        Choose optional add-ons before we prepare your project invoice.
+                        Choose optional add ons before we prepare your project invoice.
                       </DialogDescription>
                     </DialogHeader>
 

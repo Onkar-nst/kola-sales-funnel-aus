@@ -10,7 +10,7 @@ export function Solution() {
   const differentiators = [
     {
       icon: Code2,
-      title: "Hand-Coded, No Templates",
+      title: "Hand Coded, No Templates",
       desc: "Zero bloated page builders, buggy plugins, or visual templates. Built with clean, modern React code that loads in under 1 second. Your competitors' heavy WordPress sites simply cannot compete.",
     },
     {
@@ -21,12 +21,12 @@ export function Solution() {
     {
       icon: Layers,
       title: "Optimised for Ads (Google & Meta)",
-      desc: "Perfect structure for paid campaigns. Lightning-fast load times improve your Google Ads Quality Score, lowering your cost-per-click and stretching your marketing budget further.",
+      desc: "Perfect structure for paid campaigns. Lightning fast load times improve your Google Ads Quality Score, lowering your cost-per-click and stretching your marketing budget further.",
     },
     {
       icon: ShieldCheck,
       title: "Ongoing Performance & Support",
-      desc: "Optional lightning-fast local Australian hosting, SEO fine-tuning, and reliable on-demand maintenance so you can focus on running your business, while your website runs 24/7.",
+      desc: "Optional lightning fast local Australian hosting, SEO fine-tuning, and reliable on-demand maintenance so you can focus on running your business, while your website runs 24/7.",
     },
   ];
 

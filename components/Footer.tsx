@@ -23,7 +23,7 @@ export function Footer() {
             </div>
             
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              We design and code outcome-driven, conversion-focused website funnels for local businesses. We don't use clunky page builders, templates, or overseas outsourced teams. Every single line of code is written by hand in Sydney to ensure blazing load speeds and dominant SEO performance.
+              We design and code outcome driven, conversion focused website funnels for local businesses. We don't use clunky page builders, templates, or overseas outsourced teams. Every single line of code is written by hand in Sydney to ensure blazing load speeds and dominant SEO performance.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground/80">
-            <span>Hand-coded in Sydney with</span>
+            <span>Hand coded in Sydney with</span>
             <Heart className="h-3 w-3 text-accent-coral fill-current" />
           </div>
 

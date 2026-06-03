@@ -15,14 +15,14 @@ const fadeUp = {
 export function Compare() {
   const rows = [
     { f: "Custom design", us: true, wix: false, agency: true },
-    { f: "Mobile-first build", us: true, wix: true, agency: true },
-    { f: "48-hour delivery", us: true, wix: false, agency: false },
+    { f: "Mobile first build", us: true, wix: true, agency: true },
+    { f: "48 hour delivery", us: true, wix: false, agency: false },
     { f: "Australian designers", us: true, wix: false, agency: true },
-    { f: "Lead-capture forms", us: true, wix: "Limited", agency: true },
-    { f: "SEO foundations", us: true, wix: "Add-on", agency: true },
+    { f: "Lead capture forms", us: true, wix: "Limited", agency: true },
+    { f: "SEO foundations", us: true, wix: "Add on", agency: true },
     { f: "You own the code", us: true, wix: false, agency: "Sometimes" },
-    { f: "Up-front cost", us: "$99", wix: "$0 + $30/mo", agency: "$3,000+" },
-    { f: "30-day money-back", us: true, wix: false, agency: false },
+    { f: "Up front cost", us: "$99", wix: "$0 + $30/mo", agency: "$3,000+" },
+    { f: "30 day money back", us: true, wix: false, agency: false },
   ];
   return (
     <Section className="bg-surface">

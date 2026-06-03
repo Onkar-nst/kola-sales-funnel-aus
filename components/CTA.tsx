@@ -30,7 +30,7 @@ export function CTA() {
           </h2>
           
           <p className="max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Join 150+ Australian businesses with a premium, custom hand-coded website. From A$99. Delivered in 48 hours. 100% risk-free 30-Day Money-Back Guarantee.
+            Join 150+ Australian businesses with a premium, custom hand coded website. From A$99. Delivered in 48 hours. 100% risk free 30 Day Money Back Guarantee.
           </p>
           
           <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
@@ -47,13 +47,13 @@ export function CTA() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full hairline bg-surface-elevated px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface cursor-pointer"
             >
-              Book a 15-Minute Call
+              Book a 15 Minute Call
             </a>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground font-medium">
             <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-[oklch(0.55_0.16_150)]" /> 30-Day Money Back
+              <ShieldCheck className="h-4 w-4 text-[oklch(0.55_0.16_150)]" /> 30 Day Money Back
             </span>
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="h-4 w-4 text-[oklch(0.55_0.16_150)]" /> Premium Custom Design

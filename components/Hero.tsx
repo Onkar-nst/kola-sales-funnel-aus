@@ -11,8 +11,8 @@ const fadeUp = {
 };
 
 const checks = [
-  "48-Hour Delivery",
-  "30-Day Money Back",
+  "48 Hour Delivery",
+  "30 Day Money Back",
   "100% Aussie Team",
 ];
 
@@ -32,7 +32,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface-elevated/80 px-3 py-1.5 text-xs font-semibold text-foreground backdrop-blur"
           >
             <Timer className="h-3.5 w-3.5 text-accent-coral animate-pulse" />
-            📈 Conversion-Focused Websites
+            📈 Conversion Focused Websites
           </motion.div>
 
           <motion.h1
@@ -52,7 +52,7 @@ export function Hero() {
             transition={{ delay: 0.1 }}
             className="mt-5 max-w-md text-base text-muted-foreground sm:text-lg leading-relaxed"
           >
-            Hand-coded, lightning-fast, and engineered to generate real customer enquiries. Fully managed and live in 48 hours. From just A$99.
+            Hand coded, lightning fast, and engineered to generate real customer enquiries. Fully managed and live in 48 hours. From just A$99.
           </motion.p>
 
           <motion.div
@@ -62,7 +62,7 @@ export function Hero() {
             className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
           >
             <PrimaryCTA href="#pricing">Get My $99 Website →</PrimaryCTA>
-            <GhostCTA href="https://calendly.com/kola-communications">Book a 15-Minute Call</GhostCTA>
+            <GhostCTA href="https://calendly.com/kola-communications">Book a 15 Minute Call</GhostCTA>
           </motion.div>
 
           <motion.div

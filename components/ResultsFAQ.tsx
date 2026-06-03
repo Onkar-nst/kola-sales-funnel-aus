@@ -39,7 +39,7 @@ interface ReviewItem {
 const reviews: ReviewItem[] = [
   {
     quote:
-      "Launched on Tuesday, and had 14 high-ticket quote requests by Friday. It completely changed our business.",
+      "Launched on Tuesday, and had 14 high ticket quote requests by Friday. It completely changed our business.",
     name: "David Fletcher",
     role: "Flooring · Melbourne",
     avatarGrad: "from-blue-500 to-indigo-600",
@@ -68,27 +68,27 @@ const reviews: ReviewItem[] = [
 const faqs = [
   {
     q: "What exactly do I get for A$99?",
-    a: "The Launch package includes a fully designed and hand-coded 1-page custom website, custom contact forms with instant email notifications, Google Maps integration, basic on-page SEO, social media links, and 48-hour delivery. There are absolutely no hidden setup fees or surprise costs.",
+    a: "The Launch package includes a fully designed and hand coded 1 page custom website, custom contact forms with instant email notifications, Google Maps integration, basic on page SEO, social media links, and 48 hour delivery. There are absolutely no hidden setup fees or surprise costs.",
   },
   {
     q: "Is the A$99 a deposit or the full price?",
-    a: "It is the full price. This is not a deposit or a subscription hook. You pay A$99 once, and we deliver your custom hand-coded website live in 48 hours. If you choose to host it with us, Australian hosting starts at A$19/month, or we can export the raw code for you to host anywhere.",
+    a: "It is the full price. This is not a deposit or a subscription hook. You pay A$99 once, and we deliver your custom hand coded website live in 48 hours. If you choose to host it with us, Australian hosting starts at A$19/month, or we can export the raw code for you to host anywhere.",
   },
   {
     q: "What happens after I pay?",
-    a: "You'll be directed to a short 5-minute online questionnaire where you can share details about your business, logo, preferred colors, and contact info. Our Sydney team reviews it instantly, starts coding, and sends you a live preview link to request revisions within 24 hours.",
+    a: "You'll be directed to a short 5 minute online questionnaire where you can share details about your business, logo, preferred colors, and contact info. Our Sydney team reviews it instantly, starts coding, and sends you a live preview link to request revisions within 24 hours.",
   },
   {
     q: "Can I upgrade my site later?",
-    a: "Yes, completely! Our websites are modular and hand-coded. You can start with the A$99 Launch package and add extra pages, blog setups, Stripe payment checkouts, or advanced booking systems as your business grows. We never lock you into rigid, slow page-builder templates.",
+    a: "Yes, completely! Our websites are modular and hand coded. You can start with the A$99 Launch package and add extra pages, blog setups, Stripe payment checkouts, or advanced booking systems as your business grows. We never lock you into rigid, slow page builder templates.",
   },
   {
     q: "Do I own 100% of the website and code?",
-    a: "Yes, 100%. Unlike clunky proprietary platforms (like Squarespace, Wix, or Shopify) that own the framework your site runs on, you own all of the raw hand-coded HTML/React files. You can export the code and host it anywhere you want, forever.",
+    a: "Yes, 100%. Unlike clunky proprietary platforms (like Squarespace, Wix, or Shopify) that own the framework your site runs on, you own all of the raw hand coded HTML/React files. You can export the code and host it anywhere you want, forever.",
   },
   {
     q: "What if I'm not satisfied with the result?",
-    a: "We offer a 100% risk-free 30-Day Money-Back Guarantee. If we deliver your preview link and you don't like the design or feel it's not a fit, just let us know. We will refund your payment in full, immediately. No questions asked.",
+    a: "We offer a 100% risk free 30 Day Money Back Guarantee. If we deliver your preview link and you don't like the design or feel it's not a fit, just let us know. We will refund your payment in full, immediately. No questions asked.",
   },
 ];
 
@@ -364,7 +364,7 @@ export function ResultsFAQ() {
               rel="noopener noreferrer"
               className="inline-flex h-11 items-center justify-center rounded-xl bg-[#0f172a] px-5 text-[13px] font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand/20 whitespace-nowrap"
             >
-              Book a 15-Minute Call →
+              Book a 15 Minute Call →
             </a>
           </motion.div>
         </div>
