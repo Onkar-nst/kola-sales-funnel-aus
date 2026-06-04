@@ -28,6 +28,13 @@ export function Showcase() {
       ],
       performance: "98 / 100",
       delivery: "72 hours",
+      techStack: [
+        "Website Development",
+        "Custom-Coded Website",
+        "React JS",
+        "Tailwind CSS",
+        "Web Design",
+      ],
     },
     {
       tag: "Hospitality",
@@ -46,6 +53,13 @@ export function Showcase() {
       ],
       performance: "97 / 100",
       delivery: "48 hours",
+      techStack: [
+        "Website Development",
+        "Custom-Coded Website",
+        "React JS",
+        "Tailwind CSS",
+        "Web Design",
+      ],
     },
     {
       tag: "E-Commerce",
@@ -64,6 +78,13 @@ export function Showcase() {
       ],
       performance: "99 / 100",
       delivery: "72 hours",
+      techStack: [
+        "Website Development",
+        "Custom-Coded Website",
+        "React JS",
+        "Tailwind CSS",
+        "Web Design",
+      ],
     },
     {
       tag: "Real Estate",
@@ -82,6 +103,13 @@ export function Showcase() {
       ],
       performance: "99 / 100",
       delivery: "72 hours",
+      techStack: [
+        "Website Development",
+        "Custom-Coded Website",
+        "React JS",
+        "Tailwind CSS",
+        "Web Design",
+      ],
     },
     {
       tag: "Creative Agency",
@@ -100,6 +128,13 @@ export function Showcase() {
       ],
       performance: "96 / 100",
       delivery: "48 hours",
+      techStack: [
+        "Website Development",
+        "Custom-Coded Website",
+        "React JS",
+        "Tailwind CSS",
+        "Web Design",
+      ],
     },
     {
       tag: "Fashion E-Commerce",
@@ -118,6 +153,13 @@ export function Showcase() {
       ],
       performance: "98 / 100",
       delivery: "72 hours",
+      techStack: [
+        "Website Development",
+        "Custom-Coded Website",
+        "React JS",
+        "Tailwind CSS",
+        "Web Design",
+      ],
     },
     {
       tag: "Energy Infrastructure",
@@ -136,6 +178,13 @@ export function Showcase() {
       ],
       performance: "99 / 100",
       delivery: "72 hours",
+      techStack: [
+        "Website Development",
+        "Custom-Coded Website",
+        "React JS",
+        "Tailwind CSS",
+        "Web Design",
+      ],
     }
     // {
     //   tag: "Retail",
@@ -316,6 +365,17 @@ export function Showcase() {
                         <span className="h-1.5 w-1.5 rounded-full bg-brand shrink-0" />
                         <span className="leading-tight">{feat}</span>
                       </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Tech Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedCard.techStack?.map((tech) => (
+                      <span key={tech} className="inline-flex items-center rounded-md bg-surface-elevated px-2.5 py-1.5 text-[11px] font-medium text-foreground/90 border border-hairline/30 shadow-sm">
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>
