@@ -720,50 +720,6 @@ export function Showcase() {
                   </div>
                 </div>
 
-                {/* 5. Project Gallery */}
-                <div className="flex flex-col gap-3">
-                  <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">03 / Project Gallery</span>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* Large Featured Image */}
-                    <div 
-                      onClick={() => setActiveLightboxIndex(0)}
-                      className="md:col-span-3 relative aspect-video w-full overflow-hidden rounded-lg border border-neutral-100 bg-neutral-50 group cursor-pointer"
-                    >
-                      <Image
-                        src={selectedCard.gallery[0]}
-                        alt={`${selectedCard.name} Featured`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 850px"
-                        className="object-cover transition-opacity duration-350 group-hover:opacity-95"
-                      />
-                      <div className="absolute inset-0 bg-neutral-950/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="px-4 py-2 rounded-full bg-white border border-neutral-200 text-xs font-semibold text-neutral-900 shadow-md">View Fullscreen</span>
-                      </div>
-                    </div>
-
-                    {/* 4 Supporting Images */}
-                    {selectedCard.gallery.slice(1, 5).map((imgUrl, idx) => (
-                      <div 
-                        key={idx}
-                        onClick={() => setActiveLightboxIndex(idx + 1)}
-                        className="relative aspect-video overflow-hidden rounded-lg border border-neutral-100 bg-neutral-50 group cursor-pointer"
-                      >
-                        <Image
-                          src={imgUrl}
-                          alt={`${selectedCard.name} Screenshot ${idx + 1}`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 280px"
-                          className="object-cover transition-opacity duration-350 group-hover:opacity-95"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-neutral-950/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="text-[10px] px-3 py-1.5 rounded-full bg-white border border-neutral-200 font-semibold text-neutral-900 shadow-sm">Zoom</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
                 {/* 6. Features & Info Details */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-neutral-100">
                   <div>

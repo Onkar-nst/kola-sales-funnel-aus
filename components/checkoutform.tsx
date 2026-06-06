@@ -92,6 +92,17 @@ export function CheckoutForm({
       </div>
 
       <div className="mt-4">
+        <Field label="Attach file" id="checkout-file">
+          <Input
+            id="checkout-file"
+            name="file"
+            type="file"
+            className="cursor-pointer file:mr-4 file:py-1 file:px-3 file:rounded-md file:border file:border-border file:bg-secondary file:text-foreground hover:file:bg-secondary/80 text-muted-foreground pt-1.5 pb-1.5 h-auto"
+          />
+        </Field>
+      </div>
+
+      <div className="mt-4">
         <Field label="Project notes" id="checkout-notes">
           <Textarea
             id="checkout-notes"
