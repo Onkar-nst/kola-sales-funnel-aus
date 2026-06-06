@@ -227,15 +227,12 @@ export function Pricing() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, duration: 0.6, ease }}
             className={`relative flex flex-col rounded-3xl p-7 shadow-soft transition-all hover:-translate-y-1 ${t.highlight
-                ? "bg-foreground text-background shadow-elevated"
-                : "hairline bg-surface-elevated"
+              ? "bg-foreground text-background shadow-elevated"
+              : "hairline bg-surface-elevated"
               }`}
           >
             {t.highlight && (
-              <span 
-                className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[oklch(0.55_0.16_150)] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white"
-                style={{ boxShadow: '0 20px 60px -20px oklch(0.55 0.16 150 / 0.5)' }}
-              >
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-brand-foreground shadow-glow">
                 Most popular
               </span>
             )}
@@ -260,8 +257,8 @@ export function Pricing() {
               type="button"
               onClick={() => openCheckout(t)}
               className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold transition-transform hover:scale-[1.02] cursor-pointer ${t.highlight
-                  ? "bg-background text-foreground animate-pulse"
-                  : "bg-foreground text-background"
+                ? "bg-background text-foreground animate-pulse"
+                : "bg-foreground text-background"
                 }`}
             >
               {t.cta}
@@ -272,26 +269,24 @@ export function Pricing() {
                 return (
                   <li
                     key={feat}
-                    className={`flex items-center gap-2.5 ${
-                      isHosting
+                    className={`flex items-center gap-2.5 ${isHosting
                         ? t.highlight
                           ? "rounded-xl bg-gradient-to-r from-amber-400/15 to-amber-500/15 text-amber-200 border border-amber-400/30 px-3 py-1.5 -mx-1 shadow-soft"
                           : "rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-800 dark:text-amber-300 px-3 py-1.5 -mx-1 border border-amber-500/20 shadow-soft"
                         : t.highlight
                           ? "text-background/85"
                           : "text-foreground"
-                    }`}
+                      }`}
                   >
                     <span
-                      className={`grid h-4 w-4 shrink-0 place-items-center rounded-full ${
-                        isHosting
+                      className={`grid h-4 w-4 shrink-0 place-items-center rounded-full ${isHosting
                           ? t.highlight
                             ? "bg-amber-400 text-foreground"
-                            : "bg-amber-600 text-foreground"
+                            : "bg-amber-600 text-white"
                           : t.highlight
                             ? "bg-background text-foreground"
                             : "bg-foreground text-background"
-                      }`}
+                        }`}
                     >
                       <Check className="h-2.5 w-2.5" />
                     </span>
@@ -301,9 +296,8 @@ export function Pricing() {
                           <span className={t.highlight ? "text-amber-100 font-bold" : "text-amber-900 dark:text-amber-200 font-bold"}>
                             {feat}
                           </span>
-                          <span className={`inline-flex rounded-full px-2 py-0.5 text-[9px] uppercase tracking-wider font-bold ${
-                            t.highlight ? "bg-amber-400 text-foreground" : "bg-amber-600 text-foreground"
-                          }`}>
+                          <span className={`inline-flex rounded-full px-2 py-0.5 text-[9px] uppercase tracking-wider font-bold ${t.highlight ? "bg-amber-400 text-foreground" : "bg-amber-600 text-white"
+                            }`}>
                             Bonus
                           </span>
                         </>
@@ -343,7 +337,7 @@ export function Pricing() {
         <DialogContent ref={dialogContentRef} className="max-h-[90dvh] max-w-4xl overflow-y-auto rounded-3xl border-hairline p-0 shadow-elevated">
           {selectedTier && (
             <div className="grid bg-surface-elevated md:grid-cols-[1fr_0.78fr]">
-              <div 
+              <div
                 className="p-6 md:p-8"
                 style={showCheckoutForm ? { paddingBottom: "calc(2.5rem + env(safe-area-inset-bottom))" } : undefined}
               >
@@ -380,8 +374,8 @@ export function Pricing() {
                             disabled={includedWithGrowth}
                             onClick={() => toggleAddon(addon.name)}
                             className={`flex items-start gap-4 rounded-3xl p-4 text-left transition-all cursor-pointer ${selected
-                                ? "bg-background ring-1 ring-foreground/15 shadow-soft"
-                                : "hairline bg-surface-elevated hover:bg-background"
+                              ? "bg-background ring-1 ring-foreground/15 shadow-soft"
+                              : "hairline bg-surface-elevated hover:bg-background"
                               } ${includedWithGrowth ? "cursor-default opacity-90" : ""}`}
                           >
                             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-foreground text-background">
@@ -422,7 +416,7 @@ export function Pricing() {
                 )}
               </div>
 
-              <aside 
+              <aside
                 className={`bg-foreground p-6 text-background md:p-8 ${showCheckoutForm ? "hidden md:block" : ""}`}
                 style={{ paddingBottom: "calc(2.5rem + env(safe-area-inset-bottom))" }}
               >
