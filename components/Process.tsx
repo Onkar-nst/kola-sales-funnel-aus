@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ClipboardList, Code2, Eye, Rocket } from "lucide-react";
-import { Section, SectionHeader } from "./Primitives";
+import { Section } from "./Primitives";
+import AnimatedHeading from "./AnimatedHeading";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -37,17 +38,20 @@ export function HowItWorks() {
   return (
     <Section id="how" className="bg-surface relative overflow-hidden">
       {/* Subtle light accent */}
-      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-brand/5 blur-3xl animate-pulse" aria-hidden />
+      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-neutral-900/[0.02] blur-3xl" aria-hidden />
 
-      <SectionHeader
-        eyebrow="Your Journey"
-        title={
-          <>
-            What happens after <span className="text-gradient">you pay.</span>
-          </>
-        }
-        subtitle="Transparent onboarding with zero guesswork. Here is exactly how we deliver your site."
-      />
+      <div className="mb-14 flex flex-col gap-4 text-center items-center">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-100/60 px-3 py-1 text-[11px] font-semibold text-neutral-900 shadow-soft">
+          Your Journey
+        </div>
+        <AnimatedHeading
+          lines={["What happens after", "you get started."]}
+          className="max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-5xl lg:text-6xl text-center"
+        />
+        <p className="max-w-xl text-balance text-muted-foreground">
+          Transparent onboarding with zero guesswork. Here is exactly how we deliver your site.
+        </p>
+      </div>
       
       <div className="relative grid grid-cols-1 gap-6 md:grid-cols-4 mt-12">
         {steps.map((s, i) => {
@@ -59,20 +63,20 @@ export function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: i * 0.08, duration: 0.6, ease }}
-              className="group relative overflow-hidden rounded-3xl hairline bg-surface-elevated p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
+              className="group relative overflow-hidden rounded-3xl hairline bg-surface-elevated p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated border border-neutral-200/60"
             >
               {/* Giant background numbers */}
-              <div className="absolute right-4 top-2 select-none font-display text-8xl font-bold text-foreground/[0.03] transition-colors duration-300 group-hover:text-brand/5">
+              <div className="absolute right-4 top-2 select-none font-display text-8xl font-bold text-foreground/[0.02] transition-colors duration-300 group-hover:text-black/[0.04]">
                 {s.n}
               </div>
 
               <div className="relative z-10">
                 {/* Icon wrapper */}
-                <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-foreground/5 text-foreground transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
+                <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-neutral-100 text-neutral-800 transition-colors duration-300 group-hover:bg-black group-hover:text-white border border-neutral-200/30">
                   <Icon className="h-5 w-5" />
                 </div>
                 
-                <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-brand">
+                <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-black">
                   {s.t}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
