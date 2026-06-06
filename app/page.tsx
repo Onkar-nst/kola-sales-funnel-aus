@@ -13,7 +13,7 @@ import { PhoneCall } from "lucide-react";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-background text-foreground pb-16 md:pb-0">
+    <main className="min-h-screen bg-white text-foreground pb-16 md:pb-0">
       <Nav />
       <Hero />
       <TrustBar />

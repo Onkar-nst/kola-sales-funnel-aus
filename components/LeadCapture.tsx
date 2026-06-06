@@ -67,7 +67,7 @@ export function LeadCapture() {
                       placeholder="e.g. Sydney Dental Care"
                       value={formData.businessName}
                       onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                      className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 pl-11 pr-4 text-sm text-foreground placeholder-muted-foreground outline-none transition-all focus:border-[#101729] focus:bg-surface focus:ring-1 focus:ring-brand"
+                      className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 pl-11 pr-4 text-sm text-foreground placeholder-muted-foreground outline-none transition-all focus:border-brand focus:bg-surface focus:ring-1 focus:ring-brand"
                     />
                   </div>
                 </div>
@@ -82,7 +82,7 @@ export function LeadCapture() {
                     required
                     value={formData.industry}
                     onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                    className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 px-4 text-sm text-foreground outline-none transition-all focus:border-[#101729] focus:bg-surface focus:ring-1 focus:ring-brand appearance-none"
+                    className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 px-4 text-sm text-foreground outline-none transition-all focus:border-brand focus:bg-surface focus:ring-1 focus:ring-brand appearance-none"
                   >
                     <option value="" disabled>Select your industry</option>
                     <option value="Trades">Trades & Construction</option>
@@ -107,7 +107,7 @@ export function LeadCapture() {
                       placeholder="e.g. Melbourne, VIC"
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 pl-11 pr-4 text-sm text-foreground placeholder-muted-foreground outline-none transition-all focus:border-[#101729] focus:bg-surface focus:ring-1 focus:ring-brand"
+                      className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 pl-11 pr-4 text-sm text-foreground placeholder-muted-foreground outline-none transition-all focus:border-brand focus:bg-surface focus:ring-1 focus:ring-brand"
                     />
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export function LeadCapture() {
                       placeholder="e.g. name@company.com.au or 0400 000 000"
                       value={formData.contactInfo}
                       onChange={(e) => setFormData({ ...formData, contactInfo: e.target.value })}
-                      className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 pl-11 pr-4 text-sm text-foreground placeholder-muted-foreground outline-none transition-all focus:border-[#101729] focus:bg-surface focus:ring-1 focus:ring-brand"
+                      className="w-full rounded-2xl bg-surface/50 border border-hairline py-3 pl-11 pr-4 text-sm text-foreground placeholder-muted-foreground outline-none transition-all focus:border-brand focus:bg-surface focus:ring-1 focus:ring-brand"
                     />
                   </div>
                 </div>
@@ -190,7 +190,7 @@ export function LeadCapture() {
                 transition={{ duration: 0.4, ease }}
                 className="text-center py-8"
               >
-                <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#101729]/10 text-[#101729] mb-6">
+                <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand/10 text-brand mb-6">
                   <CheckCircle2 className="h-10 w-10 stroke-[1.5]" />
                 </div>
                 <h3 className="text-brandxl font-semibold text-foreground tracking-tight">
@@ -206,7 +206,7 @@ export function LeadCapture() {
                   </p>
                   <a
                     href="#pricing"
-                    className="inline-block mt-3 text-xs font-semibold text-[#101729] hover:underline"
+                    className="inline-block mt-3 text-xs font-semibold text-brand hover:underline"
                   >
                     View Pricing & Packages →
                   </a>

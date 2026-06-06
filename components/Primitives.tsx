@@ -36,7 +36,7 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
       transition={{ duration: 0.5, ease }}
       className="inline-flex items-center gap-2 rounded-full hairline bg-surface-elevated/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur"
     >
-      <Sparkles className="h-3.5 w-3.5 text-[#101729]" />
+      <Sparkles className="h-3.5 w-3.5 text-brand" />
       {children}
     </motion.div>
   );

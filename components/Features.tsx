@@ -88,7 +88,7 @@ export function Features() {
                   whileInView={{ height: `${h}%` }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.6, ease }}
-                  className="w-3 rounded-t bg-[#101729]"
+                  className="w-3 rounded-t bg-brand"
                   style={{ height: `${h}%` }}
                 />
               ))}
@@ -166,7 +166,7 @@ export function BentoCard({
       <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
       <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{desc}</p>
       {extra}
-      <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-[#101729] opacity-0 blur-3xl transition-opacity group-hover:opacity-20" />
+      <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-brand opacity-0 blur-3xl transition-opacity group-hover:opacity-20" />
     </motion.div>
   );
 }

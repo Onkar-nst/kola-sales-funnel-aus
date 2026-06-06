@@ -64,7 +64,7 @@ export function TrustBar() {
               <ul className="space-y-1 text-left w-full max-w-[190px]">
                 {it.subPoints.map((point, idx) => (
                   <li key={idx} className="flex items-start gap-1.5 text-[10.5px] text-muted-foreground/80 font-semibold leading-tight">
-                    <span className="h-1 w-1 rounded-full bg-[#101729] shrink-0 mt-1.5" />
+                    <span className="h-1 w-1 rounded-full bg-brand shrink-0 mt-1.5" />
                     <span>{point}</span>
                   </li>
                 ))}

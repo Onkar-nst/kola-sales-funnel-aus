@@ -53,7 +53,7 @@ export function Solution() {
               transition={{ delay: i * 0.1, duration: 0.6, ease }}
               className="flex gap-6 rounded-3xl bg-surface-elevated p-8 hairline hover:shadow-soft transition-all hover:scale-[1.005]"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#101729]/10 text-[#101729]">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
                 <Icon className="h-6 w-6 stroke-[2]" />
               </div>
               <div>

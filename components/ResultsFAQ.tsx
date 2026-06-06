@@ -1,60 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Star,
   CheckCircle2,
   Quote,
-  TrendingUp,
-  ChevronDown,
   MessageCircle,
   HelpCircle,
+  Plus,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+import AnimatedHeading from "./AnimatedHeading";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/* ─────────────────────── Review Data ─────────────────────── */
+/* ─────────────────────── Simplified Review Data (8 items for 2 pages of 4) ─────────────────────── */
 
 interface ReviewItem {
   quote: string;
   name: string;
   role: string;
-  avatarGrad: string;
-  metricValue: string;
 }
 
 const reviews: ReviewItem[] = [
+  // Page 1
   {
-    quote:
-      "Launched on Tuesday, and had 14 high ticket quote requests by Friday. It completely changed our business.",
+    quote: "Launched Tuesday, had 14 high-ticket quote requests by Friday.",
     name: "David Fletcher",
-    role: "Flooring · Melbourne",
-    avatarGrad: "from-blue-500 to-indigo-600",
-    metricValue: "14 Leads / 3 Days",
+    role: "Flooring · MEL",
   },
   {
-    quote:
-      "Our conversion rate from paid traffic jumped 300% in the first month. The direct form integration is incredibly smooth.",
+    quote: "Our conversion rate jumped 300% in the first month.",
     name: "Sofia Zevana",
-    role: "Boutique Retail · Sydney",
-    avatarGrad: "from-purple-500 to-pink-600",
-    metricValue: "+300% CVR",
+    role: "Retail · SYD",
   },
   {
-    quote:
-      "We needed a website that loads instantly on mobile and lets patients book with 2 taps. Kola delivered a masterpiece in 48 hours.",
+    quote: "Loads instantly on mobile. Delivered a masterpiece in 48h.",
     name: "Dr. Marcus Lim",
-    role: "Dental Clinic · Brisbane",
-    avatarGrad: "from-emerald-500 to-teal-600",
-    metricValue: "45 Patients/mo",
+    role: "Dental · BNE",
   },
   {
-    quote: "Clean, fast, and works perfectly on mobile. Best decision for our yoga studio.",
+    quote: "Clean, fast, and works perfectly. Best decision for our studio.",
     name: "Sarah Mitchell",
-    role: "North Yoga · Perth",
-    avatarGrad: "from-orange-400 to-red-500",
-    metricValue: "Top Tier",
+    role: "Yoga · PER",
+  },
+  // Page 2
+  {
+    quote: "Form enquiries started landing in our inbox within 24 hours.",
+    name: "Liam O'Connor",
+    role: "Landscaping · ADL",
+  },
+  {
+    quote: "Our Google search ranking shot up to page 1 in under two weeks.",
+    name: "Emma Watson",
+    role: "Accounting · SYD",
+  },
+  {
+    quote: "Simple, fast, and gorgeous design. The team was incredibly responsive.",
+    name: "Ryan Reynolds",
+    role: "Fitness · MEL",
+  },
+  {
+    quote: "Amazing service! Our customers love the mobile booking interface.",
+    name: "Chloe Tanaka",
+    role: "Café · BNE",
   }
 ];
 
@@ -87,63 +97,9 @@ const faqs = [
   },
 ];
 
-/* ─────────────────────── Components ─────────────────────── */
+/* ─────────────────────── FAQ Accordion Item ─────────────────────── */
 
-function ReviewCard({ r, i }: { r: ReviewItem; i: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ delay: i * 0.05, duration: 0.5, ease }}
-      className="group relative flex flex-col justify-between rounded-[22px] border border-hairline/50 bg-surface-elevated/70 p-6 backdrop-blur-sm transition-all duration-400 hover:shadow-elevated hover:border-[#101729]/20"
-    >
-      {/* Top glow bar on hover */}
-      <div className="absolute inset-x-4 top-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-brand/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      <div>
-        {/* Metric + Stars row */}
-        <div className="mb-4 flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 rounded-xl bg-[oklch(0.55_0.16_150)/0.08] px-3 py-1.5 border border-[oklch(0.55_0.16_150)/0.10]">
-            <TrendingUp className="h-3.5 w-3.5 text-[oklch(0.55_0.16_150)]" />
-            <span className="text-[12px] font-bold text-[oklch(0.55_0.16_150)]">
-              {r.metricValue}
-            </span>
-          </div>
-          <div className="flex gap-0.5">
-            {[...Array(5)].map((_, k) => (
-              <Star key={k} className="h-3 w-3 fill-current text-accent-coral" />
-            ))}
-          </div>
-        </div>
-
-        {/* Quote */}
-        <Quote className="h-5 w-5 text-[#101729]/15 mb-2 rotate-180" />
-        <blockquote className="text-[14px] leading-[1.75] text-foreground/90 font-semibold">
-          &ldquo;{r.quote}&rdquo;
-        </blockquote>
-      </div>
-
-      {/* Author */}
-      <div className="mt-5 flex items-center gap-3 border-t border-hairline/40 pt-4">
-        <span
-          className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${r.avatarGrad} font-bold text-white text-xs shadow-soft`}
-        >
-          {r.name[0]}
-        </span>
-        <div>
-          <div className="flex items-center gap-1.5 text-sm font-semibold text-foreground">
-            {r.name}
-            <CheckCircle2 className="h-3.5 w-3.5 text-[oklch(0.55_0.16_150)]" />
-          </div>
-          <div className="text-[11px] text-muted-foreground font-medium">{r.role}</div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function FAQItem({
+function MinimalFAQItem({
   f,
   i,
   isOpen,
@@ -155,55 +111,25 @@ function FAQItem({
   onToggle: () => void;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ delay: i * 0.05, duration: 0.45, ease }}
-      className={`group relative overflow-hidden rounded-2xl transition-all duration-300 ${
-        isOpen
-          ? "bg-surface-elevated shadow-soft border border-[#101729]/15"
-          : "bg-surface-elevated/40 border border-hairline/40 hover:border-hairline hover:bg-surface-elevated/70"
-      }`}
-    >
-      {/* Active indicator */}
-      {isOpen && (
-        <div className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-[#101729]" />
-      )}
-
+    <div className="border-b border-hairline/60 py-4 transition-all duration-300">
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left cursor-pointer"
+        className="flex w-full items-center justify-between gap-4 py-2 text-left cursor-pointer group"
       >
-        <div className="flex items-center gap-3.5 min-w-0">
-          <span
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-[11px] font-bold font-display transition-all duration-300 ${
-              isOpen
-                ? "bg-[#101729] text-white shadow-soft"
-                : "bg-surface-elevated text-muted-foreground border border-hairline/60 group-hover:text-[#101729] group-hover:border-[#101729]/20"
-            }`}
-          >
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <span
-            className={`text-[14px] font-semibold leading-snug transition-colors duration-300 ${
-              isOpen ? "text-foreground" : "text-foreground/75 group-hover:text-foreground"
-            }`}
-          >
-            {f.q}
-          </span>
-        </div>
-        <motion.span
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3, ease }}
-          className={`grid h-8 w-8 shrink-0 place-items-center rounded-xl transition-all duration-300 ${
-            isOpen
-              ? "bg-[#101729]/10 text-[#101729]"
-              : "bg-surface text-muted-foreground border border-hairline/40 group-hover:border-[#101729]/15"
+        <span
+          className={`text-[15px] font-semibold tracking-tight transition-colors duration-300 ${
+            isOpen ? "text-neutral-900" : "text-foreground/80 group-hover:text-foreground"
           }`}
         >
-          <ChevronDown className="h-4 w-4" />
-        </motion.span>
+          {f.q}
+        </span>
+        <span
+          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-hairline/60 transition-all duration-300 ${
+            isOpen ? "bg-black border-black text-white rotate-45" : "bg-transparent text-muted-foreground group-hover:border-neutral-900 group-hover:text-neutral-900"
+          }`}
+        >
+          <Plus className="h-3.5 w-3.5" />
+        </span>
       </button>
 
       <AnimatePresence initial={false}>
@@ -215,117 +141,216 @@ function FAQItem({
             transition={{ duration: 0.35, ease }}
             className="overflow-hidden"
           >
-            <div className="px-5 pb-5 pl-[4.5rem]">
-              <p className="text-[13px] leading-[1.85] text-muted-foreground">{f.a}</p>
+            <div className="pt-2 pb-3 pr-8">
+              <p className="text-[13.5px] leading-[1.8] text-muted-foreground font-medium">{f.a}</p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
 /* ─────────────────────── Main Component ─────────────────────── */
 
 export function ResultsFAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+  const [activePage, setActivePage] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const leftReviews = [reviews[0], reviews[1]];
-  const rightReviews = [reviews[2], reviews[3]];
+  const cardsPerPage = 4;
+  const totalPages = Math.ceil(reviews.length / cardsPerPage);
+
+  // Auto-slide effect for pages of 4 testimonials
+  useEffect(() => {
+    if (isHovered || totalPages <= 1) return;
+    const interval = setInterval(() => {
+      setActivePage((prev) => (prev + 1) % totalPages);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [isHovered, totalPages]);
+
+  const handlePrev = () => {
+    setActivePage((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const handleNext = () => {
+    setActivePage((prev) => (prev + 1) % totalPages);
+  };
+
+  const pageStartIndex = activePage * cardsPerPage;
+  const visibleReviews = reviews.slice(pageStartIndex, pageStartIndex + cardsPerPage);
 
   return (
-    <section id="results-faq" className="relative px-6 py-20 bg-surface/20 overflow-hidden border-y border-hairline/60">
-      {/* Backgrounds */}
+    <section id="results-faq" className="relative px-6 py-24 bg-surface/30 overflow-hidden border-y border-hairline/60">
+      {/* Subtle background glow bubbles */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-[#101729]/5 blur-[140px]" />
-        <div className="absolute right-0 bottom-0 h-[500px] w-[500px] rounded-full bg-accent-coral/5 blur-[140px]" />
+        <div className="absolute left-0 top-1/4 h-[500px] w-[500px] rounded-full bg-neutral-900/[0.02] blur-[120px]" />
+        <div className="absolute right-0 bottom-1/4 h-[500px] w-[500px] rounded-full bg-neutral-900/[0.02] blur-[120px]" />
       </div>
 
-      <div className="mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        
-        {/* ═══════════════ LEFT COLUMN: 2 Testimonials ═══════════════ */}
-        <div className="lg:col-span-3 flex flex-col gap-6">
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 mb-2">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-600 shadow-soft">
-              <Star className="h-3.5 w-3.5" /> Testimonials
-            </div>
-            <h3 className="text-lg font-bold text-foreground mt-2 font-display">What Clients Say</h3>
-          </div>
-          {leftReviews.map((r, i) => (
-            <ReviewCard key={r.name} r={r} i={i} />
-          ))}
-        </div>
-
-        {/* ═══════════════ MIDDLE COLUMN: FAQ ═══════════════ */}
-        <div className="lg:col-span-6 flex flex-col gap-8">
-          <div className="flex flex-col items-center text-center gap-3">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-[#101729]/10 bg-[#101729]/5 px-3 py-1 text-[11px] font-semibold text-[#101729] shadow-soft">
-              <HelpCircle className="h-3.5 w-3.5" /> FAQs
-            </div>
-            <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl">
-              Got questions? <span className="text-[#101729] text-gradient">We got answers.</span>
-            </h2>
-            <p className="max-w-md text-balance text-muted-foreground font-medium text-xs">
-              Everything you need to know about our $99 website, process, hosting, and guarantees.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2.5 mt-2">
-            {faqs.map((f, i) => (
-              <FAQItem
-                key={f.q}
-                f={f}
-                i={i}
-                isOpen={open === i}
-                onToggle={() => setOpen(open === i ? null : i)}
-              />
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease }}
-            className="mt-2 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-[20px] border border-hairline/50 bg-surface-elevated/80 px-6 py-5 backdrop-blur-md shadow-soft"
-          >
-            <div className="flex items-center gap-4 text-center sm:text-left">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#101729]/10 text-[#101729]">
-                <MessageCircle className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-foreground">
-                  Still have questions?
-                </p>
-                <p className="text-[13px] text-muted-foreground mt-0.5 font-medium">
-                  We are here to help.
+      <div className="mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+          
+          {/* ═══════════════ LEFT COLUMN: Sleek Minimal FAQ ═══════════════ */}
+          <div className="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <div className="flex flex-col items-start gap-3">
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-100/60 px-3 py-1 text-[11px] font-semibold text-neutral-900 shadow-soft">
+                  <HelpCircle className="h-3.5 w-3.5" /> FAQs
+                </div>
+                <AnimatedHeading 
+                  lines={["Got questions?", "We got answers."]}
+                  className="text-balance text-3xl font-bold leading-[1.05] tracking-[-0.03em] md:text-4xl font-display"
+                />
+                <p className="max-w-md text-muted-foreground text-[13px] font-medium leading-relaxed">
+                  Everything you need to know about our $99 website launch package, process, hosting, and guarantees.
                 </p>
               </div>
+
+              <div className="flex flex-col mt-4">
+                {faqs.map((f, i) => (
+                  <MinimalFAQItem
+                    key={f.q}
+                    f={f}
+                    i={i}
+                    isOpen={openFAQ === i}
+                    onToggle={() => setOpenFAQ(openFAQ === i ? null : i)}
+                  />
+                ))}
+              </div>
             </div>
-            <a
-              href="https://calendly.com/kola-communications"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-11 items-center justify-center rounded-xl bg-[#0f172a] px-5 text-[13px] font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand/20 whitespace-nowrap"
+          </div>
+
+          {/* ═══════════════ RIGHT COLUMN: Testimonials 4 Visible + Slide ═══════════════ */}
+          <div className="lg:col-span-6 flex flex-col justify-between h-full gap-8">
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col items-start gap-2">
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-100/60 px-3 py-1 text-[11px] font-semibold text-neutral-900 shadow-soft">
+                  <CheckCircle2 className="h-3.5 w-3.5" /> Testimonials
+                </div>
+                <h3 className="text-2xl font-bold text-foreground font-display tracking-tight mt-1">Proven Results</h3>
+                <p className="text-muted-foreground text-[13px] font-medium">
+                  Hear what business owners say about the Kola speed & results.
+                </p>
+              </div>
+
+              {/* Testimonials 2x2 Grid with Page Slide Transition */}
+              <div 
+                className="relative w-full overflow-hidden min-h-[360px]"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activePage}
+                    initial={{ opacity: 0, x: 20, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, x: -20, filter: "blur(4px)" }}
+                    transition={{ duration: 0.5, ease }}
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
+                  >
+                    {visibleReviews.map((r) => (
+                      <div
+                        key={r.name}
+                        className="relative flex flex-col justify-between rounded-2xl border border-hairline/60 bg-surface-elevated p-5 shadow-soft transition-all duration-300 hover:shadow-elevated hover:border-neutral-300"
+                      >
+                        {/* Subtle top indicator bar */}
+                        <div className="absolute inset-x-5 top-0 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent" />
+                        
+                        <div>
+                          {/* Quote */}
+                          <Quote className="h-4.5 w-4.5 text-neutral-300 mb-2.5 rotate-180 shrink-0" />
+                          <blockquote className="text-[12.5px] leading-[1.65] text-foreground/90 font-semibold tracking-tight mb-4">
+                            &ldquo;{r.quote}&rdquo;
+                          </blockquote>
+                        </div>
+
+                        {/* Author Detail */}
+                        <div className="flex flex-col border-t border-hairline/40 pt-3.5">
+                          <div className="flex items-center gap-1 text-[12.5px] font-bold text-foreground">
+                            {r.name}
+                            <CheckCircle2 className="h-3 w-3 text-neutral-900 shrink-0" />
+                          </div>
+                          <div className="text-[10px] text-muted-foreground font-semibold mt-0.5">{r.role}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Pagination controls for pages of 4 */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-between mt-2 px-1">
+                  {/* Dots indicator */}
+                  <div className="flex gap-1.5 items-center">
+                    {[...Array(totalPages)].map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActivePage(i)}
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                          activePage === i ? "w-6 bg-black" : "w-2 bg-neutral-200 hover:bg-neutral-300"
+                        }`}
+                        aria-label={`Go to page ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Arrow navigation buttons */}
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handlePrev}
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline/60 bg-surface-elevated text-muted-foreground hover:text-black hover:border-neutral-300 hover:bg-surface transition-all cursor-pointer shadow-soft"
+                      aria-label="Previous testimonials page"
+                    >
+                      <ChevronLeft className="h-4.5 w-4.5" />
+                    </button>
+                    <button
+                      onClick={handleNext}
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline/60 bg-surface-elevated text-muted-foreground hover:text-black hover:border-neutral-300 hover:bg-surface transition-all cursor-pointer shadow-soft"
+                      aria-label="Next testimonials page"
+                    >
+                      <ChevronRight className="h-4.5 w-4.5" />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Minimal Sub-CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease }}
+              className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-hairline/60 bg-surface-elevated/70 px-6 py-5 backdrop-blur-md shadow-soft"
             >
-              Book a 15 Minute Call →
-            </a>
-          </motion.div>
-        </div>
-
-        {/* ═══════════════ RIGHT COLUMN: 2 Testimonials ═══════════════ */}
-        <div className="lg:col-span-3 flex flex-col gap-6">
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 mb-2">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-600 shadow-soft">
-              <Star className="h-3.5 w-3.5" /> Testimonials
-            </div>
-            <h3 className="text-lg font-bold text-foreground mt-2 font-display">Proven Results</h3>
+              <div className="flex items-center gap-4 text-center sm:text-left">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neutral-100 text-neutral-900">
+                  <MessageCircle className="h-4.5 w-4.5" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-foreground">
+                    Still have questions?
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5 font-medium">
+                    We're here to help you get started.
+                  </p>
+                </div>
+              </div>
+              <a
+                href="https://calendly.com/kola-communications"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 items-center justify-center rounded-lg bg-black hover:bg-neutral-900 px-5 text-xs font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/10 whitespace-nowrap"
+              >
+                Book a 15 Min Call →
+              </a>
+            </motion.div>
           </div>
-          {rightReviews.map((r, i) => (
-            <ReviewCard key={r.name} r={r} i={i + 2} />
-          ))}
-        </div>
 
+        </div>
       </div>
     </section>
   );

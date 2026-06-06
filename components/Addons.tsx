@@ -86,7 +86,7 @@ export function AddOns() {
   return (
     <Section id="addons" className="relative overflow-hidden">
       {/* Decorative gradient blob */}
-      <div className="absolute right-0 bottom-0 h-96 w-96 -translate-y-12 translate-x-32 rounded-full bg-[#101729]/5 blur-3xl" aria-hidden />
+      <div className="absolute right-0 bottom-0 h-96 w-96 -translate-y-12 translate-x-32 rounded-full bg-brand/5 blur-3xl" aria-hidden />
 
       <SectionHeader
         eyebrow="Optional add-ons"
@@ -129,7 +129,7 @@ export function AddOns() {
               </div>
 
               <div className="min-w-0 flex-1 pr-6">
-                <h4 className="text-sm font-semibold text-foreground transition-colors group-hover:text-[#101729]-glow">
+                <h4 className="text-sm font-semibold text-foreground transition-colors group-hover:text-brand-glow">
                   {it.name}
                 </h4>
                 <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{it.d}</p>
@@ -178,7 +178,7 @@ export function AddOns() {
             className="mt-12 rounded-3xl p-6 md:p-8 glass hairline flex flex-col md:flex-row items-center justify-between gap-6 shadow-glow"
           >
             <div>
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-[#101729]-glow">
+              <div className="flex items-center gap-1.5 text-xs font-semibold text-brand-glow">
                 <Sparkles className="h-3.5 w-3.5 fill-brand-glow/20" /> ESTIMATED PROJECT SUMMARY
               </div>
               <h3 className="text-lg font-semibold text-foreground mt-1">Your Custom Platform</h3>

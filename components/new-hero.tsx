@@ -101,7 +101,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.15 }}
-                            className="font-display text-white text-[2.4rem] md:text-[clamp(2.8rem,6.2vw,5.6rem)] leading-[0.95] tracking-[-0.04em]"
+                            className="font-display text-foreground text-[2.4rem] md:text-[clamp(2.8rem,6.2vw,5.6rem)] leading-[0.95] tracking-[-0.04em]"
                         >
                             We <span className="text-lime">place,</span> you{" "}
                             <span className="text-lime">grow</span>

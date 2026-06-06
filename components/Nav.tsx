@@ -4,6 +4,40 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
+/* ── Genie vanish / materialize animation variants ── */
+const genieHeader = {
+  hidden: { opacity: 0, y: -30, scale: 0.92, filter: "blur(12px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  },
+};
+
+const genieChild = {
+  hidden: { opacity: 0, y: -12, scale: 0.85, filter: "blur(8px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      delay: 0.15 + i * 0.06,
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  }),
+};
+
+const navLinks = [
+  { label: "Our Work", href: "#showcase" },
+  { label: "About", href: "#about" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "FAQ", href: "#results-faq" },
+];
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,18 +60,22 @@ export function Nav() {
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      variants={genieHeader}
+      initial="hidden"
+      animate="visible"
       className={`fixed inset-x-0 top-0 z-50 w-full h-16 transition-all duration-300 border-b bg-background text-foreground border-hairline ${
         scrolled ? "shadow-soft bg-background/95 backdrop-blur-md" : ""
       }`}
     >
       <div className="flex h-full w-full items-center justify-between">
         {/* ── Brand Logo & Text ── */}
-        <a 
-          href="#top" 
-          onClick={(e) => handleScroll(e, "#top")} 
+        <motion.a
+          href="#top"
+          onClick={(e) => handleScroll(e, "#top")}
+          custom={0}
+          variants={genieChild}
+          initial="hidden"
+          animate="visible"
           className="flex h-full items-center gap-3 px-6 hover:bg-surface transition-all border-r border-hairline"
         >
           <img
@@ -51,57 +89,51 @@ export function Nav() {
               🇦🇺 Sydney, AU
             </span>
           </div>
-        </a>
+        </motion.a>
 
         {/* ── Desktop Navigation Menu ── */}
         <div className="hidden md:flex h-full items-center">
-          <a
-            href="#showcase"
-            onClick={(e) => handleScroll(e, "#showcase")}
-            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
-          >
-            Our Work
-          </a>
-          <a
-            href="#about"
-            onClick={(e) => handleScroll(e, "#about")}
-            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
-          >
-            About
-          </a>
-          <a
-            href="#pricing"
-            onClick={(e) => handleScroll(e, "#pricing")}
-            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
-          >
-            Pricing
-          </a>
-          <a
-            href="#results-faq"
-            onClick={(e) => handleScroll(e, "#results-faq")}
-            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
-          >
-            FAQ
-          </a>
+          {navLinks.map((link, i) => (
+            <motion.a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleScroll(e, link.href)}
+              custom={i + 1}
+              variants={genieChild}
+              initial="hidden"
+              animate="visible"
+              className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
+            >
+              {link.label}
+            </motion.a>
+          ))}
 
           {/* Solid Action CTA block on far right using brand color */}
-          <a
+          <motion.a
             href="#lead-capture"
             onClick={(e) => handleScroll(e, "#lead-capture")}
-            className="flex h-full items-center justify-center bg-[#101729] text-white font-bold text-xs uppercase tracking-widest px-8 hover:bg-[#101729]/90 transition-all"
+            custom={navLinks.length + 1}
+            variants={genieChild}
+            initial="hidden"
+            animate="visible"
+            className="flex h-full items-center justify-center bg-black hover:bg-neutral-900 text-white font-bold text-xs uppercase tracking-widest px-8 transition-all"
           >
             Start Project
-          </a>
+          </motion.a>
         </div>
 
         {/* ── Mobile Menu Toggle Button ── */}
-        <button
+        <motion.button
+          custom={1}
+          variants={genieChild}
+          initial="hidden"
+          animate="visible"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="flex md:hidden h-full px-6 items-center justify-center border-l border-hairline hover:bg-surface text-foreground transition-all"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        </motion.button>
       </div>
 
       {/* ── Mobile Menu Overlay / Drawer ── */}
@@ -115,38 +147,20 @@ export function Nav() {
             className="absolute left-0 right-0 top-full bg-background border-b border-hairline md:hidden z-40 overflow-hidden"
           >
             <div className="flex flex-col">
-              <a
-                href="#showcase"
-                onClick={(e) => handleScroll(e, "#showcase")}
-                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
-              >
-                Our Work
-              </a>
-              <a
-                href="#about"
-                onClick={(e) => handleScroll(e, "#about")}
-                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
-              >
-                About
-              </a>
-              <a
-                href="#pricing"
-                onClick={(e) => handleScroll(e, "#pricing")}
-                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
-              >
-                Pricing
-              </a>
-              <a
-                href="#results-faq"
-                onClick={(e) => handleScroll(e, "#results-faq")}
-                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
-              >
-                FAQ
-              </a>
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleScroll(e, link.href)}
+                  className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
                 href="#lead-capture"
                 onClick={(e) => handleScroll(e, "#lead-capture")}
-                className="flex items-center justify-center bg-[#101729] text-white font-bold text-xs uppercase tracking-widest py-5 hover:bg-[#101729]/90 transition-all"
+                className="flex items-center justify-center bg-black hover:bg-neutral-900 text-white font-bold text-xs uppercase tracking-widest py-5 transition-all"
               >
                 Start Project
               </a>

@@ -24,13 +24,13 @@ export function Scarcity() {
   }, []);
 
   return (
-    <section id="availability" className="relative px-6 py-8 md:py-12">
+    <section id="availability" className="relative px-6 py-16 md:py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease }}
-        className="relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] bg-foreground px-6 py-8 text-center text-background shadow-elevated md:px-12 md:py-10"
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-foreground px-6 py-14 text-center text-background shadow-elevated md:px-16 md:py-20"
       >
         {/* Background elements */}
         <div className="absolute inset-0 grid-bg opacity-[0.05]" aria-hidden />
@@ -64,7 +64,7 @@ export function Scarcity() {
               <span>{weekDateStr}</span>
               <span className="text-accent-coral font-bold">3 of 5 spots filled</span>
             </div>
-            
+
             {/* Custom Progress Bar */}
             <div className="mt-2 relative h-2.5 w-full overflow-hidden rounded-full bg-background/20">
               <motion.div
@@ -75,7 +75,7 @@ export function Scarcity() {
                 className="h-full rounded-full bg-accent-coral"
               />
             </div>
-            
+
             <div className="mt-3 flex justify-between items-center text-[10px] text-background/80">
               <span>Next kickoff: Immediate</span>
               <span className="font-semibold text-accent-coral">2 spots left</span>

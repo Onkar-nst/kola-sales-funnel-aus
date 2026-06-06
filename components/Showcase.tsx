@@ -21,6 +21,7 @@ import {
   Check
 } from "lucide-react";
 import { Section, SectionHeader } from "./Primitives";
+import AnimatedHeading from "./AnimatedHeading";
 import Image from "next/image";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -570,17 +571,16 @@ export function Showcase() {
 
   return (
     <Section id="showcase" className="!pb-0 overflow-hidden">
-      <SectionHeader
-        eyebrow="Our Work"
-        title={
-          <>
-            Real websites.
-            <br />
-            <span className="text-gradient">Real Aussie businesses.</span>
-          </>
-        }
-        subtitle="Every single one of these custom websites was designed, hand coded, and launched in under 48 hours."
-      />
+      <div className="mb-14 flex flex-col gap-4 text-center items-center">
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-100/60 px-3 py-1 text-[11px] font-semibold text-neutral-900 shadow-soft">
+          Our Work
+        </div>
+        <AnimatedHeading
+          lines={["Real websites.", "Real Aussie businesses."]}
+          className="max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-5xl lg:text-6xl text-center"
+        />
+        <p className="max-w-xl text-balance text-muted-foreground">{`Every single one of these custom websites was designed, hand coded, and launched in under 48 hours.`}</p>
+      </div>
 
       <div className="relative w-full py-4 mt-8">
         <div className="flex gap-6 w-max marquee hover:[animation-play-state:paused] cursor-pointer">
@@ -590,7 +590,7 @@ export function Showcase() {
               onClick={() => setSelectedCard(c)}
               className="w-[280px] sm:w-[350px] shrink-0 group relative block overflow-hidden rounded-3xl hairline bg-surface-elevated p-3 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
             >
-              <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-neutral-900 border border-hairline/10">
+              <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-surface border border-hairline/10">
                 <Image
                   src={c.img}
                   alt={c.name}
@@ -630,167 +630,114 @@ export function Showcase() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(11,15,20,0.5)_0%,_transparent_75%)] pointer-events-none" />
 
             <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.98 }}
+              initial={{ opacity: 0, y: 30, scale: 0.99 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 30, scale: 0.98 }}
+              exit={{ opacity: 0, y: 30, scale: 0.99 }}
               transition={{ duration: 0.4, ease }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[1050px] h-[90vh] overflow-y-auto rounded-[2rem] border border-white/10 bg-[#0B0F14] shadow-[0_20px_50px_rgba(0,0,0,0.8)] text-white flex flex-col custom-scrollbar"
+              className="relative w-full max-w-[950px] h-[90vh] overflow-y-auto rounded-2xl border border-neutral-200 bg-white shadow-2xl text-neutral-900 flex flex-col custom-scrollbar"
               ref={modalContainerRef}
               onScroll={(e) => setModalScrollY(e.currentTarget.scrollTop)}
             >
-              {/* 1. Hero Section */}
-              <div className="relative h-[300px] md:h-[450px] w-full overflow-hidden shrink-0">
-                <motion.div 
-                  className="absolute inset-0 w-full h-[120%]"
-                  style={{ y: modalScrollY * 0.25 }}
-                >
+              {/* Close button top-right */}
+              <button
+                onClick={() => setSelectedCard(null)}
+                className="absolute right-6 top-6 z-20 rounded-full p-2 text-neutral-400 hover:text-black hover:bg-neutral-100 transition-all cursor-pointer"
+                aria-label="Close Case Study"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {/* Modal Inner Content */}
+              <div className="px-6 pt-12 md:px-12 md:pt-16 pb-24 flex flex-col gap-8">
+                {/* 1. Header Section */}
+                <div className="flex flex-col gap-2.5 max-w-3xl">
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                    <span>{selectedCard.tag}</span>
+                    <span>•</span>
+                    <span>{selectedCard.city}</span>
+                  </div>
+                  <h3 className="text-3xl md:text-5xl font-medium tracking-tight text-neutral-900 leading-none">
+                    {selectedCard.name}
+                  </h3>
+                  <p className="text-sm md:text-base text-neutral-500 font-medium">
+                    {selectedCard.subtitle}
+                  </p>
+                </div>
+
+                {/* 2. Featured Banner Image */}
+                <div className="relative aspect-video md:aspect-[21/9] w-full overflow-hidden rounded-xl bg-neutral-50 border border-neutral-200/60 shadow-xs">
                   <Image
                     src={selectedCard.img}
                     alt={selectedCard.name}
                     fill
                     priority
-                    sizes="(max-width: 1024px) 100vw, 1100px"
+                    sizes="(max-width: 1024px) 100vw, 950px"
                     className="object-cover"
                   />
-                </motion.div>
-                
-                {/* Dark gradient overlay at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14] via-[#0B0F14]/40 to-black/20" />
-
-                {/* Close button top-right */}
-                <button
-                  onClick={() => setSelectedCard(null)}
-                  className="absolute right-6 top-6 z-10 rounded-full bg-black/60 p-2.5 text-white/80 hover:text-white hover:bg-black/80 transition-all border border-white/15 backdrop-blur-md cursor-pointer hover:scale-105"
-                  aria-label="Close Case Study"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-
-                {/* Hero Meta & Titles */}
-                <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 flex flex-col gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-block rounded-full bg-[oklch(0.55_0.16_150)]/20 px-3.5 py-1 text-[10px] uppercase tracking-wider text-[oklch(0.65_0.19_150)] font-semibold border border-[oklch(0.55_0.16_150)]/30 backdrop-blur-md">
-                      {selectedCard.tag}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs text-white/70 font-medium">
-                      <MapPin className="h-3.5 w-3.5 text-white/50" /> {selectedCard.city}
-                    </span>
-                  </div>
-                  <h3 className="text-3xl md:text-5xl font-bold leading-none tracking-tight text-white mt-1">
-                    {selectedCard.name}
-                  </h3>
-                  <p className="text-sm md:text-lg text-white/70 font-medium max-w-2xl">
-                    {selectedCard.subtitle}
-                  </p>
                 </div>
-              </div>
 
-              {/* Modal Body Contents */}
-              <div className="px-6 py-8 md:px-10 md:py-10 flex flex-col gap-10 md:gap-14 pb-28 md:pb-24">
-                
-                {/* 2. Stats Row (4 cards) */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="rounded-2xl bg-white/[0.04] p-5 border border-white/[0.08] backdrop-blur-md shadow-inner flex flex-col justify-between group hover:border-[oklch(0.55_0.16_150)]/30 transition-colors">
-                    <div className="flex items-center justify-between mb-3 text-white/40">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider">Delivery Time</span>
-                      <Clock className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
-                    </div>
-                    <div>
-                      <div className="text-xl md:text-brandxl font-bold text-white leading-tight">
-                        {selectedCard.stats.delivery}
-                      </div>
-                      <span className="text-[10px] text-white/40 font-medium">Concept to Live</span>
-                    </div>
+                {/* 3. Stats Strip */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 py-6 border-y border-neutral-100">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Delivery Time</span>
+                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.delivery}</span>
+                    <span className="text-xs text-neutral-400 font-medium">Concept to Live</span>
                   </div>
-
-                  <div className="rounded-2xl bg-white/[0.04] p-5 border border-white/[0.08] backdrop-blur-md shadow-inner flex flex-col justify-between group hover:border-[oklch(0.55_0.16_150)]/30 transition-colors">
-                    <div className="flex items-center justify-between mb-3 text-white/40">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider">PageSpeed Score</span>
-                      <Zap className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
-                    </div>
-                    <div>
-                      <div className="text-xl md:text-brandxl font-bold text-[oklch(0.65_0.19_150)] leading-tight">
-                        {selectedCard.stats.pagespeed}
-                      </div>
-                      <span className="text-[10px] text-white/40 font-medium">Core Web Vitals</span>
-                    </div>
+                  <div className="flex flex-col gap-1 md:border-l md:border-neutral-100 md:pl-6">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">PageSpeed Score</span>
+                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.pagespeed}</span>
+                    <span className="text-xs text-neutral-400 font-medium">Core Web Vitals</span>
                   </div>
-
-                  <div className="rounded-2xl bg-white/[0.04] p-5 border border-white/[0.08] backdrop-blur-md shadow-inner flex flex-col justify-between group hover:border-[oklch(0.55_0.16_150)]/30 transition-colors">
-                    <div className="flex items-center justify-between mb-3 text-white/40">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider">Conversion Increase</span>
-                      <TrendingUp className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
-                    </div>
-                    <div>
-                      <div className="text-xl md:text-brandxl font-bold text-white leading-tight">
-                        {selectedCard.stats.conversion}
-                      </div>
-                      <span className="text-[10px] text-white/40 font-medium">Enquiries & Sales</span>
-                    </div>
+                  <div className="flex flex-col gap-1 border-l border-neutral-100 pl-6">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Conversion</span>
+                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.conversion}</span>
+                    <span className="text-xs text-neutral-400 font-medium">Enquiries & Sales</span>
                   </div>
-
-                  <div className="rounded-2xl bg-white/[0.04] p-5 border border-white/[0.08] backdrop-blur-md shadow-inner flex flex-col justify-between group hover:border-[oklch(0.55_0.16_150)]/30 transition-colors">
-                    <div className="flex items-center justify-between mb-3 text-white/40">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider">Mobile Optimization</span>
-                      <Smartphone className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
-                    </div>
-                    <div>
-                      <div className="text-xl md:text-brandxl font-bold text-white leading-tight">
-                        {selectedCard.stats.mobile}
-                      </div>
-                      <span className="text-[10px] text-white/40 font-medium">Responsive Score</span>
-                    </div>
+                  <div className="flex flex-col gap-1 border-l border-neutral-100 pl-6">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Mobile Score</span>
+                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.mobile}</span>
+                    <span className="text-xs text-neutral-400 font-medium">Responsive Layout</span>
                   </div>
                 </div>
 
-                {/* 3. Challenge & Solution */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div className="rounded-3xl bg-white/[0.04] p-6 md:p-8 border border-white/[0.08] backdrop-blur-md shadow-inner hover:border-white/15 transition-colors">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="grid h-10 w-10 place-items-center rounded-xl bg-red-500/10 border border-red-500/25">
-                        <AlertCircle className="h-5 w-5 text-red-400" />
-                      </div>
-                      <h4 className="text-lg md:text-xl font-bold text-white">The Challenge</h4>
-                    </div>
-                    <h5 className="text-sm font-semibold text-white/90 mb-2">{selectedCard.challenge.title}</h5>
-                    <p className="text-sm text-white/70 leading-relaxed font-medium">
-                      {selectedCard.challenge.text}
-                    </p>
-                  </div>
+                {/* Description Text */}
+                <div className="max-w-3xl text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
+                  {selectedCard.description}
+                </div>
 
-                  <div className="rounded-3xl bg-white/[0.04] p-6 md:p-8 border border-white/[0.08] backdrop-blur-md shadow-inner hover:border-white/15 transition-colors">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="grid h-10 w-10 place-items-center rounded-xl bg-[oklch(0.55_0.16_150)]/10 border border-[oklch(0.55_0.16_150)]/25">
-                        <CheckCircle2 className="h-5 w-5 text-[oklch(0.65_0.19_150)]" />
-                      </div>
-                      <h4 className="text-lg md:text-xl font-bold text-white">The Solution</h4>
-                    </div>
-                    <h5 className="text-sm font-semibold text-white/90 mb-2">{selectedCard.solution.title}</h5>
-                    <p className="text-sm text-white/70 leading-relaxed font-medium">
-                      {selectedCard.solution.text}
-                    </p>
+                {/* 4. Challenge vs Solution */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 py-4">
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">01 / Challenge</span>
+                    <h4 className="text-base font-semibold text-neutral-950">{selectedCard.challenge.title}</h4>
+                    <p className="text-sm text-neutral-500 leading-relaxed">{selectedCard.challenge.text}</p>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">02 / Solution</span>
+                    <h4 className="text-base font-semibold text-neutral-950">{selectedCard.solution.title}</h4>
+                    <p className="text-sm text-neutral-500 leading-relaxed">{selectedCard.solution.text}</p>
                   </div>
                 </div>
 
-                {/* 4. Project Gallery */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-4">Project Gallery</h4>
+                {/* 5. Project Gallery */}
+                <div className="flex flex-col gap-3">
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">03 / Project Gallery</span>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {/* Large Featured Image */}
                     <div 
                       onClick={() => setActiveLightboxIndex(0)}
-                      className="md:col-span-3 relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 group cursor-pointer"
+                      className="md:col-span-3 relative aspect-video w-full overflow-hidden rounded-lg border border-neutral-100 bg-neutral-50 group cursor-pointer"
                     >
                       <Image
                         src={selectedCard.gallery[0]}
                         alt={`${selectedCard.name} Featured`}
                         fill
-                        sizes="(max-width: 1024px) 100vw, 970px"
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        sizes="(max-width: 1024px) 100vw, 850px"
+                        className="object-cover transition-opacity duration-350 group-hover:opacity-95"
                       />
-                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="px-4 py-2 rounded-full bg-black/60 border border-white/10 text-xs font-semibold backdrop-blur-md">View Gallery Fullscreen</span>
+                      <div className="absolute inset-0 bg-neutral-950/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="px-4 py-2 rounded-full bg-white border border-neutral-200 text-xs font-semibold text-neutral-900 shadow-md">View Fullscreen</span>
                       </div>
                     </div>
 
@@ -799,116 +746,110 @@ export function Showcase() {
                       <div 
                         key={idx}
                         onClick={() => setActiveLightboxIndex(idx + 1)}
-                        className="relative aspect-video overflow-hidden rounded-xl border border-white/[0.08] bg-neutral-900 group cursor-pointer"
+                        className="relative aspect-video overflow-hidden rounded-lg border border-neutral-100 bg-neutral-50 group cursor-pointer"
                       >
                         <Image
                           src={imgUrl}
                           alt={`${selectedCard.name} Screenshot ${idx + 1}`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 300px"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 280px"
+                          className="object-cover transition-opacity duration-350 group-hover:opacity-95"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="text-[10px] px-3 py-1.5 rounded-full bg-black/60 border border-white/10 font-semibold backdrop-blur-md">Zoom</span>
+                        <div className="absolute inset-0 bg-neutral-950/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="text-[10px] px-3 py-1.5 rounded-full bg-white border border-neutral-200 font-semibold text-neutral-900 shadow-sm">Zoom</span>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* 5. Features Delivered */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-4">Features Delivered</h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {selectedCard.featuresDelivered.map((feat) => (
-                      <div 
-                        key={feat} 
-                        className="flex items-center gap-2.5 text-xs text-white/80 bg-white/[0.03] px-4 py-3 rounded-xl border border-white/[0.06] hover:border-white/10 transition-colors"
-                      >
-                        <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.65_0.19_150)] shrink-0" />
-                        <span className="font-medium leading-tight">{feat}</span>
+                {/* 6. Features & Info Details */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-neutral-100">
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Features</h4>
+                    <ul className="space-y-2">
+                      {selectedCard.featuresDelivered.map((feat) => (
+                        <li key={feat} className="flex items-center gap-2 text-xs text-neutral-600">
+                          <span className="h-1 w-1 rounded-full bg-neutral-300 shrink-0" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Tech Stack</h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {selectedCard.details.techStack.map((tech) => (
+                        <span 
+                          key={tech} 
+                          className="inline-block bg-neutral-50 text-neutral-700 text-[10px] font-semibold px-2.5 py-1 rounded border border-neutral-200"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Project Info</h4>
+                    <dl className="space-y-2 text-xs">
+                      <div className="flex justify-between border-b border-neutral-50 pb-1.5">
+                        <dt className="text-neutral-400">Industry</dt>
+                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.industry}</dd>
                       </div>
-                    ))}
+                      <div className="flex justify-between border-b border-neutral-50 pb-1.5">
+                        <dt className="text-neutral-400">Location</dt>
+                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.location}</dd>
+                      </div>
+                      <div className="flex justify-between border-b border-neutral-50 pb-1.5">
+                        <dt className="text-neutral-400">Timeline</dt>
+                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.timeline}</dd>
+                      </div>
+                      <div className="flex justify-between">
+                        <dt className="text-neutral-400">Year</dt>
+                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.year}</dd>
+                      </div>
+                    </dl>
                   </div>
                 </div>
 
-
-
-                {/* 7. Project Details */}
-                <div className="border-t border-white/10 pt-8">
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-6">
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1">Industry</div>
-                      <div className="text-sm font-semibold text-white/90">{selectedCard.details.industry}</div>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1">Location</div>
-                      <div className="text-sm font-semibold text-white/90">{selectedCard.details.location}</div>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1">Timeline</div>
-                      <div className="text-sm font-semibold text-white/90">{selectedCard.details.timeline}</div>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1">Year</div>
-                      <div className="text-sm font-semibold text-white/90">{selectedCard.details.year}</div>
-                    </div>
-                    <div className="col-span-2 sm:col-span-1">
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1">Tech Stack</div>
-                      <div className="flex flex-wrap gap-1 mt-1">
-                        {selectedCard.details.techStack.map((tech) => (
-                          <span 
-                            key={tech} 
-                            className="inline-block bg-white/[0.04] text-white/70 text-[10px] font-medium px-2 py-0.5 rounded border border-white/[0.06]"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 8. CTA Section */}
-                <div className="mt-4 flex flex-col md:flex-row items-center gap-6 border-t border-white/10 pt-8">
-                  {/* Visit Website button with glow effect */}
+                {/* 7. CTA / Nav Section */}
+                <div className="mt-4 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-neutral-100 pt-8">
+                  {/* Visit Website button */}
                   <a
                     href={selectedCard.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative group overflow-hidden w-full md:w-auto md:flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-white text-black py-4 px-8 text-sm font-semibold transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                    className="w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-black text-white py-3.5 px-7 text-xs font-semibold transition-all hover:bg-neutral-800 active:scale-[0.99] cursor-pointer"
                   >
-                    {/* Hover Glow Background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.55_0.16_150)] to-[oklch(0.65_0.19_150)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                    <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-                      Visit Live Website
-                      <ExternalLink className="h-4 w-4" />
-                    </span>
+                    <span>Visit Live Website</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
                   </a>
 
                   {/* Project Navigation */}
-                  <div className="flex items-center justify-between w-full md:w-auto md:gap-6 bg-white/[0.03] border border-white/[0.08] rounded-full p-1.5 px-4 md:px-6">
+                  <div className="flex items-center justify-between w-full md:w-auto md:gap-4 bg-neutral-50 border border-neutral-200/60 rounded-full p-1 px-3">
                     <button
                       onClick={handlePrevProject}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-white/75 hover:text-white hover:bg-white/[0.05] p-2 rounded-full transition-all cursor-pointer"
+                      className="inline-flex items-center gap-0.5 text-[11px] font-bold text-neutral-400 hover:text-black hover:bg-white p-1.5 rounded-full transition-all cursor-pointer shadow-none hover:shadow-xs"
                       title="Previous Project (Left Arrow)"
                     >
-                      <ChevronLeft className="h-4 w-4" />
-                      <span className="hidden sm:inline">Prev</span>
+                      <ChevronLeft className="h-3.5 w-3.5" />
+                      <span>Prev</span>
                     </button>
                     
-                    <span className="text-xs font-bold text-white/50 select-none">
-                      Project {currentIndex + 1} of {cards.length}
+                    <span className="text-[10px] font-bold text-neutral-400 select-none px-2">
+                      {currentIndex + 1} / {cards.length}
                     </span>
 
                     <button
                       onClick={handleNextProject}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-white/75 hover:text-white hover:bg-white/[0.05] p-2 rounded-full transition-all cursor-pointer"
+                      className="inline-flex items-center gap-0.5 text-[11px] font-bold text-neutral-400 hover:text-black hover:bg-white p-1.5 rounded-full transition-all cursor-pointer shadow-none hover:shadow-xs"
                       title="Next Project (Right Arrow)"
                     >
-                      <span className="hidden sm:inline">Next</span>
-                      <ChevronRight className="h-4 w-4" />
+                      <span>Next</span>
+                      <ChevronRight className="h-3.5 w-3.5" />
                     </button>
                   </div>
                 </div>
@@ -916,19 +857,19 @@ export function Showcase() {
               </div>
 
               {/* Mobile Sticky CTA at Bottom */}
-              <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0B0F14] via-[#0B0F14]/95 to-transparent border-t border-white/[0.05] flex gap-3 z-30">
+              <div className="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-white/95 border-t border-neutral-100 flex gap-3 z-30 backdrop-blur-md">
                 <a
                   href={selectedCard.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-white text-[#0B0F14] py-3.5 text-xs font-bold shadow-[0_4px_16px_rgba(255,255,255,0.15)] cursor-pointer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-black text-white py-3 text-xs font-semibold cursor-pointer"
                 >
                   Visit Website
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
                 <button
                   onClick={() => setSelectedCard(null)}
-                  className="inline-flex items-center justify-center rounded-full bg-[#0B0F14] border border-white/10 px-6 py-3.5 text-xs font-semibold text-white/80 cursor-pointer"
+                  className="inline-flex items-center justify-center rounded-full bg-neutral-50 border border-neutral-200 px-5 py-3 text-xs font-semibold text-neutral-700 cursor-pointer"
                 >
                   Close
                 </button>
@@ -951,12 +892,12 @@ export function Showcase() {
           >
             {/* Top Toolbar */}
             <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-10">
-              <span className="text-sm font-bold text-white/60 select-none">
+              <span className="text-sm font-bold text-muted-foreground select-none">
                 Image {activeLightboxIndex + 1} of {selectedCard.gallery.length}
               </span>
               <button
                 onClick={() => setActiveLightboxIndex(null)}
-                className="rounded-full bg-white/10 p-2.5 text-white/80 hover:text-white hover:bg-white/20 transition-all border border-white/10 cursor-pointer"
+                className="rounded-full bg-white/10 p-2.5 text-muted-foreground/80 hover:text-foreground hover:bg-white/20 transition-all border border-border cursor-pointer"
                 aria-label="Close Lightbox"
               >
                 <X className="h-5 w-5" />
@@ -971,7 +912,7 @@ export function Showcase() {
                   prev !== null ? (prev === 0 ? selectedCard.gallery.length - 1 : prev - 1) : null
                 );
               }}
-              className="absolute left-6 rounded-full bg-white/10 p-3 text-white/80 hover:text-white hover:bg-white/20 transition-all border border-white/10 cursor-pointer z-10"
+              className="absolute left-6 rounded-full bg-white/10 p-3 text-muted-foreground/80 hover:text-foreground hover:bg-white/20 transition-all border border-border cursor-pointer z-10"
               aria-label="Previous Image"
             >
               <ChevronLeft className="h-6 w-6" />
@@ -984,7 +925,7 @@ export function Showcase() {
                   prev !== null ? (prev === selectedCard.gallery.length - 1 ? 0 : prev + 1) : null
                 );
               }}
-              className="absolute right-6 rounded-full bg-white/10 p-3 text-white/80 hover:text-white hover:bg-white/20 transition-all border border-white/10 cursor-pointer z-10"
+              className="absolute right-6 rounded-full bg-white/10 p-3 text-muted-foreground/80 hover:text-foreground hover:bg-white/20 transition-all border border-border cursor-pointer z-10"
               aria-label="Next Image"
             >
               <ChevronRight className="h-6 w-6" />
