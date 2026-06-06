@@ -1,8 +1,9 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
-import { ProblemSolution } from "@/components/ProblemSolution";
+// import { ProblemSolution } from "@/components/ProblemSolution";
 import { Showcase } from "@/components/Showcase";
+import { HowItWorks } from "@/components/Process";
 import { Pricing } from "@/components/Pricing";
 import { About } from "@/components/About";
 import { Scarcity } from "@/components/Scarcity";
@@ -21,6 +22,7 @@ export default function Page() {
       <About />
       <Showcase />
       <Scarcity />
+      <HowItWorks/>
       <ResultsFAQ />
       {/* <ProblemSolution /> */}
       <CTA />
