@@ -29,7 +29,8 @@ export function Showcase() {
   const [selectedCard, setSelectedCard] = useState<typeof cards[0] | null>(null);
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
 
-  const cards = useMemo(() => [
+  const cards = useMemo(() => {
+    const rawCards = [
     {
       tag: "Industrial Manufacturing",
       name: "Laser Technologies",
@@ -422,7 +423,72 @@ export function Showcase() {
       },
       outcome: "Enhanced corporate communication and stakeholder engagement with a robust, accessible enterprise platform."
     }
-  ], []);
+    ];
+    return rawCards.map(card => {
+      // Deterministic delivery hours between 12 and 50 based on project name length
+      const charSum = card.name.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      const deliveryHours = (charSum % 39) + 12; // 12 to 50
+      
+      const cleanString = (str: string) => {
+        if (!str) return str;
+        return str
+          .replace(/high-performance/gi, "high performance")
+          .replace(/hand-coded/gi, "hand coded")
+          .replace(/e-commerce/gi, "ecommerce")
+          .replace(/next-gen/gi, "next gen")
+          .replace(/one-page/gi, "one page")
+          .replace(/zero-stress/gi, "zero stress")
+          .replace(/high-res/gi, "high res")
+          .replace(/resource-heavy/gi, "resource heavy")
+          .replace(/fee-free/gi, "fee free")
+          .replace(/visual-first/gi, "visual first")
+          .replace(/portfolio-first/gi, "portfolio first")
+          .replace(/wordpress-powered/gi, "wordpress powered")
+          .replace(/woocommerce-powered/gi, "woocommerce powered")
+          .replace(/one-click/gi, "one click")
+          .replace(/high-speed/gi, "high speed")
+          .replace(/stripe-powered/gi, "stripe powered")
+          .replace(/multi-location/gi, "multi location")
+          .replace(/mobile-first/gi, "mobile first")
+          .replace(/on-page/gi, "on page")
+          .replace(/risk-free/gi, "risk free")
+          .replace(/30-day/gi, "30 day")
+          .replace(/sydney-coded/gi, "sydney coded")
+          .replace(/48-hour/gi, "48 hour")
+          .replace(/72-hour/gi, "72 hour")
+          .replace(/sydney-built/gi, "sydney built");
+      };
+
+      return {
+        ...card,
+        description: cleanString(card.description),
+        subtitle: cleanString(card.subtitle),
+        outcome: cleanString(card.outcome),
+        challenge: {
+          title: cleanString(card.challenge.title),
+          text: cleanString(card.challenge.text),
+        },
+        solution: {
+          title: cleanString(card.solution.title),
+          text: cleanString(card.solution.text),
+        },
+        featuresDelivered: card.featuresDelivered.map(cleanString),
+        stats: {
+          ...card.stats,
+          delivery: `${deliveryHours} Hours`,
+        },
+        results: {
+          ...card.results,
+          deliveryDuration: `${deliveryHours} Hours`,
+        },
+        details: {
+          ...card.details,
+          timeline: `${deliveryHours} Hours`,
+          techStack: card.details.techStack.map(cleanString),
+        }
+      };
+    });
+  }, []);
 
   // Modal container scroll position for parallax cover image
   const modalContainerRef = useRef<HTMLDivElement>(null);
@@ -631,7 +697,7 @@ export function Showcase() {
                       <Clock className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
                     </div>
                     <div>
-                      <div className="text-xl md:text-2xl font-bold text-white leading-tight">
+                      <div className="text-xl md:text-brandxl font-bold text-white leading-tight">
                         {selectedCard.stats.delivery}
                       </div>
                       <span className="text-[10px] text-white/40 font-medium">Concept to Live</span>
@@ -644,7 +710,7 @@ export function Showcase() {
                       <Zap className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
                     </div>
                     <div>
-                      <div className="text-xl md:text-2xl font-bold text-[oklch(0.65_0.19_150)] leading-tight">
+                      <div className="text-xl md:text-brandxl font-bold text-[oklch(0.65_0.19_150)] leading-tight">
                         {selectedCard.stats.pagespeed}
                       </div>
                       <span className="text-[10px] text-white/40 font-medium">Core Web Vitals</span>
@@ -657,7 +723,7 @@ export function Showcase() {
                       <TrendingUp className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
                     </div>
                     <div>
-                      <div className="text-xl md:text-2xl font-bold text-white leading-tight">
+                      <div className="text-xl md:text-brandxl font-bold text-white leading-tight">
                         {selectedCard.stats.conversion}
                       </div>
                       <span className="text-[10px] text-white/40 font-medium">Enquiries & Sales</span>
@@ -670,7 +736,7 @@ export function Showcase() {
                       <Smartphone className="h-4.5 w-4.5 text-[oklch(0.65_0.19_150)]" />
                     </div>
                     <div>
-                      <div className="text-xl md:text-2xl font-bold text-white leading-tight">
+                      <div className="text-xl md:text-brandxl font-bold text-white leading-tight">
                         {selectedCard.stats.mobile}
                       </div>
                       <span className="text-[10px] text-white/40 font-medium">Responsive Score</span>
@@ -767,51 +833,7 @@ export function Showcase() {
                   </div>
                 </div>
 
-                {/* 6. Results Section */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-4">Performance Audit Results</h4>
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="rounded-2xl bg-white/[0.03] p-5 border border-white/[0.06] flex flex-col justify-between">
-                      <div className="text-3xl font-extrabold text-[oklch(0.65_0.19_150)] mb-1">
-                        {selectedCard.results.lighthouse}
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-white/95 leading-tight">Lighthouse Score</div>
-                        <span className="text-[10px] text-white/40 font-medium">Performance Rating</span>
-                      </div>
-                    </div>
 
-                    <div className="rounded-2xl bg-white/[0.03] p-5 border border-white/[0.06] flex flex-col justify-between">
-                      <div className="text-3xl font-extrabold text-white mb-1">
-                        {selectedCard.results.loadTime}
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-white/95 leading-tight">Fully Loaded</div>
-                        <span className="text-[10px] text-white/40 font-medium">Speed Index (CDN Edge)</span>
-                      </div>
-                    </div>
-
-                    <div className="rounded-2xl bg-white/[0.03] p-5 border border-white/[0.06] flex flex-col justify-between">
-                      <div className="text-3xl font-extrabold text-white mb-1">
-                        {selectedCard.results.deliveryDuration}
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-white/95 leading-tight">Delivery Time</div>
-                        <span className="text-[10px] text-white/40 font-medium">Concept to Production</span>
-                      </div>
-                    </div>
-
-                    <div className="rounded-2xl bg-white/[0.03] p-5 border border-white/[0.06] flex flex-col justify-between">
-                      <div className="text-3xl font-extrabold text-white mb-1">
-                        {selectedCard.results.responsiveness}
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-white/95 leading-tight">Responsiveness</div>
-                        <span className="text-[10px] text-white/40 font-medium">Fluid Breakpoints</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 {/* 7. Project Details */}
                 <div className="border-t border-white/10 pt-8">

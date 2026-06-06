@@ -41,7 +41,7 @@ export function WhoThisIsFor() {
     <Section id="qualification" className="bg-surface/20 overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-brand/8 blur-[100px]" />
+        <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-[#101729]/8 blur-[100px]" />
         <div className="absolute -right-32 bottom-1/4 h-72 w-72 rounded-full bg-destructive/6 blur-[100px]" />
       </div>
 
@@ -63,18 +63,18 @@ export function WhoThisIsFor() {
           {/* Gradient border glow effect */}
           <div className="absolute -inset-[1px] rounded-[28px] bg-gradient-to-br from-brand/40 via-brand/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]" />
 
-          <div className="relative rounded-[27px] bg-surface-elevated/90 backdrop-blur-sm p-8 md:p-10 border border-brand/15 shadow-soft overflow-hidden transition-all duration-500 group-hover:shadow-elevated group-hover:border-brand/30">
+          <div className="relative rounded-[27px] bg-surface-elevated/90 backdrop-blur-sm p-8 md:p-10 border border-[#101729]/15 shadow-soft overflow-hidden transition-all duration-500 group-hover:shadow-elevated group-hover:border-[#101729]/30">
             {/* Subtle inner gradient */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-brand/5 rounded-full blur-3xl pointer-events-none" aria-hidden />
+            <div className="absolute top-0 right-0 w-48 h-48 bg-[#101729]/5 rounded-full blur-3xl pointer-events-none" aria-hidden />
 
             <div className="relative z-10">
               {/* Header with icon */}
               <div className="mb-8 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/20 to-brand/5 border border-brand/15 shadow-soft">
-                  <Sparkles className="h-5 w-5 text-brand" />
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/20 to-brand/5 border border-[#101729]/15 shadow-soft">
+                  <Sparkles className="h-5 w-5 text-[#101729]" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-brand">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#101729]">
                     Perfect Match
                   </span>
                   <span className="text-lg font-semibold text-foreground tracking-tight">
@@ -94,9 +94,9 @@ export function WhoThisIsFor() {
                   <motion.li
                     key={i}
                     variants={fadeInItem}
-                    className="group/item flex items-start gap-3.5 rounded-2xl px-4 py-3 transition-colors duration-300 hover:bg-brand/[0.04]"
+                    className="group/item flex items-start gap-3.5 rounded-2xl px-4 py-3 transition-colors duration-300 hover:bg-[#101729]/[0.04]"
                   >
-                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand/20 to-brand/10 text-brand ring-1 ring-brand/10 group-hover/item:ring-brand/25 transition-all duration-300 group-hover/item:scale-110">
+                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand/20 to-brand/10 text-[#101729] ring-1 ring-brand/10 group-hover/item:ring-brand/25 transition-all duration-300 group-hover/item:scale-110">
                       <Check className="h-3.5 w-3.5 stroke-[2.5]" />
                     </div>
                     <span className="text-[14px] leading-relaxed text-foreground/90 font-medium">

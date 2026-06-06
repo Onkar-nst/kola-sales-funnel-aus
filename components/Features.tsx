@@ -42,7 +42,7 @@ export function Features() {
             <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background">
               <Palette className="h-5 w-5" />
             </div>
-            <h3 className="mt-5 text-2xl font-semibold tracking-tight md:text-3xl">
+            <h3 className="mt-5 text-brandxl font-semibold tracking-tight md:text-3xl">
               Designs engineered to convert.
             </h3>
             <p className="mt-2 max-w-md text-sm text-muted-foreground">
@@ -88,7 +88,7 @@ export function Features() {
                   whileInView={{ height: `${h}%` }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.6, ease }}
-                  className="w-3 rounded-t bg-brand"
+                  className="w-3 rounded-t bg-[#101729]"
                   style={{ height: `${h}%` }}
                 />
               ))}
@@ -166,7 +166,7 @@ export function BentoCard({
       <h3 className="mt-4 text-base font-semibold tracking-tight">{title}</h3>
       <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{desc}</p>
       {extra}
-      <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-brand opacity-0 blur-3xl transition-opacity group-hover:opacity-20" />
+      <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-[#101729] opacity-0 blur-3xl transition-opacity group-hover:opacity-20" />
     </motion.div>
   );
 }

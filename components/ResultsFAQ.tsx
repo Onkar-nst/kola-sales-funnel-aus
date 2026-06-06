@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Star,
@@ -8,23 +8,11 @@ import {
   Quote,
   TrendingUp,
   ChevronDown,
-  Zap,
-  Users,
-  BarChart3,
   MessageCircle,
   HelpCircle,
 } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
-
-/* ─────────────────────── Stat Cards ─────────────────────── */
-
-const stats = [
-  { icon: Zap, value: "48hr", label: "Average Delivery", accent: "from-brand to-brand-glow" },
-  { icon: Users, value: "200+", label: "Websites Delivered", accent: "from-blue-500 to-indigo-500" },
-  { icon: BarChart3, value: "4.9★", label: "Client Rating", accent: "from-accent-coral to-orange-500" },
-  { icon: TrendingUp, value: "300%", label: "Avg. CVR Uplift", accent: "from-emerald-500 to-teal-500" },
-];
 
 /* ─────────────────────── Review Data ─────────────────────── */
 
@@ -61,6 +49,13 @@ const reviews: ReviewItem[] = [
     avatarGrad: "from-emerald-500 to-teal-600",
     metricValue: "45 Patients/mo",
   },
+  {
+    quote: "Clean, fast, and works perfectly on mobile. Best decision for our yoga studio.",
+    name: "Sarah Mitchell",
+    role: "North Yoga · Perth",
+    avatarGrad: "from-orange-400 to-red-500",
+    metricValue: "Top Tier",
+  }
 ];
 
 /* ─────────────────────── FAQ Data ─────────────────────── */
@@ -84,7 +79,7 @@ const faqs = [
   },
   {
     q: "Do I own 100% of the website and code?",
-    a: "Yes, 100%. Unlike clunky proprietary platforms (like Squarespace, Wix, or Shopify) that own the framework your site runs on, you own all of the raw hand coded HTML/React files. You can export the code and host it anywhere you want, forever.",
+    a: "Yes, 105%. Unlike clunky proprietary platforms (like Squarespace, Wix, or Shopify) that own the framework your site runs on, you own all of the raw hand coded HTML/React files. You can export the code and host it anywhere you want, forever.",
   },
   {
     q: "What if I'm not satisfied with the result?",
@@ -94,40 +89,14 @@ const faqs = [
 
 /* ─────────────────────── Components ─────────────────────── */
 
-function StatCard({ stat, i }: { stat: (typeof stats)[0]; i: number }) {
-  const Icon = stat.icon;
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ delay: i * 0.08, duration: 0.5, ease }}
-      className="group relative flex flex-col items-center gap-3 rounded-3xl border border-hairline/50 bg-surface-elevated/70 p-6 text-center backdrop-blur-sm transition-all duration-400 hover:shadow-elevated hover:border-brand/20 hover:-translate-y-1"
-    >
-      {/* Icon */}
-      <div className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br ${stat.accent} text-white shadow-soft transition-transform duration-300 group-hover:scale-110`}>
-        <Icon className="h-5 w-5" />
-      </div>
-      {/* Value */}
-      <span className="font-display text-3xl font-bold tracking-[-0.03em] text-foreground">
-        {stat.value}
-      </span>
-      {/* Label */}
-      <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-        {stat.label}
-      </span>
-    </motion.div>
-  );
-}
-
 function ReviewCard({ r, i }: { r: ReviewItem; i: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ delay: i * 0.1, duration: 0.6, ease }}
-      className="group relative flex h-full flex-col justify-between rounded-[22px] border border-hairline/50 bg-surface-elevated/70 p-6 backdrop-blur-sm transition-all duration-400 hover:shadow-elevated hover:border-brand/20"
+      transition={{ delay: i * 0.05, duration: 0.5, ease }}
+      className="group relative flex flex-col justify-between rounded-[22px] border border-hairline/50 bg-surface-elevated/70 p-6 backdrop-blur-sm transition-all duration-400 hover:shadow-elevated hover:border-[#101729]/20"
     >
       {/* Top glow bar on hover */}
       <div className="absolute inset-x-4 top-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-brand/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -149,8 +118,8 @@ function ReviewCard({ r, i }: { r: ReviewItem; i: number }) {
         </div>
 
         {/* Quote */}
-        <Quote className="h-5 w-5 text-brand/15 mb-2 rotate-180" />
-        <blockquote className="text-[14px] leading-[1.75] text-foreground/90 font-medium">
+        <Quote className="h-5 w-5 text-[#101729]/15 mb-2 rotate-180" />
+        <blockquote className="text-[14px] leading-[1.75] text-foreground/90 font-semibold">
           &ldquo;{r.quote}&rdquo;
         </blockquote>
       </div>
@@ -193,13 +162,13 @@ function FAQItem({
       transition={{ delay: i * 0.05, duration: 0.45, ease }}
       className={`group relative overflow-hidden rounded-2xl transition-all duration-300 ${
         isOpen
-          ? "bg-surface-elevated shadow-soft border border-brand/15"
+          ? "bg-surface-elevated shadow-soft border border-[#101729]/15"
           : "bg-surface-elevated/40 border border-hairline/40 hover:border-hairline hover:bg-surface-elevated/70"
       }`}
     >
       {/* Active indicator */}
       {isOpen && (
-        <div className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-brand" />
+        <div className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-[#101729]" />
       )}
 
       <button
@@ -210,8 +179,8 @@ function FAQItem({
           <span
             className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-[11px] font-bold font-display transition-all duration-300 ${
               isOpen
-                ? "bg-brand text-white shadow-soft"
-                : "bg-surface-elevated text-muted-foreground border border-hairline/60 group-hover:text-brand group-hover:border-brand/20"
+                ? "bg-[#101729] text-white shadow-soft"
+                : "bg-surface-elevated text-muted-foreground border border-hairline/60 group-hover:text-[#101729] group-hover:border-[#101729]/20"
             }`}
           >
             {String(i + 1).padStart(2, "0")}
@@ -229,8 +198,8 @@ function FAQItem({
           transition={{ duration: 0.3, ease }}
           className={`grid h-8 w-8 shrink-0 place-items-center rounded-xl transition-all duration-300 ${
             isOpen
-              ? "bg-brand/10 text-brand"
-              : "bg-surface text-muted-foreground border border-hairline/40 group-hover:border-brand/15"
+              ? "bg-[#101729]/10 text-[#101729]"
+              : "bg-surface text-muted-foreground border border-hairline/40 group-hover:border-[#101729]/15"
           }`}
         >
           <ChevronDown className="h-4 w-4" />
@@ -258,70 +227,45 @@ function FAQItem({
 
 /* ─────────────────────── Main Component ─────────────────────── */
 
-const extendedReviews = [
-  ...reviews,
-  {
-    quote: "Clean, fast, and works perfectly on mobile. Best decision for our yoga studio.",
-    name: "Sarah Mitchell",
-    role: "North Yoga, Perth",
-    avatarGrad: "from-orange-400 to-red-500",
-    metricValue: "Top Tier",
-  },
-  {
-    quote: "Professional service, no BS. The site looks amazing and brings in real leads.",
-    name: "Daniel Hughes",
-    role: "Carpet Cuts, Melbourne",
-    avatarGrad: "from-blue-400 to-cyan-500",
-    metricValue: "No BS",
-  },
-  {
-    quote: "Super easy process and great communication. Our new site is already getting results!!",
-    name: "Priya Sharma",
-    role: "Café Culture, Sydney",
-    avatarGrad: "from-green-400 to-emerald-500",
-    metricValue: "Easy",
-  }
-];
-
 export function ResultsFAQ() {
   const [open, setOpen] = useState<number | null>(0);
-  const [activeReview, setActiveReview] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveReview((prev) => (prev + 1) % extendedReviews.length);
-    }, 4000); // 4 seconds interval
-    return () => clearInterval(timer);
-  }, []);
-
-  const getOffset = (index: number, currentIndex: number, total: number) => {
-    let offset = (index - currentIndex) % total;
-    if (offset < -Math.floor(total / 2)) offset += total;
-    if (offset > Math.floor(total / 2)) offset -= total;
-    return offset;
-  };
+  const leftReviews = [reviews[0], reviews[1]];
+  const rightReviews = [reviews[2], reviews[3]];
 
   return (
-    <section id="results-faq" className="relative px-6 py-12 md:py-16 bg-surface/20 overflow-hidden">
+    <section id="results-faq" className="relative px-6 py-20 bg-surface/20 overflow-hidden border-y border-hairline/60">
       {/* Backgrounds */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-brand/5 blur-[140px]" />
+        <div className="absolute left-0 top-0 h-[600px] w-[600px] rounded-full bg-[#101729]/5 blur-[140px]" />
         <div className="absolute right-0 bottom-0 h-[500px] w-[500px] rounded-full bg-accent-coral/5 blur-[140px]" />
       </div>
 
-      <div className="mx-auto max-w-5xl relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-start">
+      <div className="mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
-        {/* ═══════════════ LEFT COLUMN: FAQ ═══════════════ */}
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col items-center lg:items-center text-center gap-4">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-brand/10 bg-brand/5 px-3 py-1 text-[12px] font-semibold text-brand shadow-soft">
+        {/* ═══════════════ LEFT COLUMN: 2 Testimonials ═══════════════ */}
+        <div className="lg:col-span-3 flex flex-col gap-6">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 mb-2">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-600 shadow-soft">
+              <Star className="h-3.5 w-3.5" /> Testimonials
+            </div>
+            <h3 className="text-lg font-bold text-foreground mt-2 font-display">What Clients Say</h3>
+          </div>
+          {leftReviews.map((r, i) => (
+            <ReviewCard key={r.name} r={r} i={i} />
+          ))}
+        </div>
+
+        {/* ═══════════════ MIDDLE COLUMN: FAQ ═══════════════ */}
+        <div className="lg:col-span-6 flex flex-col gap-8">
+          <div className="flex flex-col items-center text-center gap-3">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-[#101729]/10 bg-[#101729]/5 px-3 py-1 text-[11px] font-semibold text-[#101729] shadow-soft">
               <HelpCircle className="h-3.5 w-3.5" /> FAQs
             </div>
             <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl">
-              Got questions?<br />
-              <span className="text-brand text-gradient">We&apos;ve got answers.</span>
+              Got questions? <span className="text-[#101729] text-gradient">We got answers.</span>
             </h2>
-            <p className="max-w-md text-balance text-muted-foreground font-medium">
+            <p className="max-w-md text-balance text-muted-foreground font-medium text-xs">
               Everything you need to know about our $99 website, process, hosting, and guarantees.
             </p>
           </div>
@@ -346,7 +290,7 @@ export function ResultsFAQ() {
             className="mt-2 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-[20px] border border-hairline/50 bg-surface-elevated/80 px-6 py-5 backdrop-blur-md shadow-soft"
           >
             <div className="flex items-center gap-4 text-center sm:text-left">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#101729]/10 text-[#101729]">
                 <MessageCircle className="h-5 w-5" />
               </div>
               <div>
@@ -354,7 +298,7 @@ export function ResultsFAQ() {
                   Still have questions?
                 </p>
                 <p className="text-[13px] text-muted-foreground mt-0.5 font-medium">
-                  We&apos;re here to help.
+                  We are here to help.
                 </p>
               </div>
             </div>
@@ -369,49 +313,17 @@ export function ResultsFAQ() {
           </motion.div>
         </div>
 
-        {/* ═══════════════ RIGHT COLUMN: TESTIMONIALS ═══════════════ */}
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col items-center lg:items-center text-center gap-4">
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[12px] font-semibold text-emerald-600 shadow-soft">
+        {/* ═══════════════ RIGHT COLUMN: 2 Testimonials ═══════════════ */}
+        <div className="lg:col-span-3 flex flex-col gap-6">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 mb-2">
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-600 shadow-soft">
               <Star className="h-3.5 w-3.5" /> Testimonials
             </div>
-            <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl">
-              Loved by Aussie<br />
-              <span className="text-brand text-gradient">business owners.</span>
-            </h2>
-            <p className="max-w-md text-balance text-muted-foreground font-medium">
-              Real results. Real people. Real businesses.
-            </p>
+            <h3 className="text-lg font-bold text-foreground mt-2 font-display">Proven Results</h3>
           </div>
-
-          <div className="relative h-[640px] w-full flex justify-center items-center mt-2 overflow-hidden pointer-events-none">
-            {/* Gradient mask for smooth fade at edges */}
-            <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-surface/80 via-transparent to-surface/80 dark:from-[oklch(var(--surface)/0.8)] dark:to-[oklch(var(--surface)/0.8)]" />
-
-            {extendedReviews.map((r, i) => {
-              const offset = getOffset(i, activeReview, extendedReviews.length);
-              const isActive = offset === 0;
-              const isAdjacent = Math.abs(offset) === 1;
-
-              return (
-                <motion.div
-                  key={r.name + i}
-                  initial={false}
-                  animate={{
-                    y: offset * 260, // Vertical spacing between cards
-                    scale: isActive ? 1 : 0.95,
-                    opacity: isActive ? 1 : isAdjacent ? 0.35 : 0,
-                    filter: isActive ? "blur(0px)" : "blur(3px)",
-                    zIndex: isActive ? 10 : 1,
-                  }}
-                  transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-                  className="absolute w-full max-w-md pointer-events-auto"
-                >
-                  <ReviewCard r={r} i={i} />
-                </motion.div>
-              );
-            })}
-          </div>
+          {rightReviews.map((r, i) => (
+            <ReviewCard key={r.name} r={r} i={i + 2} />
+          ))}
         </div>
 
       </div>

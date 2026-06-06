@@ -20,7 +20,7 @@ export function CTA() {
           transition={{ duration: 0.6, ease }}
           className="flex flex-col items-center gap-6"
         >
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-3.5 py-1.5 text-xs font-semibold text-brand">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#101729]/10 px-3.5 py-1.5 text-xs font-semibold text-[#101729]">
             <Sparkles className="h-3.5 w-3.5 fill-current" />
             Ready?
           </div>

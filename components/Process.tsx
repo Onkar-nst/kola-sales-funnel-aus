@@ -37,7 +37,7 @@ export function HowItWorks() {
   return (
     <Section id="how" className="bg-surface relative overflow-hidden">
       {/* Subtle light accent */}
-      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-brand/5 blur-3xl animate-pulse" aria-hidden />
+      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-[#101729]/5 blur-3xl animate-pulse" aria-hidden />
 
       <SectionHeader
         eyebrow="Your Journey"
@@ -62,17 +62,17 @@ export function HowItWorks() {
               className="group relative overflow-hidden rounded-3xl hairline bg-surface-elevated p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
             >
               {/* Giant background numbers */}
-              <div className="absolute right-4 top-2 select-none font-display text-8xl font-bold text-foreground/[0.03] transition-colors duration-300 group-hover:text-brand/5">
+              <div className="absolute right-4 top-2 select-none font-display text-8xl font-bold text-foreground/[0.03] transition-colors duration-300 group-hover:text-[#101729]/5">
                 {s.n}
               </div>
 
               <div className="relative z-10">
                 {/* Icon wrapper */}
-                <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-foreground/5 text-foreground transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
+                <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-foreground/5 text-foreground transition-colors duration-300 group-hover:bg-[#101729] group-hover:text-[#101729]-foreground">
                   <Icon className="h-5 w-5" />
                 </div>
                 
-                <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-brand">
+                <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-[#101729]">
                   {s.t}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

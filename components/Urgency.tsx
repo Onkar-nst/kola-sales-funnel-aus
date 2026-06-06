@@ -30,18 +30,18 @@ export function Urgency() {
           {/* Active Urgency Tag */}
           
 
-          <h2 className="mt-6 font-display text-4xl font-semibold tracking-[-0.02em] text-balance text-background sm:text-5xl md:text-6xl lg:text-7xl">
+          <h2 className="mt-6 font-display text-4xl font-semibold tracking-[-0.02em] text-balance text-background sm:text-5xl md:text-6xl lg:text-brandxl">
             Only 5 websites a week.
           </h2>
 
-          <div className="mt-8 inline-flex items-center gap-2.5 rounded-full border-2 border-accent-coral/45 bg-accent-coral/20 px-6 py-2.5 text-base sm:text-lg font-semibold text-accent-coral animate-pulse">
+          <div className="mt-8 inline-flex items-center gap-2.5 rounded-full border-brand border-accent-coral/45 bg-accent-coral/20 px-6 py-2.5 text-base sm:text-lg font-semibold text-accent-coral animate-pulse">
             <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-accent-coral" />
             2 Onboarding Slots Left
           </div>
 
           {/* Minimalist Slots Visual */}
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <div className="flex gap-2 text-2xl font-mono tracking-widest">
+            <div className="flex gap-2 text-brandxl font-mono tracking-widest">
               <span className="text-background/30">●</span>
               <span className="text-background/30">●</span>
               <span className="text-background/30">●</span>

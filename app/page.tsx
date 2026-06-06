@@ -4,7 +4,7 @@ import { TrustBar } from "@/components/TrustBar";
 import { ProblemSolution } from "@/components/ProblemSolution";
 import { Showcase } from "@/components/Showcase";
 import { Pricing } from "@/components/Pricing";
-import { HowItWorks } from "@/components/Process";
+import { About } from "@/components/About";
 import { Scarcity } from "@/components/Scarcity";
 import { ResultsFAQ } from "@/components/ResultsFAQ";
 import { CTA } from "@/components/CTA";
@@ -18,11 +18,11 @@ export default function Page() {
       <Hero />
       <TrustBar />
       <Pricing />
-      <HowItWorks />
+      <About />
+      <Scarcity />
       <Showcase />
       <ResultsFAQ />
-      <ProblemSolution />
-      <Scarcity />
+      {/* <ProblemSolution /> */}
       <CTA />
       <Footer />
 

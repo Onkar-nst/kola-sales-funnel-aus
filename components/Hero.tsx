@@ -1,315 +1,285 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Timer, Lock, Menu, Sparkles, Calendar, Coffee } from "lucide-react";
-import { PrimaryCTA, GhostCTA } from "./Primitives";
+import { ArrowRight } from "lucide-react";
 
-const ease = [0.22, 1, 0.36, 1] as const;
-const fadeUp = {
-  hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
-};
+const avatars = [
+    "https://i.pravatar.cc/80?img=12",
+    "https://i.pravatar.cc/80?img=33",
+    "https://i.pravatar.cc/80?img=15",
+    "https://i.pravatar.cc/80?img=54",
+    "https://i.pravatar.cc/80?img=8",
+];
 
-const checks = [
-  "48 Hour Delivery",
-  "30 Day Money Back",
-  "100% Aussie Team",
+const tickerItems = [
+    { icon: "🎯", t: "HIGH PERFORMANCE SALES FUNNELS" },
+    { icon: "⚡", t: "LIVE IN 48 HOURS" },
+    { icon: "📈", t: "LEAD GENERATION & CONVERSION" },
+    { icon: "💻", t: "HAND CODED NEXT JS SITES" },
+    { icon: "🇦🇺", t: "100% SYDNEY CRAFTED" },
 ];
 
 export function Hero() {
-  return (
-    <section id="top" className="relative overflow-hidden bg-hero px-5 pb-16 pt-28 md:px-8 md:pb-24 md:pt-32">
-      <div className="absolute inset-0 grid-bg opacity-70" aria-hidden />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background to-transparent" aria-hidden />
+    const bgImage = "/hero-bg.png";
 
-      <div className="relative mx-auto grid max-w-[1150px] items-center gap-10 lg:min-h-[60vh] lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        
-        {/* LEFT COLUMN: Local Business Website Copy */}
-        <div className="flex flex-col items-start z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-surface-elevated/80 px-3 py-1.5 text-xs font-semibold text-foreground backdrop-blur"
-          >
-            <Timer className="h-3.5 w-3.5 text-accent-coral animate-pulse" />
-            📈 Conversion Focused Websites
-          </motion.div>
-
-          <motion.h1
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            className="mt-5 w-full font-display text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl lg:text-5xl text-foreground"
-          >
-            We build high-performance websites <br />
-            <span className="text-gradient">for Australian businesses.</span>
-          </motion.h1>
-
-          <motion.p
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            transition={{ delay: 0.1 }}
-            className="mt-5 max-w-md text-base text-muted-foreground sm:text-lg leading-relaxed"
-          >
-            Hand coded, lightning fast, and engineered to generate real customer enquiries. Fully managed and live in 48 hours. From just A$99.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
-          >
-            <PrimaryCTA href="#pricing">Get My $99 Website →</PrimaryCTA>
-            <GhostCTA href="https://calendly.com/kola-communications">Book a 15 Minute Call</GhostCTA>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 pt-4 border-t border-hairline w-full sm:w-auto"
-          >
-            {checks.map((c) => (
-              <span key={c} className="flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground">
-                <CheckCircle2 className="h-3.5 w-3.5 text-[oklch(0.55_0.16_150)]" />
-                {c}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* RIGHT COLUMN: Real Local Business Website Preview (Café Example) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative mx-auto w-full max-w-[550px] pt-8 lg:pt-0 pb-10 sm:pb-0"
+    return (
+        <section
+            id="top"
+            className="relative bg-neutral-950 overflow-hidden min-h-[100svh] flex flex-col pt-16"
         >
-          <div className="absolute inset-0 bg-black/5 blur-[50px] dark:bg-white/5" aria-hidden />
-
-          {/* === DESKTOP WINDOW === */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative z-10 w-full sm:w-[85%] overflow-hidden rounded-xl border border-border/80 bg-background shadow-2xl"
-          >
-            {/* Top Browser Bar */}
-            <div className="flex items-center justify-between border-b border-border/60 bg-surface-elevated/50 px-4 py-2.5">
-              <div className="flex gap-1.5">
-                <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
-                <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
-                <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
-              </div>
-              
-              <div className="flex h-6 w-full max-w-[200px] items-center justify-center gap-1.5 rounded-md border border-border/50 bg-background px-2 text-[10px] font-medium text-muted-foreground/80">
-                <Lock className="h-2.5 w-2.5" />
-                halecafe.com.au
-              </div>
-
-              <div className="flex gap-2">
-                <div className="h-3 w-3 rounded-sm bg-border/50" />
-                <div className="h-3 w-3 rounded-sm bg-border/50" />
-              </div>
+            {/* background image */}
+            <div className="absolute inset-0 z-0">
+                <img
+                    src={bgImage}
+                    alt="Kola Communications Banner"
+                    className="w-full h-full object-cover brightness-[0.45] contrast-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
             </div>
 
-            {/* Desktop Website Preview */}
-            <div className="relative bg-background p-5 sm:p-6 pb-0">
-              
-              <motion.div 
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 2, ease: "circOut" }}
-                className="absolute top-0 left-0 h-[2px] w-full origin-left bg-brand"
-              />
+            {/* main hero layout */}
+            <div className="relative z-10 flex-1 flex flex-col justify-center mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 py-12 md:py-20">
+                <div className="grid lg:grid-cols-12 gap-12 items-center w-full">
+                    {/* LEFT COLUMN: copy and CTA */}
+                    <div className="lg:col-span-6 flex flex-col items-start">
+                        {/* ── avatars ── */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -16 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="flex -space-x-3 mb-4"
+                        >
+                            {avatars.map((a, i) => (
+                                <div
+                                    key={i}
+                                    className="relative h-[52px] w-[52px] rounded-full p-[3px] bg-neutral-950"
+                                    style={{ zIndex: avatars.length - i }}
+                                >
+                                    <div className="h-full w-full rounded-full p-[2px] bg-[#101729]">
+                                        <div className="h-full w-full rounded-full overflow-hidden grayscale">
+                                            <img
+                                                src={a}
+                                                alt=""
+                                                className="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </motion.div>
 
-              {/* Cafe Navbar */}
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="mb-8 flex items-center justify-between"
-              >
-                <div className="flex items-center gap-1.5">
-                  <div className="flex h-5 w-5 items-center justify-center rounded bg-brand text-background">
-                    <span className="text-[10px] font-bold">H</span>
-                  </div>
-                  <span className="text-[11px] font-bold tracking-tight text-foreground">Hale Café</span>
+                        {/* ── scrolling ticker ── */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="relative overflow-hidden max-w-[540px] mb-6 w-full"
+                            style={{
+                                maskImage:
+                                    "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+                                WebkitMaskImage:
+                                    "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+                            }}
+                        >
+                            <div className="flex marquee whitespace-nowrap">
+                                {[...tickerItems, ...tickerItems, ...tickerItems].map((it, i) => (
+                                    <span
+                                        key={i}
+                                        className="inline-flex items-center gap-2 px-4 text-[11px] font-semibold text-[#101729] tracking-[0.12em] uppercase font-display"
+                                    >
+                                        <span>{it.icon}</span>
+                                        <span>{it.t}</span>
+                                    </span>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        {/* ── headline ── */}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 24 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.15 }}
+                            className="font-display text-white text-[2.4rem] md:text-[clamp(2.8rem,6.2vw,5.2rem)] leading-[0.95] tracking-[-0.04em]"
+                        >
+                            We <span className="text-[#101729]">code,</span> you{" "}
+                            <span className="text-[#101729]">grow</span>
+                            <br />
+                            that&apos;s the deal
+                        </motion.h1>
+
+                        {/* ── CTA ── */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.35 }}
+                            className="mt-8"
+                        >
+                            <a
+                                href="#pricing"
+                                className="inline-flex overflow-hidden rounded-xl group active:scale-95 transition-transform"
+                            >
+                                <div className="bg-[#101729] text-white px-6 py-3.5 text-[15px] font-bold transition-colors group-hover:bg-[#101729]/90">
+                                    Get My Website
+                                </div>
+                                <div className="bg-[#101729] text-white px-4 py-3.5 flex items-center border-l border-white/15 transition-colors group-hover:bg-[#101729]/90">
+                                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                                </div>
+                            </a>
+                        </motion.div>
+                    </div>
+
+                    {/* RIGHT COLUMN: Coding and Mobile Display Mockups (Increased Size) */}
+                    <div className="lg:col-span-6 relative w-full flex justify-center lg:justify-end">
+                        <div className="relative w-full max-w-[580px]">
+                            {/* === DESKTOP BROWSER MOCKUP showing Kola Website === */}
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                className="relative z-10 w-[95%] overflow-hidden rounded-2xl border border-white/10 bg-[#0B0F14] shadow-[0_25px_60px_rgba(0,0,0,0.75)]"
+                            >
+                                {/* Top Browser Bar */}
+                                <div className="flex items-center justify-between border-b border-white/10 bg-[#0A0D12] px-4 py-3">
+                                    <div className="flex gap-1.5">
+                                        <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+                                        <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+                                        <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
+                                    </div>
+                                    
+                                    <div className="flex h-5.5 w-full max-w-[220px] items-center justify-center gap-1.5 rounded bg-[#131920] px-2.5 text-[9.5px] font-medium text-white/50 border border-white/5">
+                                        <span className="text-[8px] text-[oklch(0.65_0.19_150)]">🔒</span> kolacommunications.com
+                                    </div>
+
+                                    <div className="flex gap-1">
+                                        <span className="text-[8px] text-white/30 font-mono">AU</span>
+                                    </div>
+                                </div>
+
+                                {/* Kola Website Mini Preview */}
+                                <div className="bg-[#0f1117] h-[340px] overflow-hidden flex flex-col select-none">
+                                    {/* Mini Nav */}
+                                    <div className="flex items-center justify-between px-5 py-2.5 border-b border-white/5 bg-[#0a0c10]">
+                                        <div className="flex items-center gap-2">
+                                            <img
+                                                src="https://kolacommunications.com/KolaFavicon.jpg"
+                                                alt="Kola"
+                                                className="h-4 w-4 rounded object-cover"
+                                            />
+                                            <span className="text-[9px] font-bold text-white tracking-tight">Kola Communications</span>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-[7px] text-white/40">Our Work</span>
+                                            <span className="text-[7px] text-white/40">Pricing</span>
+                                            <span className="text-[7px] text-white/40">FAQ</span>
+                                            <span className="bg-[oklch(0.55_0.16_150)] text-white text-[6.5px] font-bold px-2 py-0.5 rounded">Start Project</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Mini Hero Section */}
+                                    <div className="flex-1 flex flex-col items-start justify-center px-6 pt-4 pb-2" style={{ background: "linear-gradient(135deg, #0a0f0a 0%, #0d1410 100%)" }}>
+                                        <div className="inline-flex items-center gap-1 rounded-full bg-[oklch(0.55_0.16_150)]/10 border border-[oklch(0.55_0.16_150)]/20 px-2 py-0.5 text-[6px] font-bold text-[oklch(0.65_0.19_150)] uppercase tracking-widest mb-2">
+                                            🇦🇺 Sydney Crafted
+                                        </div>
+                                        <h2 className="text-[17px] font-extrabold leading-tight text-white tracking-tight mb-1">
+                                            We <span className="text-[oklch(0.65_0.19_150)]">code,</span> you{" "}
+                                            <span className="text-[oklch(0.65_0.19_150)]">grow</span>
+                                        </h2>
+                                        <p className="text-[7.5px] text-white/50 mb-3 max-w-[180px] leading-relaxed">
+                                            Hand coded. Blazing fast. Live in 48 hours.
+                                        </p>
+                                        <div className="flex items-center gap-2">
+                                            <span className="bg-[oklch(0.55_0.16_150)] text-white text-[7px] font-bold px-3 py-1 rounded">Get My $99 Website</span>
+                                            <span className="border border-white/10 text-white/60 text-[7px] font-medium px-2 py-1 rounded">Book a Call</span>
+                                        </div>
+
+                                        {/* Mini stats bar */}
+                                        <div className="mt-4 flex gap-4 border-t border-white/5 pt-3 w-full">
+                                            <div className="text-center">
+                                                <div className="text-[9px] font-bold text-white">48h</div>
+                                                <div className="text-[5.5px] text-white/35 uppercase tracking-wider">Delivery</div>
+                                            </div>
+                                            <div className="text-center">
+                                                <div className="text-[9px] font-bold text-white">4.2/5</div>
+                                                <div className="text-[5.5px] text-white/35 uppercase tracking-wider">Google</div>
+                                            </div>
+                                            <div className="text-center">
+                                                <div className="text-[9px] font-bold text-white">150+</div>
+                                                <div className="text-[5.5px] text-white/35 uppercase tracking-wider">Clients</div>
+                                            </div>
+                                            <div className="text-center">
+                                                <div className="text-[9px] font-bold text-[oklch(0.65_0.19_150)]">$99</div>
+                                                <div className="text-[5.5px] text-white/35 uppercase tracking-wider">From</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* === MOBILE PHONE MOCKUP (Increased Size & Overlapping Bottom Right) === */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 40, x: 20 }}
+                                animate={{ opacity: 1, y: 0, x: 0 }}
+                                transition={{ delay: 0.3, duration: 0.8, type: "spring", bounce: 0.3 }}
+                                className="absolute -bottom-10 right-0 z-20 w-[180px] overflow-hidden rounded-[28px] border-[6px] border-slate-900 bg-background shadow-2xl sm:w-[200px]"
+                            >
+                                {/* Dynamic Island Notch */}
+                                <div className="absolute left-1/2 top-2 z-30 h-3 w-10 -translate-x-1/2 rounded-full bg-slate-900" />
+                                
+                                <div className="flex h-[320px] flex-col bg-background text-foreground px-3 pt-8 select-none">
+                                    {/* Kola logo and name inside phone */}
+                                    <div className="mb-3.5 flex items-center justify-between border-b border-hairline/30 pb-2">
+                                        <div className="flex items-center gap-1.5">
+                                            <img
+                                                src="https://kolacommunications.com/KolaFavicon.jpg"
+                                                alt="Kola Favicon"
+                                                className="h-4.5 w-4.5 rounded-md object-cover border border-hairline"
+                                            />
+                                            <span className="text-[9px] font-bold text-foreground tracking-tight">Kola</span>
+                                        </div>
+                                        <span className="text-[6.5px] font-semibold text-muted-foreground uppercase tracking-widest">
+                                            SYDNEY
+                                        </span>
+                                    </div>
+
+                                    {/* Phone Body */}
+                                    <div className="flex flex-col items-center text-center mt-1">
+                                        <div className="inline-flex items-center gap-0.5 rounded-full bg-[#101729]/5 border border-[#101729]/10 px-2 py-0.5 text-[6px] font-bold text-[#101729] uppercase tracking-wider mb-1.5">
+                                            Premium Sites
+                                        </div>
+                                        <h3 className="text-[12px] font-extrabold leading-tight text-foreground tracking-tight max-w-[95%]">
+                                            Websites that <span className="text-[#101729]">convert.</span>
+                                        </h3>
+                                        <p className="text-[6px] text-muted-foreground mt-0.5 max-w-[90%] font-medium">
+                                            Sydney coded, blazing fast, live in 48 hours.
+                                        </p>
+
+                                        {/* Trust Card */}
+                                        <div className="mt-3.5 w-full bg-surface border border-hairline/60 rounded-md p-2 text-left">
+                                            <div className="text-[7.5px] font-bold text-foreground">
+                                                ⭐ 4.2/5 Google Rating
+                                            </div>
+                                            <div className="text-[6.5px] text-muted-foreground mt-0.5 leading-tight">
+                                                Trusted by Aussie local businesses.
+                                            </div>
+                                        </div>
+
+                                        {/* Button */}
+                                        <div className="mt-4 w-full rounded-md bg-[#101729] py-1.5 text-center text-white text-[8px] font-bold shadow-soft">
+                                            Start Project
+                                        </div>
+
+                                        {/* Graphic bars */}
+                                        <div className="mt-4 flex gap-1 w-full justify-between items-end">
+                                            <div className="h-8 bg-[#101729]/5 border border-[#101729]/10 flex-1 rounded-sm" />
+                                            <div className="h-5 bg-[#101729]/10 border border-[#101729]/20 flex-1 rounded-sm" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
                 </div>
-                <div className="hidden items-center gap-4 sm:flex text-[9px] font-medium text-muted-foreground">
-                  <span>Our Menu</span>
-                  <span>Locations</span>
-                  <span>Catering</span>
-                </div>
-                <div className="hidden items-center gap-2 sm:flex">
-                  <span className="text-[9px] font-medium text-foreground"></span>
-                  <div className="rounded bg-brand px-2.5 py-1 text-[9px] font-semibold text-white">Book a Table</div>
-                </div>
-                <Menu className="h-4 w-4 text-muted-foreground sm:hidden" />
-              </motion.div>
-
-              {/* Café Hero Content Area */}
-              <div className="flex flex-col items-center text-center">
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4, duration: 0.4 }}
-                  className="mb-4 flex items-center gap-1.5 rounded-full border border-border/85 bg-surface-elevated px-2.5 py-0.5 text-[8px] font-medium text-muted-foreground"
-                >
-                  <Coffee className="h-2 w-2 text-brand" />
-                  Best Specialty Coffee in Sydney
-                </motion.div>
-
-                <motion.h2 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.5 }}
-                  className="mb-3 max-w-[90%] text-[20px] font-bold leading-tight tracking-tight text-foreground sm:text-[24px]"
-                >
-                  Freshly brewed daily. Served with love.
-                </motion.h2>
-
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8, duration: 0.5 }}
-                  className="mb-6 max-w-[80%] text-[10px] leading-relaxed text-muted-foreground sm:text-[11px]"
-                >
-                  Visit our beautiful Surry Hills space for premium single-origin espresso, artisanal sourdough bakes, and nourishing lunches.
-                </motion.p>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  className="mb-8 flex w-full justify-center gap-3"
-                >
-                  <div className="flex h-8 items-center justify-center rounded-md bg-brand px-4 text-[10px] font-semibold text-white">
-                    Book a Table
-                  </div>
-                  <div className="flex h-8 items-center justify-center gap-1.5 rounded-md border border-border px-4 text-[10px] font-semibold text-foreground">
-                    View Our Menu
-                  </div>
-                </motion.div>
-                
-                {/* Desktop: Real Café Image Section */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2, duration: 0.7 }}
-                  className="relative mt-2 flex h-[190px] w-full max-w-[95%] overflow-hidden rounded-t-xl border-x border-t border-border/60 bg-surface-elevated/20 shadow-2xl"
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop" 
-                    alt="Café Interior Mockup" 
-                    className="w-full h-full object-cover object-center opacity-85 transition-transform duration-700 hover:scale-105"
-                  />
-                  
-                  {/* Magic Overlays: Tints the image beautifully */}
-                  <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
-                  <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />
-                  
-                  {/* Fade out at the bottom edge */}
-                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden />
-                </motion.div>
-              </div>
             </div>
-          </motion.div>
-
-          {/* === MOBILE PHONE MOCKUP (Overlapping Bottom Right) === */}
-          <motion.div
-            initial={{ opacity: 0, y: 40, x: 20 }}
-            animate={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, type: "spring", bounce: 0.4 }}
-            className="absolute -bottom-6 -right-2 z-20 w-[140px] overflow-hidden rounded-[24px] border-[6px] border-slate-900 bg-background shadow-2xl sm:-right-4 sm:w-[150px]"
-          >
-            {/* Dynamic Island Notch */}
-            <div className="absolute left-1/2 top-1.5 z-30 h-3 w-10 -translate-x-1/2 rounded-full bg-slate-900" />
-            
-            <div className="flex h-[280px] flex-col px-3 pt-7">
-              
-              {/* Mobile Café Nav */}
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <div className="flex h-3.5 w-3.5 items-center justify-center rounded-[2px] bg-brand text-background">
-                    <span className="text-[6px] font-bold">H</span>
-                  </div>
-                  <span className="text-[7px] font-bold tracking-tight text-foreground">Hale Café</span>
-                </div>
-                <Menu className="h-3 w-3 text-foreground" />
-              </div>
-
-              {/* Mobile Café Content */}
-              <div className="flex flex-col items-center text-center mt-1">
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8, duration: 0.4 }}
-                  className="mb-2 flex items-center gap-1 rounded-full border border-border/80 bg-surface-elevated px-1.5 py-0.5 text-[5px] font-medium text-muted-foreground"
-                >
-                  <Coffee className="h-1.5 w-1.5 text-brand" />
-                  Specialty Coffee
-                </motion.div>
-
-                <motion.h2 
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9, duration: 0.5 }}
-                  className="mb-1.5 max-w-[95%] text-[10px] font-bold leading-tight tracking-tight text-foreground"
-                >
-                  Freshly brewed daily.
-                </motion.h2>
-
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  className="mb-3 max-w-[90%] text-[5px] leading-relaxed text-muted-foreground"
-                >
-                  Visit our beautiful Surry Hills space.
-                </motion.p>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.1, duration: 0.5 }}
-                  className="mb-4 flex w-full justify-center gap-1.5"
-                >
-                  <div className="flex h-4 items-center justify-center rounded-[2px] bg-brand px-2 text-[5px] font-semibold text-white">
-                    Book Table
-                  </div>
-                  <div className="flex h-4 items-center justify-center gap-1 rounded-[2px] border border-border px-2 text-[5px] font-semibold text-foreground">
-                    Menu
-                  </div>
-                </motion.div>
-                
-                {/* Mobile: Real Café Image Section */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.2, duration: 0.7 }}
-                  className="relative mt-auto flex h-[110px] w-full overflow-hidden rounded-t-lg border-x border-t border-border/60 bg-surface-elevated/20 shadow-inner"
-                >
-                  <img 
-                    src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop" 
-                    alt="Café Interior Mobile" 
-                    className="w-full h-full object-cover object-center opacity-85"
-                  />
-                  
-                  {/* Magic Overlays */}
-                  <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
-                  <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />
-                  <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden />
-                </motion.div>
-
-              </div>
-            </div>
-          </motion.div>
-
-        </motion.div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }

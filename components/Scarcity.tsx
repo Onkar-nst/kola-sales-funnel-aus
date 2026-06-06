@@ -50,12 +50,12 @@ export function Scarcity() {
             Limited Weekly Intake
           </div>
 
-          <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.02em] text-balance text-background sm:text-3xl md:text-4xl">
+          <h2 className="mt-4 font-display text-brandxl font-semibold tracking-[-0.02em] text-balance text-background sm:text-3xl md:text-4xl">
             We limit our capacity to 5 projects per week.
           </h2>
 
           <p className="mt-2.5 max-w-lg text-balance text-xs leading-relaxed text-background/85">
-            To maintain quality and guarantee direct oversight, we refuse to run a high volume template factory. We only take on what we can hand-craft perfectly.
+            To maintain quality and guarantee direct oversight, we refuse to run a high volume template factory. We only take on what we can hand craft perfectly.
           </p>
 
           {/* Availability Status Card */}

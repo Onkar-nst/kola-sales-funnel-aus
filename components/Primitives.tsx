@@ -22,7 +22,7 @@ export function Section({
 }) {
   return (
     <section id={id} className={`relative px-6 py-16 md:py-24 ${className}`}>
-      <div className="mx-auto max-w-6xl">{children}</div>
+      <div className="mx-auto max-w-none w-full px-2 md:px-8 lg:px-12">{children}</div>
     </section>
   );
 }
@@ -36,7 +36,7 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
       transition={{ duration: 0.5, ease }}
       className="inline-flex items-center gap-2 rounded-full hairline bg-surface-elevated/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur"
     >
-      <Sparkles className="h-3.5 w-3.5 text-brand" />
+      <Sparkles className="h-3.5 w-3.5 text-[#101729]" />
       {children}
     </motion.div>
   );

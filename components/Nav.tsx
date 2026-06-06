@@ -1,13 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import { Menu, X } from "lucide-react";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -22,68 +21,139 @@ export function Nav() {
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     }
+    setMobileMenuOpen(false);
   };
 
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease }}
-      className="fixed inset-x-0 top-4 z-50 px-4"
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed inset-x-0 top-0 z-50 w-full h-16 transition-all duration-300 border-b bg-background text-foreground border-hairline ${
+        scrolled ? "shadow-soft bg-background/95 backdrop-blur-md" : ""
+      }`}
     >
-      <div
-        className={`mx-auto flex max-w-5xl items-center justify-between rounded-full px-4 py-2.5 transition-all duration-300 ${
-          scrolled 
-            ? "bg-background/80 backdrop-blur-xl border border-hairline/30 shadow-elevated" 
-            : "bg-transparent"
-          }`}
-      >
-        <a href="#top" onClick={(e) => handleScroll(e, "#top")} className="flex items-center gap-3 font-display text-sm md:text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity">
+      <div className="flex h-full w-full items-center justify-between">
+        {/* ── Brand Logo & Text ── */}
+        <a 
+          href="#top" 
+          onClick={(e) => handleScroll(e, "#top")} 
+          className="flex h-full items-center gap-3 px-6 hover:bg-surface transition-all border-r border-hairline"
+        >
           <img
             src="https://kolacommunications.com/KolaFavicon.jpg"
             alt="Kola Communications Logo"
-            className="h-9 w-9 rounded-xl object-cover shadow-soft border border-hairline/20"
+            className="h-8 w-8 rounded-lg object-cover border border-hairline"
           />
-          <div className="flex flex-col items-start leading-none hidden sm:flex">
-            <span className="text-[15px] font-bold tracking-tight text-foreground">Kola Communications</span>
-            <span className="text-[10px] font-medium text-muted-foreground mt-1 flex items-center gap-1 uppercase tracking-widest">
+          <div className="flex flex-col items-start leading-none">
+            <span className="text-[14px] font-bold tracking-tight text-foreground font-display">Kola Communications</span>
+            <span className="text-[8px] font-semibold text-muted-foreground mt-0.5 uppercase tracking-widest">
               🇦🇺 Sydney, AU
             </span>
           </div>
         </a>
 
-        {/* ── Navigation Links ── */}
-        <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-elevated/40 backdrop-blur-sm border border-hairline/20">
-          <a href="#showcase" onClick={(e) => handleScroll(e, "#showcase")} className="px-4 py-1.5 rounded-full text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-surface transition-all">Our Work</a>
-          <a href="#how" onClick={(e) => handleScroll(e, "#how")} className="px-4 py-1.5 rounded-full text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-surface transition-all">Process</a>
-          <a href="#pricing" onClick={(e) => handleScroll(e, "#pricing")} className="px-4 py-1.5 rounded-full text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-surface transition-all">Pricing</a>
-          <a href="#results-faq" onClick={(e) => handleScroll(e, "#results-faq")} className="px-4 py-1.5 rounded-full text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-surface transition-all">FAQ</a>
+        {/* ── Desktop Navigation Menu ── */}
+        <div className="hidden md:flex h-full items-center">
+          <a
+            href="#showcase"
+            onClick={(e) => handleScroll(e, "#showcase")}
+            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
+          >
+            Our Work
+          </a>
+          <a
+            href="#about"
+            onClick={(e) => handleScroll(e, "#about")}
+            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
+          >
+            About
+          </a>
+          <a
+            href="#pricing"
+            onClick={(e) => handleScroll(e, "#pricing")}
+            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
+          >
+            Pricing
+          </a>
+          <a
+            href="#results-faq"
+            onClick={(e) => handleScroll(e, "#results-faq")}
+            className="flex h-full items-center px-6 text-xs font-bold uppercase tracking-wider text-foreground/75 hover:text-foreground hover:bg-surface border-r border-hairline transition-all"
+          >
+            FAQ
+          </a>
+
+          {/* Solid Action CTA block on far right using brand color */}
+          <a
+            href="#lead-capture"
+            onClick={(e) => handleScroll(e, "#lead-capture")}
+            className="flex h-full items-center justify-center bg-[#101729] text-white font-bold text-xs uppercase tracking-widest px-8 hover:bg-[#101729]/90 transition-all"
+          >
+            Start Project
+          </a>
         </div>
 
-        <div className="flex items-center gap-3">
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="#lead-capture"
-            onClick={(e) => {
-              handleScroll(e, "#lead-capture");
-              // Add a pulse effect to the form when navigated
-              setTimeout(() => {
-                const form = document.querySelector("#lead-capture");
-                if (form) {
-                  form.classList.add("ring-4", "ring-brand/50", "transition-all", "duration-500");
-                  setTimeout(() => form.classList.remove("ring-4", "ring-brand/50"), 1000);
-                }
-              }, 500);
-            }}
-            className="group relative inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2 text-xs font-semibold text-background shadow-elevated sm:text-sm sm:px-6 sm:py-2.5 cursor-pointer"
-          >
-            <span>Start Project</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </motion.a>
-        </div>
+        {/* ── Mobile Menu Toggle Button ── */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="flex md:hidden h-full px-6 items-center justify-center border-l border-hairline hover:bg-surface text-foreground transition-all"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {/* ── Mobile Menu Overlay / Drawer ── */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute left-0 right-0 top-full bg-background border-b border-hairline md:hidden z-40 overflow-hidden"
+          >
+            <div className="flex flex-col">
+              <a
+                href="#showcase"
+                onClick={(e) => handleScroll(e, "#showcase")}
+                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
+              >
+                Our Work
+              </a>
+              <a
+                href="#about"
+                onClick={(e) => handleScroll(e, "#about")}
+                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
+              >
+                About
+              </a>
+              <a
+                href="#pricing"
+                onClick={(e) => handleScroll(e, "#pricing")}
+                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
+              >
+                Pricing
+              </a>
+              <a
+                href="#results-faq"
+                onClick={(e) => handleScroll(e, "#results-faq")}
+                className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/85 hover:bg-surface border-b border-hairline/60 transition-all"
+              >
+                FAQ
+              </a>
+              <a
+                href="#lead-capture"
+                onClick={(e) => handleScroll(e, "#lead-capture")}
+                className="flex items-center justify-center bg-[#101729] text-white font-bold text-xs uppercase tracking-widest py-5 hover:bg-[#101729]/90 transition-all"
+              >
+                Start Project
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
-

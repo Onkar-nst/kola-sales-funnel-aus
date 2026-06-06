@@ -15,18 +15,18 @@ export function Solution() {
     },
     {
       icon: Compass,
-      title: "Conversion-First Architecture",
-      desc: "Strategic layouts, high-visibility interactive elements, clickable direct-response buttons, and trust markers placed exactly where visitors make their final purchasing decisions.",
+      title: "Conversion First Architecture",
+      desc: "Strategic layouts, high visibility interactive elements, clickable direct response buttons, and trust markers placed exactly where visitors make their final purchasing decisions.",
     },
     {
       icon: Layers,
       title: "Optimised for Ads (Google & Meta)",
-      desc: "Perfect structure for paid campaigns. Lightning fast load times improve your Google Ads Quality Score, lowering your cost-per-click and stretching your marketing budget further.",
+      desc: "Perfect structure for paid campaigns. Lightning fast load times improve your Google Ads Quality Score, lowering your cost per click and stretching your marketing budget further.",
     },
     {
       icon: ShieldCheck,
       title: "Ongoing Performance & Support",
-      desc: "Optional lightning fast local Australian hosting, SEO fine-tuning, and reliable on-demand maintenance so you can focus on running your business, while your website runs 24/7.",
+      desc: "Optional lightning fast local Australian hosting, SEO fine tuning, and reliable on demand maintenance so you can focus on running your business, while your website runs 24/7.",
     },
   ];
 
@@ -37,7 +37,7 @@ export function Solution() {
 
       <SectionHeader
         eyebrow="The Solution"
-        title="Websites hand-crafted for high performance."
+        title="Websites hand crafted for high performance."
         subtitle="We don't use clunky page builders, slow templates, or artificial generators. Every line of code is written by hand in Sydney to ensure your business loads instantly, ranks on Google, and converts traffic into customer enquiries."
       />
 
@@ -53,7 +53,7 @@ export function Solution() {
               transition={{ delay: i * 0.1, duration: 0.6, ease }}
               className="flex gap-6 rounded-3xl bg-surface-elevated p-8 hairline hover:shadow-soft transition-all hover:scale-[1.005]"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#101729]/10 text-[#101729]">
                 <Icon className="h-6 w-6 stroke-[2]" />
               </div>
               <div>
