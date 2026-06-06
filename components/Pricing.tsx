@@ -233,8 +233,8 @@ export function Pricing() {
           >
             {t.highlight && (
               <span 
-                className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[oklch(0.55_0.16_150)] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white"
-                style={{ boxShadow: '0 20px 60px -20px oklch(0.55 0.16 150 / 0.5)' }}
+                className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#101729] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white"
+                style={{ boxShadow: '0 20px 60px -20px rgba(16, 23, 41, 0.5)' }}
               >
                 Most popular
               </span>
