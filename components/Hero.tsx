@@ -101,8 +101,8 @@ export function Hero() {
                             transition={{ duration: 0.7, delay: 0.15 }}
                             className="font-display text-white text-[1.8rem] sm:text-[2.2rem] md:text-[clamp(2.5rem,5.2vw,4.4rem)] leading-[1.02] tracking-[-0.04em]"
                         >
-                            We <span className="text-[oklch(0.55_0.16_150)]">code,</span> you{" "}
-                            <span className="text-[oklch(0.55_0.16_150)]">grow</span>
+                            We <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">code,</span> you{" "}
+                            <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">grow</span>
                             <br />
                             that&apos;s the deal
                         </motion.h1>
@@ -128,7 +128,7 @@ export function Hero() {
                         </motion.div>
                     </div>
 
-                    {/* RIGHT COLUMN: Real Local Business Website Preview (Café Example) */}
+                    {/* RIGHT COLUMN: Real Kola Communications Website Preview */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -139,7 +139,7 @@ export function Hero() {
                             <div className="absolute inset-0 bg-black/5 blur-[50px] dark:bg-white/5" aria-hidden />
 
                             {/* === DESKTOP WINDOW === */}
-                            <motion.div
+                            <motion.div 
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -152,10 +152,10 @@ export function Hero() {
                                         <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
                                         <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
                                     </div>
-
+                                    
                                     <div className="flex h-6 w-full max-w-[200px] items-center justify-center gap-1.5 rounded-md border border-border/50 bg-background px-2 text-[10px] font-medium text-muted-foreground/80">
                                         <Lock className="h-2.5 w-2.5" />
-                                        halecafe.com.au
+                                        kolacommunications.com
                                     </div>
 
                                     <div className="flex gap-2">
@@ -166,99 +166,100 @@ export function Hero() {
 
                                 {/* Desktop Website Preview */}
                                 <div className="relative bg-background p-5 sm:p-6 pb-0">
-                                    <motion.div
+                                    <motion.div 
                                         initial={{ scaleX: 0 }}
                                         animate={{ scaleX: 1 }}
                                         transition={{ duration: 2, ease: "circOut" }}
                                         className="absolute top-0 left-0 h-[2px] w-full origin-left bg-brand"
                                     />
 
-                                    {/* Cafe Navbar */}
-                                    <motion.div
+                                    {/* Kola Navbar */}
+                                    <motion.div 
                                         initial={{ opacity: 0, y: -10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.2, duration: 0.5 }}
                                         className="mb-8 flex items-center justify-between"
                                     >
                                         <div className="flex items-center gap-1.5">
-                                            <div className="flex h-5 w-5 items-center justify-center rounded bg-brand text-background">
-                                                <span className="text-[10px] font-bold">H</span>
-                                            </div>
-                                            <span className="text-[11px] font-bold tracking-tight text-foreground">Hale Café</span>
+                                            <img
+                                                src="https://kolacommunications.com/KolaFavicon.jpg"
+                                                alt="Kola Favicon"
+                                                className="h-4.5 w-4.5 rounded object-cover"
+                                            />
+                                            <span className="text-[11px] font-bold tracking-tight text-foreground">Kola</span>
                                         </div>
                                         <div className="hidden items-center gap-4 sm:flex text-[9px] font-medium text-muted-foreground">
-                                            <span>Our Menu</span>
-                                            <span>Locations</span>
-                                            <span>Catering</span>
+                                            <span>Our Work</span>
+                                            <span>Pricing</span>
+                                            <span>FAQ</span>
                                         </div>
                                         <div className="hidden items-center gap-2 sm:flex">
-                                            <span className="text-[9px] font-medium text-foreground">Call Us</span>
-                                            <div className="rounded bg-brand px-2.5 py-1 text-[9px] font-semibold text-white">Book a Table</div>
+                                            <span className="text-[9px] font-medium text-foreground">Sydney</span>
+                                            <div className="rounded bg-brand px-2.5 py-1 text-[9px] font-semibold text-white">Start Project</div>
                                         </div>
                                         <Menu className="h-4 w-4 text-muted-foreground sm:hidden" />
                                     </motion.div>
 
-                                    {/* Café Hero Content Area */}
+                                    {/* Kola Hero Content Area */}
                                     <div className="flex flex-col items-center text-center">
-                                        <motion.div
+                                        <motion.div 
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: 0.4, duration: 0.4 }}
-                                            className="mb-4 flex items-center gap-1.5 rounded-full border border-border/85 bg-surface-elevated px-2.5 py-0.5 text-[8px] font-medium text-muted-foreground"
+                                            className="mb-4 flex items-center gap-1.5 rounded-full border border-border/85 bg-surface-elevated px-2.5 py-0.5 text-[8px] font-semibold text-muted-foreground"
                                         >
-                                            <Coffee className="h-2 w-2 text-brand" />
-                                            Best Specialty Coffee in Sydney
+                                            🇦🇺 Sydney Crafted & Coded
                                         </motion.div>
 
-                                        <motion.h2
+                                        <motion.h2 
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 0.6, duration: 0.5 }}
                                             className="mb-3 max-w-[90%] text-[20px] font-bold leading-tight tracking-tight text-foreground sm:text-[24px]"
                                         >
-                                            Freshly brewed daily. Served with love.
+                                            We <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">code,</span> you <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">grow</span>
                                         </motion.h2>
 
-                                        <motion.p
+                                        <motion.p 
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             transition={{ delay: 0.8, duration: 0.5 }}
                                             className="mb-6 max-w-[80%] text-[10px] leading-relaxed text-muted-foreground sm:text-[11px]"
                                         >
-                                            Visit our beautiful Surry Hills space for premium single-origin espresso, artisanal sourdough bakes, and nourishing lunches.
+                                            Blazing fast Next.js sales funnels for local Aussie businesses. Hand-crafted in under 48 hours. Built for maximum conversions.
                                         </motion.p>
 
-                                        <motion.div
+                                        <motion.div 
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 1, duration: 0.5 }}
                                             className="mb-8 flex w-full justify-center gap-3"
                                         >
                                             <div className="flex h-8 items-center justify-center rounded-md bg-brand px-4 text-[10px] font-semibold text-white">
-                                                Book a Table
+                                                Get My $99 Website
                                             </div>
                                             <div className="flex h-8 items-center justify-center gap-1.5 rounded-md border border-border px-4 text-[10px] font-semibold text-foreground">
-                                                View Our Menu
+                                                Book a Call
                                             </div>
                                         </motion.div>
-
-                                        {/* Desktop: Real Café Image Section */}
+                                        
+                                        {/* Desktop: Analytics & Performance Dashboard Mockup */}
                                         <motion.div
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 1.2, duration: 0.7 }}
                                             className="relative mt-2 flex h-[190px] w-full max-w-[95%] overflow-hidden rounded-t-xl border-x border-t border-border/60 bg-surface-elevated/20 shadow-2xl"
                                         >
-                                            <img
-                                                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
-                                                alt="Café Interior Mockup"
-                                                className="w-full h-full object-cover object-center opacity-85 transition-transform duration-700 hover:scale-105"
+                                            <img 
+                                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" 
+                                                alt="Kola Funnel Performance Metrics" 
+                                                className="w-full h-full object-cover object-top opacity-85 transition-transform duration-700 hover:scale-102"
                                             />
-
+                                            
                                             {/* Magic Overlays: Tints the image beautifully */}
                                             <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
                                             <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />
-
+                                            
                                             {/* Fade out at the bottom edge */}
                                             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden />
                                         </motion.div>
@@ -275,56 +276,57 @@ export function Hero() {
                             >
                                 {/* Dynamic Island Notch */}
                                 <div className="absolute left-1/2 top-1.5 z-30 h-3 w-10 -translate-x-1/2 rounded-full bg-slate-900" />
-
+                                
                                 <div className="flex h-[280px] flex-col px-3 pt-7 select-none text-foreground">
-                                    {/* Mobile Café Nav */}
+                                    {/* Mobile Nav */}
                                     <div className="mb-4 flex items-center justify-between">
                                         <div className="flex items-center gap-1.5">
-                                            <div className="flex h-3.5 w-3.5 items-center justify-center rounded-[2px] bg-brand text-background">
-                                                <span className="text-[6px] font-bold">H</span>
-                                            </div>
-                                            <span className="text-[7px] font-bold tracking-tight text-foreground">Hale Café</span>
+                                            <img
+                                                src="https://kolacommunications.com/KolaFavicon.jpg"
+                                                alt="Kola Favicon"
+                                                className="h-3.5 w-3.5 rounded object-cover"
+                                            />
+                                            <span className="text-[7px] font-bold tracking-tight text-foreground">Kola</span>
                                         </div>
                                         <Menu className="h-3 w-3 text-foreground" />
                                     </div>
 
-                                    {/* Mobile Café Content */}
+                                    {/* Mobile Content */}
                                     <div className="flex flex-col items-center text-center mt-1">
-                                        <motion.div
+                                        <motion.div 
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: 0.8, duration: 0.4 }}
-                                            className="mb-2 flex items-center gap-1 rounded-full border border-border/80 bg-surface-elevated px-1.5 py-0.5 text-[5px] font-medium text-muted-foreground"
+                                            className="mb-2 flex items-center gap-1 rounded-full border border-border/80 bg-surface-elevated px-1.5 py-0.5 text-[5px] font-semibold text-muted-foreground"
                                         >
-                                            <Coffee className="h-1.5 w-1.5 text-brand" />
-                                            Specialty Coffee
+                                            ⚡ 100% Performance
                                         </motion.div>
 
                                         <h3 className="mb-1.5 max-w-[95%] text-[10px] font-bold leading-tight tracking-tight text-foreground">
-                                            Freshly brewed daily.
+                                            Websites that convert.
                                         </h3>
 
                                         <p className="mb-3 max-w-[90%] text-[5px] leading-relaxed text-muted-foreground">
-                                            Visit our beautiful Surry Hills space.
+                                            Sydney-coded Next.js speed.
                                         </p>
 
                                         <div className="mb-4 flex w-full justify-center gap-1.5">
                                             <div className="flex h-4 items-center justify-center rounded-[2px] bg-brand px-2 text-[5px] font-semibold text-white">
-                                                Book Table
+                                                Start Project
                                             </div>
                                             <div className="flex h-4 items-center justify-center gap-1 rounded-[2px] border border-border px-2 text-[5px] font-semibold text-foreground">
-                                                Menu
+                                                Features
                                             </div>
                                         </div>
-
-                                        {/* Mobile: Real Café Image Section */}
+                                        
+                                        {/* Mobile: Real Analytics Section */}
                                         <div className="relative mt-auto flex h-[110px] w-full overflow-hidden rounded-t-lg border-x border-t border-border/60 bg-surface-elevated/20 shadow-inner">
-                                            <img
-                                                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
-                                                alt="Café Interior Mobile"
-                                                className="w-full h-full object-cover object-center opacity-85"
+                                            <img 
+                                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" 
+                                                alt="Kola Funnel Performance Metrics Mobile" 
+                                                className="w-full h-full object-cover object-top opacity-85"
                                             />
-
+                                            
                                             {/* Magic Overlays */}
                                             <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
                                             <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />

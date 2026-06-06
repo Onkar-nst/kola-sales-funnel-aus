@@ -179,17 +179,40 @@ export function Pricing() {
           <>
             Transparent pricing.
             <br />
-            <span className="text-gradient">No&nbsp;</span>
+            <span 
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(135deg, oklch(0.25 0.08 260), oklch(0.20 0.06 300))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              No&nbsp;
+            </span>
             <motion.span
               initial={{ filter: "blur(8px)", opacity: 0.5 }}
               whileInView={{ filter: "blur(0px)", opacity: 1 }}
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 3.0, ease: "easeOut" }}
-              className="inline-block text-gradient mx-1.5"
+              className="inline-block bg-clip-text text-transparent mx-1.5"
+              style={{
+                backgroundImage: "linear-gradient(135deg, oklch(0.25 0.08 260), oklch(0.20 0.06 300))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
             >
               hidden
             </motion.span>
-            <span className="text-gradient">&nbsp;fees, ever.</span>
+            <span 
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(135deg, oklch(0.25 0.08 260), oklch(0.20 0.06 300))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              &nbsp;fees, ever.
+            </span>
           </>
         }
         subtitle="One time payment. GST included. No subscriptions. No lock in contracts."
@@ -232,7 +255,7 @@ export function Pricing() {
               }`}
           >
             {t.highlight && (
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-brand-foreground shadow-glow">
+              <span className="absolute bg-white -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-black shadow-glow">
                 Most popular
               </span>
             )}
