@@ -25,7 +25,7 @@ export function Hero() {
     return (
         <section
             id="top"
-            className="relative bg-neutral-950 overflow-hidden min-h-[100svh] flex flex-col pt-16"
+            className="relative bg-neutral-950 overflow-hidden min-h-[100svh] flex flex-col pt-16 pb-24 md:pb-40"
         >
             {/* background image */}
             <div className="absolute inset-0 z-0">

@@ -80,15 +80,14 @@ export function Nav() {
         >
           <img
             src="https://kolacommunications.com/KolaFavicon.jpg"
-            alt="Kola Communications Logo"
+            alt="Kola Favicon"
             className="h-8 w-8 rounded-lg object-cover border border-hairline"
           />
-          <div className="flex flex-col items-start leading-none">
-            <span className="text-[14px] font-bold tracking-tight text-foreground font-display">Kola Communications</span>
-            <span className="text-[8px] font-semibold text-muted-foreground mt-0.5 uppercase tracking-widest">
-              🇦🇺 Sydney, AU
-            </span>
-          </div>
+          <img
+            src="https://oskiqdthpejzihtjybwc.supabase.co/storage/v1/object/public/kola-website%20images/logo-2.png"
+            alt="Kola Communications Logo"
+            className="h-8 w-auto object-contain"
+          />
         </motion.a>
 
         {/* ── Desktop Navigation Menu ── */}

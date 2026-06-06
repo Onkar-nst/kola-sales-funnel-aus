@@ -38,7 +38,7 @@ export function TrustBar() {
   ];
 
   return (
-    <section className="relative z-20 -mt-10 md:-mt-14 mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 pb-12">
+    <section className="relative z-20 -mt-[95px] md:-mt-[110px] mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 pb-12">
       <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-hairline border border-hairline bg-surface-elevated shadow-elevated rounded-3xl overflow-hidden">
         {items.map((it, i) => (
           <motion.div

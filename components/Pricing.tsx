@@ -218,29 +218,6 @@ export function Pricing() {
         subtitle="One time payment. GST included. No subscriptions. No lock in contracts."
       />
 
-      {/* Explainer Panel */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease }}
-        className="mx-auto max-w-3xl mb-12 rounded-3xl bg-surface p-6 md:p-8 hairline border-brand/20 shadow-soft"
-      >
-        <div className="flex flex-col md:flex-row gap-5 items-start">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
-            <CheckCircle className="h-6 w-6 stroke-[2]" />
-          </div>
-          <div>
-            <h4 className="text-base font-semibold text-foreground">
-              What does the A$99 Launch offer include?
-            </h4>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              The A$99 Launch package is a fully built, 1 page conversion website. It is <strong>not a deposit</strong> it is the complete price. You get a custom designed, hand coded, mobile responsive website delivered in 48 hours. If you're not happy, you get a full refund within 30 days. No catches.
-            </p>
-          </div>
-        </div>
-      </motion.div>
-
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
         {tiers.map((t, i) => (
           <motion.div
@@ -335,6 +312,29 @@ export function Pricing() {
           </motion.div>
         ))}
       </div>
+
+      {/* Explainer Panel */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease }}
+        className="mx-auto max-w-3xl mt-16 rounded-3xl bg-surface p-6 md:p-8 hairline border-brand/20 shadow-soft"
+      >
+        <div className="flex flex-col md:flex-row gap-5 items-start">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
+            <CheckCircle className="h-6 w-6 stroke-[2]" />
+          </div>
+          <div>
+            <h4 className="text-base font-semibold text-foreground">
+              What does the A$99 Launch offer include?
+            </h4>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              The A$99 Launch package is a fully built, 1 page conversion website. It is <strong>not a deposit</strong> it is the complete price. You get a custom designed, hand coded, mobile responsive website delivered in 48 hours. If you're not happy, you get a full refund within 30 days. No catches.
+            </p>
+          </div>
+        </div>
+      </motion.div>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1.5">

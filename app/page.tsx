@@ -19,8 +19,8 @@ export default function Page() {
       <TrustBar />
       <Pricing />
       <About />
-      <Scarcity />
       <Showcase />
+      <Scarcity />
       <ResultsFAQ />
       {/* <ProblemSolution /> */}
       <CTA />
