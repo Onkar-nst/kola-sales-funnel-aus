@@ -414,7 +414,7 @@ export function Pricing() {
           }
         }}
       >
-        <DialogContent ref={dialogContentRef} className="max-h-[90dvh] max-w-4xl overflow-y-auto rounded-3xl border-hairline p-0 shadow-elevated">
+        <DialogContent ref={dialogContentRef} className="max-h-[90dvh] max-w-4xl overflow-y-auto rounded-3xl border-transparent p-0 shadow-elevated">
           {selectedTier && (
             <div className="grid bg-surface-elevated md:grid-cols-[1fr_0.78fr]">
               <div

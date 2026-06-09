@@ -34,8 +34,8 @@ export function Footer() {
             </h4>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground font-medium">
               <li>
-                <a href="#problem" className="transition-colors hover:text-foreground">
-                  The Problem
+                <a href="#about" className="transition-colors hover:text-foreground">
+                  About Us
                 </a>
               </li>
               <li>
@@ -49,7 +49,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#faq" className="transition-colors hover:text-foreground">
+                <a href="#results-faq" className="transition-colors hover:text-foreground">
                   FAQ
                 </a>
               </li>
