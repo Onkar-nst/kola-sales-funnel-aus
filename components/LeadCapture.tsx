@@ -193,7 +193,7 @@ export function LeadCapture() {
                 <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand/10 text-brand mb-6">
                   <CheckCircle2 className="h-10 w-10 stroke-[1.5]" />
                 </div>
-                <h3 className="text-brandxl font-semibold text-foreground tracking-tight">
+                <h3 className="text-2xl font-semibold text-foreground tracking-tight">
                   Strategy Request Received!
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground max-w-sm mx-auto">

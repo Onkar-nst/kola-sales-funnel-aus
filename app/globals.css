@@ -274,4 +274,13 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: oklch(0.55 0.16 150 / 0.5);
   }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
+

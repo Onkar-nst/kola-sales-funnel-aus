@@ -78,6 +78,19 @@ export function Pricing() {
   const [selectedTier, setSelectedTier] = useState<Tier | null>(null);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    const { scrollLeft } = scrollContainerRef.current;
+    const cardElement = scrollContainerRef.current.firstElementChild;
+    if (cardElement) {
+      const cardWidth = cardElement.getBoundingClientRect().width + 20; // 20px is gap-5
+      const index = Math.round(scrollLeft / cardWidth);
+      setActiveIndex(Math.max(0, Math.min(index, tiers.length - 1)));
+    }
+  };
 
   const dialogContentRef = useRef<HTMLDivElement>(null);
 
@@ -177,7 +190,7 @@ export function Pricing() {
         eyebrow="Pricing"
         title={
           <>
-            Transparent pricing.
+            <span className="text-[oklch(0.704_0.04_256.788)]">Transparent pricing.</span>
             <br />
             <span 
               className="bg-clip-text text-transparent"
@@ -218,7 +231,11 @@ export function Pricing() {
         subtitle="One time payment. GST included. No subscriptions. No lock in contracts."
       />
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+      <div 
+        ref={scrollContainerRef}
+        onScroll={handleScroll}
+        className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 scrollbar-none -mx-8 px-[5vw] md:px-8 scroll-px-[5vw] md:scroll-px-0"
+      >
         {tiers.map((t, i) => (
           <motion.div
             key={t.name}
@@ -226,7 +243,7 @@ export function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.08, duration: 0.6, ease }}
-            className={`relative flex flex-col rounded-3xl p-7 shadow-soft transition-all hover:-translate-y-1 ${t.highlight
+            className={`relative flex flex-col rounded-3xl p-7 shadow-soft transition-all hover:-translate-y-1 snap-start shrink-0 w-[82vw] sm:w-[80vw] md:w-auto ${t.highlight
               ? "bg-foreground text-background shadow-elevated"
               : "hairline bg-surface-elevated"
               }`}
@@ -310,6 +327,31 @@ export function Pricing() {
               })}
             </ul>
           </motion.div>
+        ))}
+      </div>
+
+      {/* Mobile Scroll Indicator Dots */}
+      <div className="flex md:hidden items-center justify-center gap-1.5 mt-2 mb-8">
+        {tiers.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              if (scrollContainerRef.current) {
+                const cardElement = scrollContainerRef.current.firstElementChild;
+                if (cardElement) {
+                  const cardWidth = cardElement.getBoundingClientRect().width + 20; // 20px is gap-5
+                  scrollContainerRef.current.scrollTo({
+                    left: idx * cardWidth,
+                    behavior: "smooth",
+                  });
+                }
+              }
+            }}
+            className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+              activeIndex === idx ? "w-5 bg-foreground" : "w-1.5 bg-foreground/20"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
         ))}
       </div>
 

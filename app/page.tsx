@@ -25,11 +25,15 @@ export default function Page() {
       <HowItWorks/>
       <ResultsFAQ />
       {/* <ProblemSolution /> */}
-      <CTA />
-      <Footer />
 
-      {/* Floating Mobile Sticky CTA Bar */}
-      <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden bg-background/90 backdrop-blur-md border border-hairline p-2.5 rounded-2xl flex gap-2.5 shadow-elevated">
+      {/* Desktop only — on mobile the site ends after the FAQ section */}
+      <div className="hidden md:block">
+        <CTA />
+        <Footer />
+      </div>
+
+      {/* Floating Mobile Sticky CTA Bar — hidden so mobile ends at the FAQ */}
+      <div className="hidden fixed bottom-4 left-4 right-4 z-40 bg-background/90 backdrop-blur-md border border-hairline p-2.5 rounded-2xl gap-2.5 shadow-elevated">
         <a
           href="#pricing"
           className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-foreground py-3 text-xs font-bold text-background shadow-soft"

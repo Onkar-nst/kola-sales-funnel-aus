@@ -7,72 +7,72 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function TrustBar() {
   const items = [
-    { 
-      k: 48, 
-      suffix: "h", 
-      v: "Average delivery time", 
-      isCounter: true,
-      subPoints: ["Rapid concept to live pipeline", "Zero stress turnaround"]
+    {
+      k: 48,
+      suffix: "h",
+      v: "Average Delivery Time",
+      sub: ["Live & fully tested", "No long agency waits"],
     },
-    { 
-      k: 4.2, 
-      suffix: "/5", 
-      v: "Google rating", 
-      isCounter: true,
-      subPoints: ["Rated by local business owners", "Direct customer support"]
+    {
+      k: 4.2,
+      suffix: "/5",
+      v: "Google Rating",
+      sub: ["Verified client reviews", "Real Aussie businesses"],
     },
-    { 
-      k: 150, 
-      suffix: "+", 
-      v: "Aussie businesses launched", 
-      isCounter: true,
-      subPoints: ["Nationwide reach across AU", "From startups to local legends"]
+    {
+      k: 150,
+      suffix: "+",
+      v: "Businesses Launched",
+      sub: ["Across every state", "Sole traders to brands"],
     },
-    { 
-      k: 99.9, 
-      suffix: "%", 
-      v: "Uptime SLA Guarantee", 
-      isCounter: true,
-      subPoints: ["99.9% uptime guaranteed", "Cloudflare edge secure"]
+    {
+      k: 99.9,
+      suffix: "%",
+      v: "Uptime SLA Guarantee",
+      sub: ["Fast Australian hosting", "Monitored around the clock"],
     },
   ];
 
   return (
-    <section className="relative z-20 -mt-[95px] md:-mt-[110px] mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 pb-12">
-      <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-hairline border border-hairline bg-surface-elevated shadow-elevated rounded-3xl overflow-hidden">
-        {items.map((it, i) => (
-          <motion.div
-            key={it.v}
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.5, ease }}
-            className="p-6 md:p-8 text-center flex flex-col justify-between items-center bg-surface-elevated min-h-[190px] md:min-h-[220px]"
-          >
-            {/* Number and title label */}
-            <div className="flex flex-col items-center justify-center flex-1 w-full">
-              <div className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-foreground flex items-center justify-center">
+    <section className="relative z-20 -mt-16 md:-mt-28 mx-auto max-w-8xl w-full px-6 md:px-12 lg:px-16 pb-12">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease }}
+        className="bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] overflow-hidden"
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-neutral-200/70">
+          {items.map((it, i) => (
+            <motion.div
+              key={it.v}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.5, ease }}
+              className="bg-white text-center flex flex-col items-center justify-center px-4 py-8 md:py-10"
+            >
+              <div className="font-display text-4xl sm:text-5xl md:text-[3.2rem] font-semibold tracking-tight text-black">
                 <Counter to={it.k!} suffix={it.suffix} />
               </div>
-              <div className="mt-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground max-w-[200px] leading-tight">
+              <div className="mt-2 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.14em] text-neutral-600">
                 {it.v}
               </div>
-            </div>
-            
-            {/* Sub points dividers */}
-            <div className="mt-4 pt-3.5 border-t border-hairline/60 w-full flex flex-col items-center">
-              <ul className="space-y-1 text-left w-full max-w-[190px]">
-                {it.subPoints.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-1.5 text-[10.5px] text-muted-foreground/80 font-semibold leading-tight">
-                    <span className="h-1 w-1 rounded-full bg-brand shrink-0 mt-1.5" />
-                    <span>{point}</span>
+              <div className="hidden md:block mt-3 h-px w-10 bg-neutral-200" />
+              <ul className="hidden md:flex mt-3 flex-col items-center gap-1">
+                {it.sub.map((s) => (
+                  <li
+                    key={s}
+                    className="text-[11px] font-medium text-neutral-400"
+                  >
+                    {s}
                   </li>
                 ))}
               </ul>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }

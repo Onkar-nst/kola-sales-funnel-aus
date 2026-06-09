@@ -10,6 +10,8 @@ import {
   Plus,
   ChevronLeft,
   ChevronRight,
+  Lock,
+  Menu,
 } from "lucide-react";
 import AnimatedHeading from "./AnimatedHeading";
 
@@ -222,101 +224,175 @@ export function ResultsFAQ() {
             </div>
           </div>
 
-          {/* ═══════════════ RIGHT COLUMN: Testimonials 4 Visible + Slide ═══════════════ */}
+          {/* ═══════════════ RIGHT COLUMN: Preview animation (Moved from Hero) ═══════════════ */}
           <div className="lg:col-span-6 flex flex-col justify-between h-full gap-8">
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-col items-start gap-2">
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-100/60 px-3 py-1 text-[11px] font-semibold text-neutral-900 shadow-soft">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> Testimonials
-                </div>
-                <h3 className="text-2xl font-bold text-foreground font-display tracking-tight mt-1">Proven Results</h3>
-                <p className="text-muted-foreground text-[13px] font-medium">
-                  Hear what business owners say about the Kola speed & results.
-                </p>
-              </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full h-[320px] sm:h-[450px] hidden sm:flex items-center justify-center lg:justify-end"
+            >
+              <div className="relative w-full h-full max-w-[550px] mx-auto flex items-center justify-center sm:block">
+                <div className="absolute inset-0 bg-black/5 blur-[50px] dark:bg-white/5" aria-hidden />
 
-              {/* Testimonials 2x2 Grid with Page Slide Transition */}
-              <div 
-                className="relative w-full overflow-hidden min-h-[360px]"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activePage}
-                    initial={{ opacity: 0, x: 20, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, x: -20, filter: "blur(4px)" }}
-                    transition={{ duration: 0.5, ease }}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
-                  >
-                    {visibleReviews.map((r) => (
-                      <div
-                        key={r.name}
-                        className="relative flex flex-col justify-between rounded-2xl border border-hairline/60 bg-surface-elevated p-5 shadow-soft transition-all duration-300 hover:shadow-elevated hover:border-neutral-300"
-                      >
-                        {/* Subtle top indicator bar */}
-                        <div className="absolute inset-x-5 top-0 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent" />
-                        
-                        <div>
-                          {/* Quote */}
-                          <Quote className="h-4.5 w-4.5 text-neutral-300 mb-2.5 rotate-180 shrink-0" />
-                          <blockquote className="text-[12.5px] leading-[1.65] text-foreground/90 font-semibold tracking-tight mb-4">
-                            &ldquo;{r.quote}&rdquo;
-                          </blockquote>
+                {/* === DESKTOP WINDOW === */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="hidden sm:block relative z-10 w-full sm:w-[85%] overflow-hidden rounded-xl border border-border/80 bg-background shadow-2xl"
+                >
+                  {/* Top Browser Bar */}
+                  <div className="flex items-center justify-between border-b border-border/60 bg-surface-elevated/50 px-4 py-2.5">
+                    <div className="flex gap-1.5">
+                      <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-border/80" />
+                    </div>
+
+                    <div className="flex h-6 w-full max-w-[200px] items-center justify-center gap-1.5 rounded-md border border-border/50 bg-background px-2 text-[10px] font-medium text-muted-foreground/80">
+                      <Lock className="h-2.5 w-2.5" />
+                      kolacommunications.com
+                    </div>
+
+                    <div className="flex gap-2">
+                      <div className="h-3 w-3 rounded-sm bg-border/50" />
+                      <div className="h-3 w-3 rounded-sm bg-border/50" />
+                    </div>
+                  </div>
+
+                  {/* Desktop Website Preview */}
+                  <div className="relative bg-background p-5 sm:p-6 pb-0">
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 2, ease: "circOut" }}
+                      className="absolute top-0 left-0 h-[2px] w-full origin-left bg-brand"
+                    />
+
+                    {/* Kola Navbar */}
+                    <div className="mb-8 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <img
+                          src="https://kolacommunications.com/KolaFavicon.jpg"
+                          alt="Kola Favicon"
+                          className="h-4.5 w-4.5 rounded object-cover"
+                        />
+                        <span className="text-[11px] font-bold tracking-tight text-foreground">Kola</span>
+                      </div>
+                      <div className="hidden items-center gap-4 sm:flex text-[9px] font-medium text-muted-foreground">
+                        <span>Our Work</span>
+                        <span>Pricing</span>
+                        <span>FAQ</span>
+                      </div>
+                      <div className="hidden items-center gap-2 sm:flex">
+                        <span className="text-[9px] font-medium text-foreground">Sydney</span>
+                        <div className="rounded bg-brand px-2.5 py-1 text-[9px] font-semibold text-white">Start Project</div>
+                      </div>
+                      <Menu className="h-4 w-4 text-muted-foreground sm:hidden" />
+                    </div>
+
+                    {/* Kola Hero Content Area */}
+                    <div className="flex flex-col items-center text-center">
+                      <div className="mb-4 flex items-center gap-1.5 rounded-full border border-border/85 bg-surface-elevated px-2.5 py-0.5 text-[8px] font-semibold text-muted-foreground">
+                        🇦🇺 Sydney Crafted & Coded
+                      </div>
+
+                      <h2 className="mb-3 max-w-[90%] text-[20px] font-bold leading-tight tracking-tight text-foreground sm:text-[24px]">
+                        We <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">code,</span> you <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">grow</span>
+                      </h2>
+
+                      <p className="mb-6 max-w-[80%] text-[10px] leading-relaxed text-muted-foreground sm:text-[11px]">
+                        Blazing fast Next.js sales funnels for local Aussie businesses. Hand-crafted in under 48 hours. Built for maximum conversions.
+                      </p>
+
+                      <div className="mb-8 flex w-full justify-center gap-3">
+                        <div className="flex h-8 items-center justify-center rounded-md bg-brand px-4 text-[10px] font-semibold text-white">
+                          Get My $99 Website
                         </div>
-
-                        {/* Author Detail */}
-                        <div className="flex flex-col border-t border-hairline/40 pt-3.5">
-                          <div className="flex items-center gap-1 text-[12.5px] font-bold text-foreground">
-                            {r.name}
-                            <CheckCircle2 className="h-3 w-3 text-neutral-900 shrink-0" />
-                          </div>
-                          <div className="text-[10px] text-muted-foreground font-semibold mt-0.5">{r.role}</div>
+                        <div className="flex h-8 items-center justify-center gap-1.5 rounded-md border border-border px-4 text-[10px] font-semibold text-foreground">
+                          Book a Call
                         </div>
                       </div>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
+
+                      {/* Desktop: Analytics & Performance Dashboard Mockup */}
+                      <div className="relative mt-2 flex h-[190px] w-full max-w-[95%] overflow-hidden rounded-t-xl border-x border-t border-border/60 bg-surface-elevated/20 shadow-2xl">
+                        <img
+                          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+                          alt="Kola Funnel Performance Metrics"
+                          className="w-full h-full object-cover object-top opacity-85 transition-transform duration-700 hover:scale-102"
+                        />
+                        <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
+                        <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />
+                        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* === MOBILE PHONE MOCKUP (Overlapping Bottom Right) === */}
+                <motion.div
+                  initial={{ opacity: 0, y: 40, x: 20 }}
+                  whileInView={{ opacity: 1, y: 0, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
+                  className="relative mx-auto sm:absolute sm:-bottom-6 sm:-right-4 z-20 w-[180px] sm:w-[150px] overflow-hidden rounded-[24px] border-[6px] border-slate-900 bg-background shadow-2xl"
+                >
+                  <div className="absolute left-1/2 top-1.5 z-30 h-3 w-10 -translate-x-1/2 rounded-full bg-slate-900" />
+
+                  <div className="flex h-[280px] flex-col px-3 pt-7 select-none text-foreground">
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <img
+                          src="https://kolacommunications.com/KolaFavicon.jpg"
+                          alt="Kola Favicon"
+                          className="h-3.5 w-3.5 rounded object-cover"
+                        />
+                        <span className="text-[7px] font-bold tracking-tight text-foreground">Kola</span>
+                      </div>
+                      <Menu className="h-3 w-3 text-foreground" />
+                    </div>
+
+                    <div className="flex flex-col items-center text-center mt-1">
+                      <div className="mb-2 flex items-center gap-1 rounded-full border border-border/80 bg-surface-elevated px-1.5 py-0.5 text-[5px] font-semibold text-muted-foreground">
+                        ⚡ 100% Performance
+                      </div>
+
+                      <h3 className="mb-1.5 max-w-[95%] text-[10px] font-bold leading-tight tracking-tight text-foreground">
+                        Websites that convert.
+                      </h3>
+
+                      <p className="mb-3 max-w-[90%] text-[5px] leading-relaxed text-muted-foreground">
+                        Sydney-coded Next.js speed.
+                      </p>
+
+                      <div className="mb-4 flex w-full justify-center gap-1.5">
+                        <div className="flex h-4 items-center justify-center rounded-[2px] bg-brand px-2 text-[5px] font-semibold text-white">
+                          Start Project
+                        </div>
+                        <div className="flex h-4 items-center justify-center gap-1 rounded-[2px] border border-border px-2 text-[5px] font-semibold text-foreground">
+                          Features
+                        </div>
+                      </div>
+
+                      <div className="relative mt-auto flex h-[110px] w-full overflow-hidden rounded-t-lg border-x border-t border-border/60 bg-surface-elevated/20 shadow-inner">
+                        <img
+                          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+                          alt="Kola Funnel Performance Metrics Mobile"
+                          className="w-full h-full object-cover object-top opacity-85"
+                        />
+                        <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
+                        <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />
+                        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-
-              {/* Pagination controls for pages of 4 */}
-              {totalPages > 1 && (
-                <div className="flex items-center justify-between mt-2 px-1">
-                  {/* Dots indicator */}
-                  <div className="flex gap-1.5 items-center">
-                    {[...Array(totalPages)].map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setActivePage(i)}
-                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                          activePage === i ? "w-6 bg-black" : "w-2 bg-neutral-200 hover:bg-neutral-300"
-                        }`}
-                        aria-label={`Go to page ${i + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Arrow navigation buttons */}
-                  <div className="flex gap-2">
-                    <button
-                      onClick={handlePrev}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline/60 bg-surface-elevated text-muted-foreground hover:text-black hover:border-neutral-300 hover:bg-surface transition-all cursor-pointer shadow-soft"
-                      aria-label="Previous testimonials page"
-                    >
-                      <ChevronLeft className="h-4.5 w-4.5" />
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline/60 bg-surface-elevated text-muted-foreground hover:text-black hover:border-neutral-300 hover:bg-surface transition-all cursor-pointer shadow-soft"
-                      aria-label="Next testimonials page"
-                    >
-                      <ChevronRight className="h-4.5 w-4.5" />
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+            </motion.div>
 
             {/* Minimal Sub-CTA Card */}
             <motion.div

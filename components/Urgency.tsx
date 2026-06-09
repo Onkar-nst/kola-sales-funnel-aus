@@ -30,7 +30,7 @@ export function Urgency() {
           {/* Active Urgency Tag */}
           
 
-          <h2 className="mt-6 font-display text-4xl font-semibold tracking-[-0.02em] text-balance text-background sm:text-5xl md:text-6xl lg:text-brandxl">
+          <h2 className="mt-6 font-display text-4xl font-semibold tracking-[-0.02em] text-balance text-background sm:text-5xl md:text-6xl lg:text-6xl">
             Only 5 websites a week.
           </h2>
 
@@ -41,7 +41,7 @@ export function Urgency() {
 
           {/* Minimalist Slots Visual */}
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <div className="flex gap-2 text-brandxl font-mono tracking-widest">
+            <div className="flex gap-2 text-3xl font-mono tracking-widest">
               <span className="text-background/30">●</span>
               <span className="text-background/30">●</span>
               <span className="text-background/30">●</span>

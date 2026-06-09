@@ -40,7 +40,7 @@ export function Marquee() {
           {row.map((t, i) => (
             <span
               key={i}
-              className="flex shrink-0 items-center gap-2 font-display text-brandxl font-medium tracking-tight text-foreground/40 md:text-3xl"
+              className="flex shrink-0 items-center gap-2 font-display text-2xl font-medium tracking-tight text-foreground/40 md:text-3xl"
             >
               {t}
               <span className="h-1.5 w-1.5 rounded-full bg-foreground/20" />

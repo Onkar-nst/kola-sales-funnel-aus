@@ -50,7 +50,7 @@ export function Scarcity() {
             Limited Weekly Intake
           </div>
 
-          <h2 className="mt-4 font-display text-brandxl font-semibold tracking-[-0.02em] text-balance text-background sm:text-3xl md:text-4xl">
+          <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.02em] text-balance text-background sm:text-3xl md:text-4xl">
             We limit our capacity to 5 projects per week.
           </h2>
 
