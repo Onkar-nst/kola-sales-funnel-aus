@@ -26,11 +26,11 @@ export default function Page() {
       <ResultsFAQ />
       {/* <ProblemSolution /> */}
 
-      {/* Desktop only — on mobile the site ends after the FAQ section */}
+      {/* CTA is desktop only; Footer shows on all viewports at the very end */}
       <div className="hidden md:block">
         <CTA />
-        <Footer />
       </div>
+      <Footer />
 
       {/* Floating Mobile Sticky CTA Bar — hidden so mobile ends at the FAQ */}
       <div className="hidden fixed bottom-4 left-4 right-4 z-40 bg-background/90 backdrop-blur-md border border-hairline p-2.5 rounded-2xl gap-2.5 shadow-elevated">

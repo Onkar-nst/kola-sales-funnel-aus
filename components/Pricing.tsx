@@ -23,6 +23,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { CheckoutForm } from "@/components/checkoutform";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -75,6 +76,7 @@ type Tier = {
 };
 
 export function Pricing() {
+  const isMobile = useIsMobile();
   const [selectedTier, setSelectedTier] = useState<Tier | null>(null);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
@@ -178,6 +180,18 @@ export function Pricing() {
     setShowCheckoutForm(false);
   };
 
+  // Open the checkout dialog from elsewhere (e.g. the nav "Start Project" button).
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ tier?: string }>).detail;
+      const tier = tiers.find((t) => t.name === detail?.tier) ?? tiers[1];
+      openCheckout(tier);
+    };
+    window.addEventListener("kola:open-checkout", handler);
+    return () => window.removeEventListener("kola:open-checkout", handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const toggleAddon = (name: string) => {
     setSelectedAddons((current) =>
       current.includes(name) ? current.filter((item) => item !== name) : [...current, name],
@@ -234,22 +248,23 @@ export function Pricing() {
       <div 
         ref={scrollContainerRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 scrollbar-none -mx-8 px-[5vw] md:px-8 scroll-px-[5vw] md:scroll-px-0"
+        className="flex overflow-x-auto snap-x snap-mandatory gap-5 pt-5 pb-6 md:grid md:grid-cols-3 md:overflow-visible md:pt-0 md:pb-0 scrollbar-none -mx-8 px-[5vw] md:px-8 scroll-px-[5vw] md:scroll-px-0"
       >
         {tiers.map((t, i) => (
           <motion.div
             key={t.name}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? false : { opacity: 0, y: 24 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : undefined}
+            whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ delay: i * 0.08, duration: 0.6, ease }}
-            className={`relative flex flex-col rounded-3xl p-7 shadow-soft transition-all hover:-translate-y-1 snap-start shrink-0 w-[82vw] sm:w-[80vw] md:w-auto ${t.highlight
+            transition={isMobile ? { duration: 0 } : { delay: i * 0.08, duration: 0.6, ease }}
+            className={`relative flex flex-col rounded-3xl p-7 shadow-soft transition-all hover:-translate-y-1 snap-start shrink-0 w-[78vw] sm:w-[72vw] md:w-auto ${t.highlight
               ? "bg-foreground text-background shadow-elevated"
               : "hairline bg-surface-elevated"
               }`}
           >
             {t.highlight && (
-              <span className="absolute bg-white -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-black shadow-glow">
+              <span className="absolute z-10 -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-[oklch(0.62_0.19_280)] to-[oklch(0.55_0.21_310)] px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white shadow-glow">
                 Most popular
               </span>
             )}

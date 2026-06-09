@@ -14,6 +14,7 @@ import {
   Menu,
 } from "lucide-react";
 import AnimatedHeading from "./AnimatedHeading";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -156,9 +157,15 @@ function MinimalFAQItem({
 /* ─────────────────────── Main Component ─────────────────────── */
 
 export function ResultsFAQ() {
+  const isMobile = useIsMobile();
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
   const [activePage, setActivePage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  // On mobile, no FAQ is open by default — it only opens on click.
+  useEffect(() => {
+    if (isMobile) setOpenFAQ(null);
+  }, [isMobile]);
 
   const cardsPerPage = 4;
   const totalPages = Math.ceil(reviews.length / cardsPerPage);
@@ -225,15 +232,15 @@ export function ResultsFAQ() {
           </div>
 
           {/* ═══════════════ RIGHT COLUMN: Preview animation (Moved from Hero) ═══════════════ */}
-          <div className="lg:col-span-6 flex flex-col justify-between h-full gap-8">
+          <div className="lg:col-span-6 flex flex-col justify-between h-full gap-10">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative w-full h-[320px] sm:h-[450px] hidden sm:flex items-center justify-center lg:justify-end"
+              className="relative w-full hidden sm:flex items-center justify-center lg:justify-end"
             >
-              <div className="relative w-full h-full max-w-[550px] mx-auto flex items-center justify-center sm:block">
+              <div className="relative w-full max-w-[550px] mx-auto flex items-center justify-center sm:block">
                 <div className="absolute inset-0 bg-black/5 blur-[50px] dark:bg-white/5" aria-hidden />
 
                 {/* === DESKTOP WINDOW === */}
@@ -327,7 +334,6 @@ export function ResultsFAQ() {
                         />
                         <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
                         <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />
-                        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden />
                       </div>
                     </div>
                   </div>
@@ -386,7 +392,6 @@ export function ResultsFAQ() {
                         />
                         <div className="absolute inset-0 bg-brand/10 mix-blend-overlay pointer-events-none" aria-hidden />
                         <div className="absolute inset-0 bg-brand/5 pointer-events-none" aria-hidden />
-                        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden />
                       </div>
                     </div>
                   </div>

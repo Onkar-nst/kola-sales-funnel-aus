@@ -32,9 +32,9 @@ const genieChild = {
 };
 
 const navLinks = [
-  { label: "Our Work", href: "#showcase" },
-  { label: "About", href: "#about" },
   { label: "Pricing", href: "#pricing" },
+  { label: "About", href: "#about" },
+  { label: "Our Work", href: "#showcase" },
   { label: "FAQ", href: "#results-faq" },
 ];
 
@@ -56,6 +56,14 @@ export function Nav() {
       target.scrollIntoView({ behavior: "smooth" });
     }
     setMobileMenuOpen(false);
+  };
+
+  const handleStartProject = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    window.dispatchEvent(
+      new CustomEvent("kola:open-checkout", { detail: { tier: "Growth" } }),
+    );
   };
 
   return (
@@ -109,8 +117,8 @@ export function Nav() {
 
           {/* Solid Action CTA block on far right using brand color */}
           <motion.a
-            href="#lead-capture"
-            onClick={(e) => handleScroll(e, "#lead-capture")}
+            href="#pricing"
+            onClick={handleStartProject}
             custom={navLinks.length + 1}
             variants={genieChild}
             initial="hidden"
@@ -157,8 +165,8 @@ export function Nav() {
                 </a>
               ))}
               <a
-                href="#lead-capture"
-                onClick={(e) => handleScroll(e, "#lead-capture")}
+                href="#pricing"
+                onClick={handleStartProject}
                 className="flex items-center justify-center bg-black hover:bg-neutral-900 text-white font-bold text-xs uppercase tracking-widest py-5 transition-all"
               >
                 Start Project
