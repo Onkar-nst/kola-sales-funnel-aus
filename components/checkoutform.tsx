@@ -59,14 +59,14 @@ export function CheckoutForm({
 
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          Checkout form
+          A few quick questions
         </p>
         <h3 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em]">
-          Tell us where to send your invoice.
+          Tell us about your project.
         </h3>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          {planName} plan, ${dueOnce} due once
-          {monthlyTotal > 0 ? ` + $${monthlyTotal}/mo` : ""}.
+          {planName} plan, Rs. {dueOnce.toLocaleString("en-IN")} one time
+          {monthlyTotal > 0 ? ` + Rs. ${monthlyTotal.toLocaleString("en-IN")}/mo` : ""}. No payment is taken here.
         </p>
       </div>
 
@@ -74,25 +74,86 @@ export function CheckoutForm({
         <Field label="Full name" id="checkout-name">
           <Input id="checkout-name" name="name" placeholder="Your name" required />
         </Field>
-        <Field label="Email" id="checkout-email">
-          <Input id="checkout-email" name="email" type="email" placeholder="you@business.com.au" required />
-        </Field>
-        <Field label="Phone" id="checkout-phone">
-          <Input id="checkout-phone" name="phone" type="tel" placeholder="+61 ..." required />
-        </Field>
         <Field label="Business name" id="checkout-business">
           <Input id="checkout-business" name="business" placeholder="Business name" required />
         </Field>
+        <Field label="Your WhatsApp number" id="checkout-whatsapp">
+          <Input id="checkout-whatsapp" name="whatsapp" type="tel" placeholder="+91 ..." defaultValue="+91 " required />
+        </Field>
+        <Field label="Your email address" id="checkout-email">
+          <Input id="checkout-email" name="email" type="email" placeholder="you@business.in" required />
+        </Field>
       </div>
 
-      <div className="mt-4">
-        <Field label="Current website or domain" id="checkout-domain">
-          <Input id="checkout-domain" name="domain" placeholder="yourbusiness.com.au" />
+      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <Field label="What type of website do you need?" id="checkout-type">
+          <Select id="checkout-type" name="websiteType">
+            <option value="">Select one</option>
+            <option>WordPress</option>
+            <option>Custom Coded</option>
+            <option>Not sure yet</option>
+          </Select>
+        </Field>
+        <Field label="Do you need an online store?" id="checkout-store">
+          <Select id="checkout-store" name="onlineStore">
+            <option value="">Select one</option>
+            <option>Yes</option>
+            <option>No</option>
+          </Select>
+        </Field>
+        <Field label="What type of business are you?" id="checkout-business-type">
+          <Select id="checkout-business-type" name="businessType">
+            <option value="">Select one</option>
+            <option>Service Business</option>
+            <option>Retail</option>
+            <option>Clinic or Healthcare</option>
+            <option>Real Estate</option>
+            <option>Education</option>
+            <option>Restaurant</option>
+            <option>Other</option>
+          </Select>
+        </Field>
+        <Field label="Do you have your content ready?" id="checkout-content">
+          <Select id="checkout-content" name="contentReady">
+            <option value="">Select one</option>
+            <option>Yes, fully ready</option>
+            <option>Partially ready</option>
+            <option>No, I need help</option>
+          </Select>
+        </Field>
+        <Field label="Do you have a logo?" id="checkout-logo">
+          <Select id="checkout-logo" name="hasLogo">
+            <option value="">Select one</option>
+            <option>Yes</option>
+            <option>No, I need one designed</option>
+          </Select>
+        </Field>
+        <Field label="When do you need your website?" id="checkout-timeline">
+          <Select id="checkout-timeline" name="timeline">
+            <option value="">Select one</option>
+            <option>ASAP</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>No fixed deadline</option>
+          </Select>
+        </Field>
+        <Field label="How did you find us?" id="checkout-source">
+          <Select id="checkout-source" name="source">
+            <option value="">Select one</option>
+            <option>Google</option>
+            <option>Instagram</option>
+            <option>LinkedIn</option>
+            <option>Referral</option>
+            <option>Other</option>
+          </Select>
+        </Field>
+        <Field label="Current website or domain (optional)" id="checkout-domain">
+          <Input id="checkout-domain" name="domain" placeholder="yourbusiness.in" />
         </Field>
       </div>
 
       <div className="mt-4">
-        <Field label="Attach file" id="checkout-file">
+        <Field label="Attach file (optional)" id="checkout-file">
           <Input
             id="checkout-file"
             name="file"
@@ -103,7 +164,7 @@ export function CheckoutForm({
       </div>
 
       <div className="mt-4">
-        <Field label="Project notes" id="checkout-notes">
+        <Field label="Project notes (optional)" id="checkout-notes">
           <Textarea
             id="checkout-notes"
             name="notes"
@@ -126,7 +187,7 @@ export function CheckoutForm({
         type="submit"
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.02]"
       >
-        Submit checkout request
+        Submit and get your quote within 24 hours
         <ArrowRight className="h-4 w-4" />
       </button>
     </form>
@@ -147,5 +208,27 @@ function Field({
       <Label htmlFor={id}>{label}</Label>
       {children}
     </div>
+  );
+}
+
+function Select({
+  id,
+  name,
+  children,
+}: {
+  id: string;
+  name: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <select
+      id={id}
+      name={name}
+      defaultValue=""
+      required
+      className="h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none transition-colors focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 cursor-pointer"
+    >
+      {children}
+    </select>
   );
 }

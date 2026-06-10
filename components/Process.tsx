@@ -16,26 +16,26 @@ export function HowItWorks() {
     {
       n: "01",
       icon: ClipboardList,
-      t: "Tell Us About Your Brand",
-      d: "Complete a simple 5 minute online questionnaire about your services, target areas, and business style. No technical jargon.",
+      t: "Tell us about your business (5 minutes)",
+      d: "Fill in a short form telling us your business name, what you do, who your customers are, and any websites you like the look of. That's it.",
     },
     {
       n: "02",
       icon: Code2,
-      t: "We Hand-Code Your Site",
-      d: "Our local Sydney team builds your site entirely from scratch. Fully responsive, optimized for lightning fast loading, and conversion ready.",
+      t: "We build your website",
+      d: "Our team designs and builds your site based on your brief. No templates. No shortcuts. We will send you a preview link before anything goes live.",
     },
     {
       n: "03",
       icon: Eye,
-      t: "Review & Refine Same Day",
-      d: "We send you a private live preview link. Request any changes, and we will update your site immediately. You must be 100% happy.",
+      t: "You review and request changes",
+      d: "You get a live preview link. Tell us what you'd like changed, like text, colours, or layout. We turn revisions around fast.",
     },
     {
       n: "04",
       icon: Rocket,
-      t: "Go Live & Get Enquiries",
-      d: "We connect your domain, test contact forms, secure the site, and push it live. You're ready to capture paid traffic leads.",
+      t: "Go live and start getting found",
+      d: "We push your site live, set up Google Analytics, submit it to Google Search Console, and hand over everything you need. Your site is ready to work for your business.",
     },
   ];
 
@@ -60,11 +60,11 @@ export function HowItWorks() {
           Your Journey
         </div>
         <AnimatedHeading
-          lines={["What happens after", "you get started."]}
+          lines={["From brief to live,", "here's how it works."]}
           className="max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-5xl lg:text-6xl text-center"
         />
         <p className="max-w-xl text-balance text-muted-foreground">
-          Transparent onboarding with zero guesswork. Here is exactly how we deliver your site.
+          Transparent onboarding with zero guesswork. Buyers want to know the journey before they commit.
         </p>
       </div>
       

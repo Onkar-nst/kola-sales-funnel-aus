@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Heart, Calendar } from "lucide-react";
+import { Mail, Heart, Calendar, MapPin, Phone, MessageCircle } from "lucide-react";
 
 export function Footer() {
   return (
@@ -23,8 +23,60 @@ export function Footer() {
             </div>
             
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              We design and code outcome driven, conversion focused website funnels for local businesses. We don't use clunky page builders, templates, or overseas outsourced teams. Every single line of code is written by hand in Sydney to ensure blazing load speeds and dominant SEO performance.
+              We design and code outcome driven, conversion focused websites for Indian businesses. We don&apos;t use clunky page builders, templates, or one size fits all themes. Every site is built by hand in Mumbai to ensure blazing load speeds and dominant SEO performance.
             </p>
+
+            <p className="mt-3 text-xs font-medium text-muted-foreground/80">
+              Founded by Anmol Kanodia ·{" "}
+              <a
+                href="https://kolacommunications.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-foreground"
+              >
+                kolacommunications.com
+              </a>
+            </p>
+
+            {/* Address, phone & GST */}
+            <ul className="mt-6 space-y-2.5 text-sm text-muted-foreground font-medium">
+              <li className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 shrink-0 text-muted-foreground/60" />
+                Mumbai, Maharashtra, India
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 shrink-0 text-muted-foreground/60" />
+                <a href="tel:+919999999999" className="transition-colors hover:text-foreground">
+                  +91 99999 99999
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <MessageCircle className="h-4 w-4 shrink-0 text-muted-foreground/60" />
+                <a
+                  href="https://wa.me/919999999999"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Chat with us on WhatsApp
+                </a>
+              </li>
+            </ul>
+
+            {/* Payment methods & GST */}
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              {["UPI", "Razorpay", "Bank Transfer"].map((m) => (
+                <span
+                  key={m}
+                  className="rounded-md border border-hairline bg-surface-elevated px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground"
+                >
+                  {m}
+                </span>
+              ))}
+              <span className="rounded-md border border-hairline bg-surface-elevated px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                GST No: XXXXXXXXXXXXXXX
+              </span>
+            </div>
           </div>
 
           {/* Quick Jumps */}
@@ -40,7 +92,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#showcase" className="transition-colors hover:text-foreground">
-                  Our Work
+                  Portfolio
                 </a>
               </li>
               <li>
@@ -59,7 +111,7 @@ export function Footer() {
           {/* Real Contact/Booking */}
           <div className="md:col-span-1">
             <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Let's Chat
+              Let&apos;s Chat
             </h4>
             <ul className="mt-4 space-y-3.5 text-sm text-muted-foreground font-medium">
               <li className="flex items-center gap-2">
@@ -90,12 +142,12 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start gap-1">
             <span>© {new Date().getFullYear()} Kola Communications. All rights reserved.</span>
             <span className="text-[10px] text-muted-foreground/75">
-              Registered Australian Small Business · Sydney-Coded
+              Registered Indian Business · Mumbai, Maharashtra
             </span>
           </div>
 
           <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground/80">
-            <span>Hand coded in Sydney with</span>
+            <span>Built by hand in Mumbai with</span>
             <Heart className="h-3 w-3 text-accent-coral fill-current" />
           </div>
 

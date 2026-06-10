@@ -27,7 +27,7 @@ export function WhoThisIsFor() {
     "You need a professional, high-converting online presence",
     "You want a premium website without DIY frustration",
     "You run ads and need a high-ROI landing page",
-    "You want it delivered fast — within 48 hours",
+    "You want it delivered fast, within 72 hours",
   ];
 
   const isNotFor = [

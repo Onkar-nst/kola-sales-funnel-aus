@@ -38,7 +38,7 @@ export function Problem() {
             fail to win customers.
           </>
         }
-        subtitle="Many local business websites are built on heavy templates or clunky DIY builders. They load slowly, confuse mobile visitors, and fail to turn clicks into enquiries. You paid for that traffic—your website needs to earn them."
+        subtitle="Many local business websites are built on heavy templates or clunky DIY builders. They load slowly, confuse mobile visitors, and fail to turn clicks into enquiries. You paid for that traffic, so your website needs to earn them."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">

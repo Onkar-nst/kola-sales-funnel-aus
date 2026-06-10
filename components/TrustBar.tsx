@@ -8,28 +8,28 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export function TrustBar() {
   const items = [
     {
-      k: 48,
+      k: 72,
       suffix: "h",
       v: "Average Delivery Time",
       sub: ["Live & fully tested", "No long agency waits"],
     },
     {
-      k: 4.2,
+      k: 4.8,
       suffix: "/5",
-      v: "Google Rating",
-      sub: ["Verified client reviews", "Real Aussie businesses"],
+      v: "Client Satisfaction Score",
+      sub: ["Verified client reviews", "Real Indian businesses"],
     },
     {
       k: 150,
       suffix: "+",
-      v: "Businesses Launched",
-      sub: ["Across every state", "Sole traders to brands"],
+      v: "Websites Delivered",
+      sub: ["Across India & abroad", "Local traders to brands"],
     },
     {
-      k: 99.9,
+      k: 100,
       suffix: "%",
-      v: "Uptime SLA Guarantee",
-      sub: ["Fast Australian hosting", "Monitored around the clock"],
+      v: "On-Time Delivery Rate",
+      sub: ["Fixed delivery dates", "We deliver when we promise"],
     },
   ];
 

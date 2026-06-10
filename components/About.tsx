@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react";
 import AnimatedHeading from "./AnimatedHeading";
 
 const cards = [
-    { t: "Sydney Crafted", d: "We build, design, and optimize locally. No offshore outsourcing, no miscommunications." },
-    { t: "Optimized for Leads", d: "We don't just build pretty pages; we engineer conversion funnels designed to turn clicks into enquiries." },
-    { t: "Blazing Load Speeds", d: "Hand coded Next JS websites that score 95+ on PageSpeed, ensuring visitors stay and Google rank rises." },
+    { t: "Custom, Never Templated", d: "Every business gets a site built around what they actually need, not a template filled in with their logo and colour." },
+    { t: "One Team, One Price", d: "We handle design, development, content structure, SEO setup, and launch. No coordinating between five different people." },
+    { t: "Built For Your Industry", d: "We've built for clinics, consultants, real estate firms, coaches, exporters, and D2C brands across India." },
 ];
 
 export function About() {
@@ -19,19 +19,19 @@ export function About() {
                 </div>
                 
                 <div className="grid lg:grid-cols-12 gap-10 items-start border-b border-neutral-900 pb-16">
-                    <AnimatedHeading 
-                        lines={["We're Kola Communications,", "building high performance websites since day one."]}
+                    <AnimatedHeading
+                        lines={["We're Kola Communications,", "a Mumbai based agency that has delivered 100+ websites across India, the UAE & the UK."]}
                         className="lg:col-span-7 font-display text-balance text-[clamp(1.8rem,4.2vw,3.2rem)] leading-[1.1] tracking-[-0.02em]"
                     />
                     <div className="lg:col-span-5 text-neutral-400 text-[15px] leading-relaxed">
                         <p>
-                            Every single line of code is written by hand in Sydney to ensure blazing load speeds, dominant SEO performance, and maximum customer inquiry generation. We don't use templates or clunky page builders.
+                            We don&apos;t believe in one size fits all websites. Every business we work with gets a site built around what they actually need, not a template filled in with their logo and colour.
                         </p>
-                        <a 
-                            href="#lead-capture" 
+                        <a
+                            href="#pricing"
                             className="inline-flex items-center gap-2 mt-8 rounded-full bg-white text-black pl-5 pr-2.5 py-2.5 text-sm font-semibold hover:bg-neutral-200 transition-all shadow-soft group"
                         >
-                            Start Project
+                            Get Started
                             <span className="rounded-full bg-black/10 p-1.5"><ArrowRight className="h-3.5 w-3.5" /></span>
                         </a>
                     </div>

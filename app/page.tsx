@@ -10,7 +10,7 @@ import { Scarcity } from "@/components/Scarcity";
 import { ResultsFAQ } from "@/components/ResultsFAQ";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
-import { PhoneCall } from "lucide-react";
+import { PhoneCall, MessageCircle } from "lucide-react";
 
 export default function Page() {
   return (
@@ -32,13 +32,13 @@ export default function Page() {
       </div>
       <Footer />
 
-      {/* Floating Mobile Sticky CTA Bar — hidden so mobile ends at the FAQ */}
+      {/* Floating Mobile Sticky CTA Bar, hidden so mobile ends at the FAQ */}
       <div className="hidden fixed bottom-4 left-4 right-4 z-40 bg-background/90 backdrop-blur-md border border-hairline p-2.5 rounded-2xl gap-2.5 shadow-elevated">
         <a
           href="#pricing"
           className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-foreground py-3 text-xs font-bold text-background shadow-soft"
         >
-          Get My $99 Website
+          Get My Website
         </a>
         <a
           href="https://calendly.com/kola-communications"
@@ -50,6 +50,18 @@ export default function Page() {
           <PhoneCall className="h-4.5 w-4.5" />
         </a>
       </div>
+
+      {/* Sticky WhatsApp button, fixed bottom-right on every page */}
+      <a
+        href="https://wa.me/919999999999"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with us on WhatsApp"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-elevated transition-transform hover:scale-105 active:scale-95"
+        style={{ bottom: "calc(1.25rem + env(safe-area-inset-bottom))" }}
+      >
+        <MessageCircle className="h-7 w-7" />
+      </a>
     </main>
   );
 }

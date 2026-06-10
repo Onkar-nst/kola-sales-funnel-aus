@@ -12,11 +12,11 @@ const avatars = [
 ];
 
 const tickerItems = [
-    { icon: "🎯", t: "HIGH PERFORMANCE SALES FUNNELS" },
-    { icon: "⚡", t: "LIVE IN 48 HOURS" },
+    { icon: "🎯", t: "HIGH PERFORMANCE WEBSITES" },
+    { icon: "⚡", t: "LIVE IN 72 HOURS" },
     { icon: "📈", t: "LEAD GENERATION & CONVERSION" },
-    { icon: "💻", t: "HAND CODED NEXT JS SITES" },
-    { icon: "🇦🇺", t: "100% SYDNEY CRAFTED" },
+    { icon: "💻", t: "CLEAN, CUSTOM DESIGN" },
+    { icon: "🇮🇳", t: "BUILT FOR INDIAN BUSINESSES" },
 ];
 
 export function Hero() {
@@ -101,11 +101,21 @@ export function Hero() {
                             transition={{ duration: 0.7, delay: 0.15 }}
                             className="font-display text-white text-[1.8rem] sm:text-[2.2rem] md:text-[clamp(2.5rem,5.2vw,4.4rem)] leading-[1.02] tracking-[-0.04em]"
                         >
-                            We <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">code,</span> you{" "}
-                            <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">grow</span>
+                            Your <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">business.</span>{" "}
+                            <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">Online.</span>
                             <br />
-                            that&apos;s the deal
+                            Done right.
                         </motion.h1>
+
+                        {/* ── subtext ── */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.28 }}
+                            className="mt-5 max-w-[560px] text-[15px] sm:text-base leading-relaxed text-white/70"
+                        >
+                            We build fast, professional websites for Indian businesses, from local service providers to growing brands. Clean design. Real results. No fluff.
+                        </motion.p>
 
                         {/* ── CTA ── */}
                         <motion.div
@@ -116,10 +126,10 @@ export function Hero() {
                         >
                             <a
                                 href="#pricing"
-                                className="inline-flex overflow-hidden rounded-xl group active:scale-95 transition-transform"
+                                className="inline-flex max-w-full overflow-hidden rounded-xl group active:scale-95 transition-transform"
                             >
-                                <div className="bg-white text-neutral-950 px-6 py-3.5 text-[15px] font-bold transition-colors group-hover:bg-neutral-100">
-                                    Get My Website
+                                <div className="bg-white text-neutral-950 px-5 sm:px-6 py-3.5 text-[13px] sm:text-[15px] font-bold transition-colors group-hover:bg-neutral-100 whitespace-nowrap">
+                                    Get My Website, From Rs. 7,999
                                 </div>
                                 <div className="bg-white text-neutral-950 px-4 py-3.5 flex items-center border-l border-neutral-200 transition-colors group-hover:bg-neutral-100">
                                     <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />

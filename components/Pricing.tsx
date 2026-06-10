@@ -13,6 +13,8 @@ import {
   Mail,
   Search,
   CheckCircle,
+  MessageCircle,
+  Sparkles,
 } from "lucide-react";
 import { Section, SectionHeader } from "./Primitives";
 import {
@@ -30,38 +32,52 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const addons = [
   {
     icon: Search,
-    name: "SEO accelerator",
-    price: 149,
-    cadence: "/mo",
-    d: "Local SEO strategy, citations, and monthly search reports.",
+    name: "SEO Starter Plan",
+    price: 4999,
+    cadence: "/month",
+    d: "Local SEO, Google Business Profile optimisation, monthly performance report.",
   },
   {
     icon: Calendar,
-    name: "Online bookings",
-    price: 49,
-    cadence: " once",
-    d: "Calendly, Square, or booking tool setup with styled sections.",
+    name: "Booking System Integration",
+    price: 2499,
+    cadence: " one time",
+    d: "Calendly, Cal.com, or custom booking form setup.",
   },
   {
     icon: CreditCard,
-    name: "Stripe payments",
-    price: 79,
-    cadence: " once",
-    d: "Accept deposits, payments, or simple product purchases.",
+    name: "Payment Gateway Integration",
+    price: 2999,
+    cadence: " one time",
+    d: "Razorpay, Cashfree, or PayU setup.",
+  },
+  {
+    icon: MessageCircle,
+    name: "WhatsApp Business Integration",
+    price: 1499,
+    cadence: " one time",
+    d: "WhatsApp chat button + automated welcome message.",
+  },
+  {
+    icon: Sparkles,
+    name: "Logo Design",
+    price: 3999,
+    cadence: " one time",
+    d: "3 logo concepts, 2 revision rounds, all file formats.",
   },
   {
     icon: Mail,
-    name: "Google Workspace email",
-    price: 12,
-    cadence: "/mo",
-    d: "Professional email setup for your business domain.",
+    name: "Google Workspace Email",
+    price: 180,
+    cadence: "/month",
+    d: "Professional business email on your domain (per user).",
   },
   {
     icon: Globe,
-    name: "Hosting + maintenance",
-    price: 19,
-    cadence: "/mo",
-    d: "Fast AU hosting, SSL, backups, and basic maintenance.",
+    name: "Hosting + Maintenance Plan",
+    price: 999,
+    cadence: "/month",
+    d: "Indian server hosting, SSL, weekly backups, monthly updates.",
   },
 ];
 
@@ -88,7 +104,7 @@ export function Pricing() {
     const { scrollLeft } = scrollContainerRef.current;
     const cardElement = scrollContainerRef.current.firstElementChild;
     if (cardElement) {
-      const cardWidth = cardElement.getBoundingClientRect().width + 20; // 20px is gap-5
+      const cardWidth = cardElement.getBoundingClientRect().width + 16; // 16px is gap-4
       const index = Math.round(scrollLeft / cardWidth);
       setActiveIndex(Math.max(0, Math.min(index, tiers.length - 1)));
     }
@@ -104,60 +120,59 @@ export function Pricing() {
 
   const tiers: Tier[] = [
     {
-      name: "Launch",
-      tag: "Best for sole traders",
-      price: 99,
-      original: 1300,
-      cta: "Get My $99 Website →",
+      name: "Starter",
+      tag: "Best for small businesses",
+      price: 7999,
+      original: 14999,
+      cta: "Get My Website →",
       highlight: false,
       features: [
-        "1-page custom website",
+        "1 page website",
         "Mobile & tablet responsive",
-        "Contact form + email alerts",
+        "Contact form + WhatsApp & email alerts",
         "Google Maps & social embeds",
-        "Basic SEO setup",
-        "48 hour delivery",
-        "1 round of same day revisions",
+        "Basic SEO setup (Google ready)",
+        "72 hour delivery",
+        "1 revision round",
+        "Free hosting & domain (1 year)"
+      ],
+    },
+    {
+      name: "Professional",
+      tag: "Most popular",
+      price: 24999,
+      original: 39999,
+      cta: "Get My Website →",
+      highlight: true,
+      features: [
+        "Up to 5 pages (Home, About, Services, Blog, Contact)",
+        "Custom design, not a template",
+        "On page SEO + Google Search Console setup",
+        "WhatsApp chat button integration",
+        "Google Analytics setup",
+        "Business email setup (1 account)",
+        "30 day post launch support",
+        "3 revision rounds",
+        "5 to 7 working days delivery",
         "Free hosting & domain (1 year)"
       ],
     },
     {
       name: "Growth",
-      tag: "Most popular",
-      price: 249,
-      original: 2400,
-      cta: "Get My Growth Website →",
-      highlight: true,
-      features: [
-        "Up to 5-page custom website",
-        "Everything in Launch package",
-        "Google Analytics",
-        "Booking / calendar integration",
-        "Stripe or PayPal payments",
-        "Newsletter signup / lead form",
-        "Advanced on page SEO",
-        "2 rounds of revisions",
-        "5 day delivery",
-        "Free hosting & domain (1 year)"
-      ],
-    },
-    {
-      name: "Scale",
       tag: "For established brands",
-      price: 499,
-      original: 5000,
+      price: 59999,
+      original: 89999,
       cta: "Book a Call →",
       highlight: false,
       features: [
-        "Up to 10-page custom website",
-        "Everything in Growth package",
-        "Google Analytics",
-        "Google Search Console",
-        "Full Blog / CMS setup",
-        "Custom illustrations & icons",
-        "Advanced SEO & speed optimization",
-        "Priority Australian based support",
-        "Unlimited revisions (14 days)",
+        "Up to 10 pages or WooCommerce store (up to 50 products)",
+        "Custom coded option available",
+        "Razorpay / Cashfree payment gateway integration",
+        "Advanced SEO setup (schema markup, sitemap, technical audit)",
+        "WhatsApp Business API integration",
+        "3 month post launch support",
+        "Dedicated project manager",
+        "10 to 14 working days delivery",
         "Free hosting & domain (1 year)"
       ],
     },
@@ -168,7 +183,7 @@ export function Pricing() {
     [selectedAddons],
   );
   const oneTimeAddonTotal = selectedAddonItems
-    .filter((addon) => addon.cadence.includes("once"))
+    .filter((addon) => addon.cadence.includes("one time"))
     .reduce((sum, addon) => sum + addon.price, 0);
   const monthlyAddonTotal = selectedAddonItems
     .filter((addon) => addon.cadence.includes("/mo"))
@@ -206,7 +221,7 @@ export function Pricing() {
           <>
             <span className="text-[oklch(0.704_0.04_256.788)]">Transparent pricing.</span>
             <br />
-            <span 
+            <span
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage: "linear-gradient(135deg, oklch(0.25 0.08 260), oklch(0.20 0.06 300))",
@@ -230,7 +245,7 @@ export function Pricing() {
             >
               hidden
             </motion.span>
-            <span 
+            <span
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage: "linear-gradient(135deg, oklch(0.25 0.08 260), oklch(0.20 0.06 300))",
@@ -238,17 +253,17 @@ export function Pricing() {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              &nbsp;fees, ever.
+              &nbsp;charges, ever.
             </span>
           </>
         }
-        subtitle="One time payment. GST included. No subscriptions. No lock in contracts."
+        subtitle="Every package is fixed price. What you see is what you pay, in full, upfront, in INR. No dollar conversions. No GST surprises. Just a website that works."
       />
 
       <div 
         ref={scrollContainerRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory gap-5 pt-5 pb-6 md:grid md:grid-cols-3 md:overflow-visible md:pt-0 md:pb-0 scrollbar-none -mx-8 px-[5vw] md:px-8 scroll-px-[5vw] md:scroll-px-0"
+        className="flex overflow-x-auto snap-x snap-mandatory gap-4 pt-5 pb-6 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:pt-0 md:pb-0 scrollbar-none -mx-8 px-[4vw] md:px-8 scroll-px-[4vw] md:scroll-px-0"
       >
         {tiers.map((t, i) => (
           <motion.div
@@ -258,7 +273,7 @@ export function Pricing() {
             whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={isMobile ? { duration: 0 } : { delay: i * 0.08, duration: 0.6, ease }}
-            className={`relative flex flex-col rounded-3xl p-7 shadow-soft transition-all hover:-translate-y-1 snap-start shrink-0 w-[78vw] sm:w-[72vw] md:w-auto ${t.highlight
+            className={`relative flex flex-col rounded-3xl p-6 sm:p-7 shadow-soft transition-all hover:-translate-y-1 snap-start shrink-0 w-[88vw] sm:w-[62vw] md:w-auto ${t.highlight
               ? "bg-foreground text-background shadow-elevated"
               : "hairline bg-surface-elevated"
               }`}
@@ -277,14 +292,17 @@ export function Pricing() {
                 {t.tag}
               </span>
             </div>
-            <div className="mt-6 flex items-end gap-2">
+            <div className="mt-6 flex flex-wrap items-end gap-x-2 gap-y-1">
               <span className={`text-sm line-through ${t.highlight ? "text-background/50" : "text-muted-foreground"}`}>
-                A${t.original}
+                Rs. {t.original.toLocaleString("en-IN")}
               </span>
-              <span className="font-display text-6xl font-semibold tracking-[-0.04em]">
-                A${t.price}
+              <span className="font-display text-[2.5rem] sm:text-5xl font-semibold tracking-[-0.04em] whitespace-nowrap leading-none">
+                Rs. {t.price.toLocaleString("en-IN")}
               </span>
             </div>
+            <p className={`mt-1.5 text-xs font-medium ${t.highlight ? "text-background/60" : "text-muted-foreground"}`}>
+              One time payment
+            </p>
             <button
               type="button"
               onClick={() => openCheckout(t)}
@@ -346,7 +364,7 @@ export function Pricing() {
       </div>
 
       {/* Mobile Scroll Indicator Dots */}
-      <div className="flex md:hidden items-center justify-center gap-1.5 mt-2 mb-8">
+      <div className="flex md:hidden items-center justify-center gap-1.5 mt-1 mb-4">
         {tiers.map((_, idx) => (
           <button
             key={idx}
@@ -354,7 +372,7 @@ export function Pricing() {
               if (scrollContainerRef.current) {
                 const cardElement = scrollContainerRef.current.firstElementChild;
                 if (cardElement) {
-                  const cardWidth = cardElement.getBoundingClientRect().width + 20; // 20px is gap-5
+                  const cardWidth = cardElement.getBoundingClientRect().width + 16; // 16px is gap-4
                   scrollContainerRef.current.scrollTo({
                     left: idx * cardWidth,
                     behavior: "smooth",
@@ -376,7 +394,7 @@ export function Pricing() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease }}
-        className="mx-auto max-w-3xl mt-16 rounded-3xl bg-surface p-6 md:p-8 hairline border-brand/20 shadow-soft"
+        className="mx-auto max-w-3xl mt-6 md:mt-16 rounded-3xl bg-surface p-6 md:p-8 hairline border-brand/20 shadow-soft"
       >
         <div className="flex flex-col md:flex-row gap-5 items-start">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
@@ -384,10 +402,10 @@ export function Pricing() {
           </div>
           <div>
             <h4 className="text-base font-semibold text-foreground">
-              What does the A$99 Launch offer include?
+              What does the Rs. 7,999 Starter offer include?
             </h4>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              The A$99 Launch package is a fully built, 1 page conversion website. It is <strong>not a deposit</strong> it is the complete price. You get a custom designed, hand coded, mobile responsive website delivered in 48 hours. If you're not happy, you get a full refund within 30 days. No catches.
+              The Rs. 7,999 Starter package is a fully built, 1 page conversion website. It is <strong>a one time payment</strong> the complete price, in INR, with a GST invoice. You get a custom designed, mobile responsive website delivered in 72 hours. If you&apos;re not happy, you get a full refund within 30 days. No catches.
             </p>
           </div>
         </div>
@@ -401,7 +419,7 @@ export function Pricing() {
           <Code2 className="h-3.5 w-3.5" /> You own 100% of the code
         </span>
         <span className="inline-flex items-center gap-1.5">
-          {/* <Globe className="h-3.5 w-3.5" /> Australian hosting from $19/mo (optional) */}
+          <CreditCard className="h-3.5 w-3.5" /> GST invoice provided · UPI, Razorpay & bank transfer
         </span>
       </div>
 
@@ -433,10 +451,10 @@ export function Pricing() {
                   <>
                     <DialogHeader>
                       <DialogTitle className="font-display text-3xl tracking-[-0.02em]">
-                        Checkout: {selectedTier.name}
+                        Almost there, customise your package
                       </DialogTitle>
                       <DialogDescription>
-                        Choose optional add ons before we prepare your project invoice.
+                        A few quick questions before we prepare your quote. No payment taken here.
                       </DialogDescription>
                     </DialogHeader>
 
@@ -444,7 +462,7 @@ export function Pricing() {
                       {addons.map((addon) => {
                         const Icon = addon.icon;
                         const includedWithGrowth =
-                          selectedTier.name === "Growth" && addon.name === "Hosting + maintenance";
+                          selectedTier.name === "Professional" && addon.name === "Hosting + Maintenance Plan";
                         const selected = selectedAddons.includes(addon.name) || includedWithGrowth;
 
                         return (
@@ -467,12 +485,12 @@ export function Pricing() {
                                 <span className="shrink-0 rounded-full bg-surface px-2.5 py-1 text-[11px] font-semibold">
                                   {includedWithGrowth ? (
                                     <>
-                                      <span className="mr-1 line-through opacity-50">A$19/mo</span>
+                                      <span className="mr-1 line-through opacity-50">Rs. 999/month</span>
                                       Free
                                     </>
                                   ) : (
                                     <>
-                                      A${addon.price}
+                                      Rs. {addon.price.toLocaleString("en-IN")}
                                       {addon.cadence}
                                     </>
                                   )}
@@ -505,7 +523,7 @@ export function Pricing() {
                 </p>
                 <h3 className="mt-3 font-display text-3xl font-semibold">{selectedTier.name}</h3>
                 <div className="mt-6 space-y-3 text-sm border-b border-background/10 pb-4">
-                  <SummaryRow label={`${selectedTier.name} website package`} value={`A$${selectedTier.price}`} />
+                  <SummaryRow label={`${selectedTier.name} website package`} value={`Rs. ${selectedTier.price.toLocaleString("en-IN")}`} />
                   {selectedTier.features.slice(0, 4).map((feat) => (
                     <SummaryRow
                       key={feat}
@@ -517,7 +535,7 @@ export function Pricing() {
                     <SummaryRow
                       key={addon.name}
                       label={addon.name}
-                      value={`A$${addon.price}${addon.cadence}`}
+                      value={`Rs. ${addon.price.toLocaleString("en-IN")}${addon.cadence}`}
                     />
                   ))}
                 </div>
@@ -525,15 +543,15 @@ export function Pricing() {
                 <div className="mt-6 pt-2">
                   <div className="flex items-end justify-between gap-4">
                     <div>
-                      <p className="text-xs text-background/45">Due once</p>
-                      <p className="mt-1 font-display text-5xl font-semibold tracking-[-0.04em]">
-                        A${selectedTier.price + oneTimeAddonTotal}
+                      <p className="text-xs text-background/45">Your package total</p>
+                      <p className="mt-1 font-display text-4xl font-semibold tracking-[-0.04em]">
+                        Rs. {(selectedTier.price + oneTimeAddonTotal).toLocaleString("en-IN")}
                       </p>
                     </div>
                     {monthlyAddonTotal > 0 && (
                       <div className="text-right">
                         <p className="text-xs text-background/45">Monthly</p>
-                        <p className="mt-1 text-2xl font-semibold">A${monthlyAddonTotal}/mo</p>
+                        <p className="mt-1 text-2xl font-semibold">Rs. {monthlyAddonTotal.toLocaleString("en-IN")}/mo</p>
                       </div>
                     )}
                   </div>

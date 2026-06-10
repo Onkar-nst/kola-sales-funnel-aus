@@ -34,7 +34,7 @@ const genieChild = {
 const navLinks = [
   { label: "Pricing", href: "#pricing" },
   { label: "About", href: "#about" },
-  { label: "Our Work", href: "#showcase" },
+  { label: "Portfolio", href: "#showcase" },
   { label: "FAQ", href: "#results-faq" },
 ];
 
@@ -62,7 +62,7 @@ export function Nav() {
     e.preventDefault();
     setMobileMenuOpen(false);
     window.dispatchEvent(
-      new CustomEvent("kola:open-checkout", { detail: { tier: "Growth" } }),
+      new CustomEvent("kola:open-checkout", { detail: { tier: "Professional" } }),
     );
   };
 
@@ -125,7 +125,7 @@ export function Nav() {
             animate="visible"
             className="flex h-full items-center justify-center bg-black hover:bg-neutral-900 text-white font-bold text-xs uppercase tracking-widest px-8 transition-all"
           >
-            Start Project
+            Get Started
           </motion.a>
         </div>
 
@@ -169,7 +169,7 @@ export function Nav() {
                 onClick={handleStartProject}
                 className="flex items-center justify-center bg-black hover:bg-neutral-900 text-white font-bold text-xs uppercase tracking-widest py-5 transition-all"
               >
-                Start Project
+                Get Started
               </a>
             </div>
           </motion.div>

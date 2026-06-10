@@ -7,20 +7,16 @@ import { ArrowRight, Check } from "lucide-react";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Scarcity() {
-  const [weekDateStr, setWeekDateStr] = useState("this week");
+  const [weekDateStr, setWeekDateStr] = useState("this month");
 
   useEffect(() => {
-    // Dynamically calculate the Monday of the current week in Sydney time
+    // Dynamically display the current month
     const now = new Date();
-    const day = now.getDay();
-    const diff = now.getDate() - day + (day === 0 ? -6 : 1);
-    const monday = new Date(now.setDate(diff));
-    const formatted = monday.toLocaleDateString("en-AU", {
-      day: "numeric",
+    const formatted = now.toLocaleDateString("en-IN", {
       month: "long",
       year: "numeric",
     });
-    setWeekDateStr(`Week of ${formatted}`);
+    setWeekDateStr(formatted);
   }, []);
 
   return (
@@ -47,29 +43,29 @@ export function Scarcity() {
           {/* Availability pill */}
           <div className="inline-flex items-center gap-2 rounded-full border border-background/25 bg-background/10 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-background/90">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-coral animate-pulse" />
-            Limited Weekly Intake
+            Limited Monthly Intake
           </div>
 
           <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.02em] text-balance text-background sm:text-3xl md:text-4xl">
-            We limit our capacity to 5 projects per week.
+            We take on a maximum of 8 projects per month.
           </h2>
 
           <p className="mt-2.5 max-w-lg text-balance text-xs leading-relaxed text-background/85">
-            To maintain quality and guarantee direct oversight, we refuse to run a high volume template factory. We only take on what we can hand craft perfectly.
+            This is not a gimmick. Every website we build gets our full attention, no juggling 20 clients at once, no outsourcing to junior developers. When we take your project, it gets done properly.
           </p>
 
           {/* Availability Status Card */}
           <div className="mt-6 w-full max-w-sm rounded-2xl border border-background/15 bg-background/5 p-4 text-left">
             <div className="flex justify-between items-center text-[10px] font-semibold uppercase tracking-wider text-background/70">
               <span>{weekDateStr}</span>
-              <span className="text-accent-coral font-bold">3 of 5 spots filled</span>
+              <span className="text-accent-coral font-bold">5 of 8 spots taken</span>
             </div>
 
             {/* Custom Progress Bar */}
             <div className="mt-2 relative h-2.5 w-full overflow-hidden rounded-full bg-background/20">
               <motion.div
                 initial={{ width: "0%" }}
-                whileInView={{ width: "60%" }}
+                whileInView={{ width: "62.5%" }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 1.2, ease }}
                 className="h-full rounded-full bg-accent-coral"
@@ -78,7 +74,7 @@ export function Scarcity() {
 
             <div className="mt-3 flex justify-between items-center text-[10px] text-background/80">
               <span>Next kickoff: Immediate</span>
-              <span className="font-semibold text-accent-coral">2 spots left</span>
+              <span className="font-semibold text-accent-coral">3 spots left this month</span>
             </div>
           </div>
 
@@ -89,10 +85,10 @@ export function Scarcity() {
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
               {[
-                "Founder reviews every line of code",
-                "Same day revision turnaround",
-                "Guaranteed 48 hour delivery",
-                "Hand coded speed, no templates",
+                "Founder reviews every project",
+                "Fast revision turnaround",
+                "Guaranteed 72 hour delivery",
+                "Custom built, no templates",
               ].map((reason, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <div className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-background/10 text-background">
@@ -109,7 +105,7 @@ export function Scarcity() {
               href="#pricing"
               className="group inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 text-xs font-semibold text-foreground shadow-elevated transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              Get My $99 Website
+              Check availability for this month
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </a>
           </div>

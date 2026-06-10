@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, MessageCircle } from "lucide-react";
 import { Section } from "./Primitives";
 import AnimatedHeading from "./AnimatedHeading";
 
@@ -27,29 +27,30 @@ export function CTA() {
           </div>
           
           <AnimatedHeading
-            lines={["Get your website", "live this week."]}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-2xl leading-[1.1]"
+            lines={["Your website, live by Friday.", "Let's make it happen."]}
+            className="text-4xl sm:text-5xl font-bold tracking-tight max-w-3xl leading-[1.1]"
           />
-          
+
           <p className="max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Join 150+ Australian businesses with a premium, custom hand coded website. From A$99. Delivered in 48 hours. 100% risk free 30 Day Money Back Guarantee.
+            Join 100+ Indian businesses growing online with Kola Communications. From Rs. 7,999, no hidden charges, no surprises.
           </p>
-          
+
           <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <a
               href="#pricing"
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-black text-white px-8 py-4 text-sm font-semibold shadow-soft transition-all hover:bg-neutral-900 active:scale-[0.98] cursor-pointer"
             >
-              Get My $99 Website
+              Get My Website Now
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
-              href="https://calendly.com/kola-communications"
+              href="https://wa.me/919999999999"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full hairline bg-surface-elevated px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface cursor-pointer"
             >
-              Book a 15 Minute Call
+              <MessageCircle className="h-4 w-4" />
+              Or chat with us on WhatsApp
             </a>
           </div>
 
@@ -61,7 +62,7 @@ export function CTA() {
               <ShieldCheck className="h-4 w-4 text-neutral-900" /> Premium Custom Design
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-neutral-900" /> Sydney-Coded Quality
+              <ShieldCheck className="h-4 w-4 text-neutral-900" /> GST Invoice Provided
             </span>
           </div>
         </motion.div>

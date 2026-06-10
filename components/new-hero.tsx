@@ -106,7 +106,7 @@ export function Hero() {
                             We <span className="text-lime">place,</span> you{" "}
                             <span className="text-lime">grow</span>
                             <br />
-                            — that&apos;s the deal
+                            that&apos;s the deal
                         </motion.h1>
 
                         <motion.div

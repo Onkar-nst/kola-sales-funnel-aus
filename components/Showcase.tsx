@@ -457,11 +457,14 @@ export function Showcase() {
           .replace(/sydney-coded/gi, "sydney coded")
           .replace(/48-hour/gi, "48 hour")
           .replace(/72-hour/gi, "72 hour")
-          .replace(/sydney-built/gi, "sydney built");
+          .replace(/sydney-built/gi, "sydney built")
+          // Catch-all: turn any remaining hyphen between characters into a space
+          .replace(/([A-Za-z0-9])-([A-Za-z0-9])/g, "$1 $2");
       };
 
       return {
         ...card,
+        tag: cleanString(card.tag),
         description: cleanString(card.description),
         subtitle: cleanString(card.subtitle),
         outcome: cleanString(card.outcome),
@@ -484,6 +487,8 @@ export function Showcase() {
         },
         details: {
           ...card.details,
+          industry: cleanString(card.details.industry),
+          location: cleanString(card.details.location),
           timeline: `${deliveryHours} Hours`,
           techStack: card.details.techStack.map(cleanString),
         }
@@ -573,13 +578,13 @@ export function Showcase() {
     <Section id="showcase" className="!pb-0 overflow-hidden">
       <div className="mb-14 flex flex-col gap-4 text-center items-center">
         <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-100/60 px-3 py-1 text-[11px] font-semibold text-neutral-900 shadow-soft">
-          Our Work
+          Portfolio
         </div>
         <AnimatedHeading
-          lines={["Real websites.", "Real Aussie businesses."]}
+          lines={["Real websites.", "Real Indian businesses."]}
           className="max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-5xl lg:text-6xl text-center"
         />
-        <p className="max-w-xl text-balance text-muted-foreground">{`Every single one of these custom websites was designed, hand coded, and launched in under 48 hours.`}</p>
+        <p className="max-w-xl text-balance text-muted-foreground">{`Every single one of these custom websites was designed, built, and launched in as little as 72 hours.`}</p>
       </div>
 
       <div className="relative w-full py-4 mt-8">

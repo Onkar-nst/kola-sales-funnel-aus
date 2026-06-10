@@ -29,45 +29,45 @@ interface ReviewItem {
 const reviews: ReviewItem[] = [
   // Page 1
   {
-    quote: "Launched Tuesday, had 14 high-ticket quote requests by Friday.",
-    name: "David Fletcher",
-    role: "Flooring · MEL",
+    quote: "Launched on Tuesday, had 14 high value enquiries on WhatsApp by Friday.",
+    name: "Rahul Sharma",
+    role: "Consultant · Pune",
   },
   {
     quote: "Our conversion rate jumped 300% in the first month.",
-    name: "Sofia Zevana",
-    role: "Retail · SYD",
+    name: "Priya Menon",
+    role: "Retail · Mumbai",
   },
   {
-    quote: "Loads instantly on mobile. Delivered a masterpiece in 48h.",
-    name: "Dr. Marcus Lim",
-    role: "Dental · BNE",
+    quote: "Loads instantly on mobile. Delivered a clean, professional site fast.",
+    name: "Dr. Arjun Nair",
+    role: "Dental Clinic · Bengaluru",
   },
   {
     quote: "Clean, fast, and works perfectly. Best decision for our studio.",
-    name: "Sarah Mitchell",
-    role: "Yoga · PER",
+    name: "Sneha Patel",
+    role: "Yoga Studio · Ahmedabad",
   },
   // Page 2
   {
     quote: "Form enquiries started landing in our inbox within 24 hours.",
-    name: "Liam O'Connor",
-    role: "Landscaping · ADL",
+    name: "Vikram Singh",
+    role: "Real Estate · Delhi",
   },
   {
-    quote: "Our Google search ranking shot up to page 1 in under two weeks.",
-    name: "Emma Watson",
-    role: "Accounting · SYD",
+    quote: "Our Google ranking shot up to page 1 in under two weeks.",
+    name: "Ananya Iyer",
+    role: "Accounting · Chennai",
   },
   {
     quote: "Simple, fast, and gorgeous design. The team was incredibly responsive.",
-    name: "Ryan Reynolds",
-    role: "Fitness · MEL",
+    name: "Karan Mehta",
+    role: "Fitness · Hyderabad",
   },
   {
-    quote: "Amazing service! Our customers love the mobile booking interface.",
-    name: "Chloe Tanaka",
-    role: "Café · BNE",
+    quote: "Amazing service! Our customers love the WhatsApp booking flow.",
+    name: "Divya Reddy",
+    role: "Café · Bengaluru",
   }
 ];
 
@@ -75,28 +75,28 @@ const reviews: ReviewItem[] = [
 
 const faqs = [
   {
-    q: "What exactly do I get for A$99?",
-    a: "The Launch package includes a fully designed and hand coded 1 page custom website, custom contact forms with instant email notifications, Google Maps integration, basic on page SEO, social media links, and 48 hour delivery. There are absolutely no hidden setup fees or surprise costs.",
+    q: "Will my website show up on Google?",
+    a: "Yes. Every website we build includes basic on page SEO and submission to Google Search Console. Professional and Growth packages include advanced SEO configuration. Ranking takes time and ongoing effort, but we make sure Google can find and index your site from day one.",
   },
   {
-    q: "Is the A$99 a deposit or the full price?",
-    a: "It is the full price. This is not a deposit or a subscription hook. You pay A$99 once, and we deliver your custom hand coded website live in 48 hours. If you choose to host it with us, Australian hosting starts at A$19/month, or we can export the raw code for you to host anywhere.",
+    q: "Do I own my website after the project?",
+    a: "Absolutely. Once the project is delivered and payment is complete, you own everything: the domain, the hosting account, and every file on the website.",
   },
   {
-    q: "What happens after I pay?",
-    a: "You'll be directed to a short 5 minute online questionnaire where you can share details about your business, logo, preferred colors, and contact info. Our Sydney team reviews it instantly, starts coding, and sends you a live preview link to request revisions within 24 hours.",
+    q: "Can I pay in instalments?",
+    a: "Yes. For Professional and Growth packages, we offer a 50% upfront and 50% on delivery payment structure. We accept UPI, bank transfer, and Razorpay.",
   },
   {
-    q: "Can I upgrade my site later?",
-    a: "Yes, completely! Our websites are modular and hand coded. You can start with the A$99 Launch package and add extra pages, blog setups, Stripe payment checkouts, or advanced booking systems as your business grows. We never lock you into rigid, slow page builder templates.",
+    q: "What if I do not have content or images ready?",
+    a: "We will guide you through exactly what we need. For Professional and Growth packages, we also offer basic copywriting support to get your key pages written. Stock images are included at no extra cost.",
   },
   {
-    q: "Do I own 100% of the website and code?",
-    a: "Yes, 105%. Unlike clunky proprietary platforms (like Squarespace, Wix, or Shopify) that own the framework your site runs on, you own all of the raw hand coded HTML/React files. You can export the code and host it anywhere you want, forever.",
+    q: "How do I communicate with your team during the project?",
+    a: "Primarily via WhatsApp and email. You will have a dedicated point of contact for your project, so there is no confusion about who to reach out to.",
   },
   {
-    q: "What if I'm not satisfied with the result?",
-    a: "We offer a 100% risk free 30 Day Money Back Guarantee. If we deliver your preview link and you don't like the design or feel it's not a fit, just let us know. We will refund your payment in full, immediately. No questions asked.",
+    q: "Do you build websites in Hindi or other Indian languages?",
+    a: "Yes. We can build bilingual websites in English and Hindi, or any regional language. Let us know your requirement when filling out the project form.",
   },
 ];
 
@@ -162,7 +162,7 @@ export function ResultsFAQ() {
   const [activePage, setActivePage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // On mobile, no FAQ is open by default — it only opens on click.
+  // On mobile, no FAQ is open by default, it only opens on click.
   useEffect(() => {
     if (isMobile) setOpenFAQ(null);
   }, [isMobile]);
@@ -213,7 +213,7 @@ export function ResultsFAQ() {
                   className="text-balance text-3xl font-bold leading-[1.05] tracking-[-0.03em] md:text-4xl font-display"
                 />
                 <p className="max-w-md text-muted-foreground text-[13px] font-medium leading-relaxed">
-                  Everything you need to know about our $99 website launch package, process, hosting, and guarantees.
+                  Everything you need to know about our Rs. 7,999 website launch package, process, hosting, and guarantees.
                 </p>
               </div>
 
@@ -291,13 +291,13 @@ export function ResultsFAQ() {
                         <span className="text-[11px] font-bold tracking-tight text-foreground">Kola</span>
                       </div>
                       <div className="hidden items-center gap-4 sm:flex text-[9px] font-medium text-muted-foreground">
-                        <span>Our Work</span>
+                        <span>Portfolio</span>
                         <span>Pricing</span>
                         <span>FAQ</span>
                       </div>
                       <div className="hidden items-center gap-2 sm:flex">
-                        <span className="text-[9px] font-medium text-foreground">Sydney</span>
-                        <div className="rounded bg-brand px-2.5 py-1 text-[9px] font-semibold text-white">Start Project</div>
+                        <span className="text-[9px] font-medium text-foreground">Mumbai</span>
+                        <div className="rounded bg-brand px-2.5 py-1 text-[9px] font-semibold text-white">Get Started</div>
                       </div>
                       <Menu className="h-4 w-4 text-muted-foreground sm:hidden" />
                     </div>
@@ -305,20 +305,20 @@ export function ResultsFAQ() {
                     {/* Kola Hero Content Area */}
                     <div className="flex flex-col items-center text-center">
                       <div className="mb-4 flex items-center gap-1.5 rounded-full border border-border/85 bg-surface-elevated px-2.5 py-0.5 text-[8px] font-semibold text-muted-foreground">
-                        🇦🇺 Sydney Crafted & Coded
+                        🇮🇳 Built for Indian Businesses
                       </div>
 
                       <h2 className="mb-3 max-w-[90%] text-[20px] font-bold leading-tight tracking-tight text-foreground sm:text-[24px]">
-                        We <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">code,</span> you <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">grow</span>
+                        Your <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">business.</span> <span className="bg-gradient-to-r from-[oklch(0.75_0.12_260)] to-[oklch(0.70_0.15_300)] bg-clip-text text-transparent">Online.</span>
                       </h2>
 
                       <p className="mb-6 max-w-[80%] text-[10px] leading-relaxed text-muted-foreground sm:text-[11px]">
-                        Blazing fast Next.js sales funnels for local Aussie businesses. Hand-crafted in under 48 hours. Built for maximum conversions.
+                        Fast, professional websites for Indian businesses. Clean design, built in as little as 72 hours. Built for maximum enquiries.
                       </p>
 
                       <div className="mb-8 flex w-full justify-center gap-3">
                         <div className="flex h-8 items-center justify-center rounded-md bg-brand px-4 text-[10px] font-semibold text-white">
-                          Get My $99 Website
+                          Get My Website
                         </div>
                         <div className="flex h-8 items-center justify-center gap-1.5 rounded-md border border-border px-4 text-[10px] font-semibold text-foreground">
                           Book a Call
@@ -372,12 +372,12 @@ export function ResultsFAQ() {
                       </h3>
 
                       <p className="mb-3 max-w-[90%] text-[5px] leading-relaxed text-muted-foreground">
-                        Sydney-coded Next.js speed.
+                        Fast, custom-built websites.
                       </p>
 
                       <div className="mb-4 flex w-full justify-center gap-1.5">
                         <div className="flex h-4 items-center justify-center rounded-[2px] bg-brand px-2 text-[5px] font-semibold text-white">
-                          Start Project
+                          Get Started
                         </div>
                         <div className="flex h-4 items-center justify-center gap-1 rounded-[2px] border border-border px-2 text-[5px] font-semibold text-foreground">
                           Features

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kola — Premium Hand-Coded Websites for Australian Businesses",
-  description: "Get a custom, conversion-focused website for your Australian business. Delivered in 48 hours, fully optimized, and built to scale. From just A$99.",
+  title: "Kola | Professional Websites for Indian Businesses",
+  description: "Get a custom, conversion-focused website for your Indian business. Delivered in 72 hours, fully optimized, and built to scale. Starting at Rs. 7,999.",
   icons: {
     icon: "https://kolacommunications.com/KolaFavicon.jpg",
   },
