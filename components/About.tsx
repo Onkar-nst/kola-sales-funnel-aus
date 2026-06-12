@@ -20,7 +20,7 @@ export function About() {
                 
                 <div className="grid lg:grid-cols-12 gap-10 items-start border-b border-neutral-900 pb-16">
                     <AnimatedHeading
-                        lines={["We're Kola Communications,", "a Mumbai based agency that has delivered 100+ websites across India, the UAE & the UK."]}
+                        lines={["We're Kola Communications,", "a Mumbai based agency that has delivered 150+ websites."]}
                         className="lg:col-span-7 font-display text-balance text-[clamp(1.8rem,4.2vw,3.2rem)] leading-[1.1] tracking-[-0.02em]"
                     />
                     <div className="lg:col-span-5 text-neutral-400 text-[15px] leading-relaxed">

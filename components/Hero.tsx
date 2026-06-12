@@ -39,9 +39,9 @@ export function Hero() {
 
             {/* main hero layout */}
             <div className="relative z-10 flex-1 flex flex-col justify-center mx-auto max-w-none w-full px-6 md:px-12 lg:px-16 py-12 md:py-20">
-                <div className="grid lg:grid-cols-12 gap-12 items-center w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full min-w-0">
                     {/* LEFT COLUMN: copy and CTA */}
-                    <div className="lg:col-span-8 flex flex-col items-start pt-12 md:pt-24 lg:pt-32">
+                    <div className="lg:col-span-8 flex flex-col items-start pt-12 md:pt-24 lg:pt-32 min-w-0 w-full">
                         {/* ── avatars ── */}
                         <motion.div
                             initial={{ opacity: 0, x: -16 }}
@@ -129,7 +129,7 @@ export function Hero() {
                                 className="inline-flex max-w-full overflow-hidden rounded-xl group active:scale-95 transition-transform"
                             >
                                 <div className="bg-white text-neutral-950 px-5 sm:px-6 py-3.5 text-[13px] sm:text-[15px] font-bold transition-colors group-hover:bg-neutral-100 whitespace-nowrap">
-                                    Get My Website, From Rs. 7,999
+                                    Get my website, From Rs. 7,999
                                 </div>
                                 <div className="bg-white text-neutral-950 px-4 py-3.5 flex items-center border-l border-neutral-200 transition-colors group-hover:bg-neutral-100">
                                     <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />

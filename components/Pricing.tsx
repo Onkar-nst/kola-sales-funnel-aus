@@ -111,10 +111,12 @@ export function Pricing() {
   };
 
   const dialogContentRef = useRef<HTMLDivElement>(null);
+  const leftColRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (showCheckoutForm && dialogContentRef.current) {
-      dialogContentRef.current.scrollTop = 0;
+    if (showCheckoutForm) {
+      if (dialogContentRef.current) dialogContentRef.current.scrollTop = 0;
+      if (leftColRef.current) leftColRef.current.scrollTop = 0;
     }
   }, [showCheckoutForm]);
 
@@ -127,13 +129,15 @@ export function Pricing() {
       cta: "Get My Website →",
       highlight: false,
       features: [
-        "1 page website",
+        "1 page custom website",
         "Mobile & tablet responsive",
         "Contact form + WhatsApp & email alerts",
         "Google Maps & social embeds",
-        "Basic SEO setup (Google ready)",
+        "Basic SEO setup (Google-ready)",
         "72 hour delivery",
         "1 revision round",
+        "Professional email (1 GB)",
+        "Annual Maintenance Contract",
         "Free hosting & domain (1 year)"
       ],
     },
@@ -145,15 +149,16 @@ export function Pricing() {
       cta: "Get My Website →",
       highlight: true,
       features: [
-        "Up to 5 pages (Home, About, Services, Blog, Contact)",
+        "Up to 5 pages",
         "Custom design, not a template",
-        "On page SEO + Google Search Console setup",
-        "WhatsApp chat button integration",
-        "Google Analytics setup",
-        "Business email setup (1 account)",
+        "On-page SEO + Search Console",
+        "WhatsApp chat button",
+        "Google Analytics",
+        "Professional email (1 GB)",
         "30 day post launch support",
         "3 revision rounds",
         "5 to 7 working days delivery",
+        "Annual Maintenance Contract",
         "Free hosting & domain (1 year)"
       ],
     },
@@ -165,14 +170,18 @@ export function Pricing() {
       cta: "Book a Call →",
       highlight: false,
       features: [
-        "Up to 10 pages or WooCommerce store (up to 50 products)",
-        "Custom coded option available",
-        "Razorpay / Cashfree payment gateway integration",
-        "Advanced SEO setup (schema markup, sitemap, technical audit)",
-        "WhatsApp Business API integration",
+        "Up to 10 pages / WooCommerce (50 products)",
+        "Custom coded option",
+        "Razorpay / Cashfree integration",
+        "Advanced SEO (schema, sitemap, audit)",
+        "Google Analytics",
+        "Google Search Console",
+        "WhatsApp Business API",
         "3 month post launch support",
         "Dedicated project manager",
         "10 to 14 working days delivery",
+        "Professional email (1 GB)",
+        "Annual Maintenance Contract",
         "Free hosting & domain (1 year)"
       ],
     },
@@ -273,7 +282,7 @@ export function Pricing() {
             whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={isMobile ? { duration: 0 } : { delay: i * 0.08, duration: 0.6, ease }}
-            className={`relative flex flex-col rounded-3xl p-6 sm:p-7 shadow-soft transition-all hover:-translate-y-1 snap-start shrink-0 w-[88vw] sm:w-[62vw] md:w-auto ${t.highlight
+            className={`relative flex flex-col rounded-3xl p-5 sm:p-7 shadow-soft transition-all hover:-translate-y-1 snap-start shrink-0 w-[80vw] sm:w-[62vw] md:w-auto ${t.highlight
               ? "bg-foreground text-background shadow-elevated"
               : "hairline bg-surface-elevated"
               }`}
@@ -432,11 +441,12 @@ export function Pricing() {
           }
         }}
       >
-        <DialogContent ref={dialogContentRef} className="max-h-[90dvh] max-w-4xl overflow-y-auto rounded-3xl border-transparent p-0 shadow-elevated">
+        <DialogContent ref={dialogContentRef} className="max-h-[90dvh] max-w-4xl overflow-y-auto md:overflow-hidden rounded-3xl border-transparent p-0 shadow-elevated">
           {selectedTier && (
-            <div className="grid bg-surface-elevated md:grid-cols-[1fr_0.78fr]">
+            <div className="grid bg-surface-elevated md:grid-cols-[1fr_0.78fr] md:max-h-[90dvh]">
               <div
-                className="p-6 md:p-8"
+                ref={leftColRef}
+                className="p-6 md:p-8 md:max-h-[90dvh] md:overflow-y-auto scrollbar-none"
                 style={showCheckoutForm ? { paddingBottom: "calc(2.5rem + env(safe-area-inset-bottom))" } : undefined}
               >
                 {showCheckoutForm ? (
@@ -450,15 +460,18 @@ export function Pricing() {
                 ) : (
                   <>
                     <DialogHeader>
-                      <DialogTitle className="font-display text-3xl tracking-[-0.02em]">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                        Step 1 of 2 · Add-ons
+                      </p>
+                      <DialogTitle className="mt-2 font-display text-3xl tracking-[-0.02em]">
                         Almost there, customise your package
                       </DialogTitle>
-                      <DialogDescription>
-                        A few quick questions before we prepare your quote. No payment taken here.
+                      <DialogDescription className="text-[15px] leading-relaxed">
+                        Add anything extra you need below, or skip straight to checkout. No payment is taken here.
                       </DialogDescription>
                     </DialogHeader>
 
-                    <div className="mt-6 grid gap-3">
+                    <div className="mt-8 grid gap-3.5">
                       {addons.map((addon) => {
                         const Icon = addon.icon;
                         const includedWithGrowth =
@@ -471,7 +484,7 @@ export function Pricing() {
                             type="button"
                             disabled={includedWithGrowth}
                             onClick={() => toggleAddon(addon.name)}
-                            className={`flex items-start gap-4 rounded-3xl p-4 text-left transition-all cursor-pointer ${selected
+                            className={`flex items-start gap-4 rounded-3xl p-5 text-left transition-all cursor-pointer ${selected
                               ? "bg-background ring-1 ring-foreground/15 shadow-soft"
                               : "hairline bg-surface-elevated hover:bg-background"
                               } ${includedWithGrowth ? "cursor-default opacity-90" : ""}`}
@@ -515,7 +528,7 @@ export function Pricing() {
               </div>
 
               <aside
-                className={`bg-foreground p-6 text-background md:p-8 ${showCheckoutForm ? "hidden md:block" : ""}`}
+                className={`bg-foreground p-6 text-background md:p-8 md:max-h-[90dvh] md:overflow-y-auto scrollbar-none ${showCheckoutForm ? "hidden md:block" : ""}`}
                 style={{ paddingBottom: "calc(2.5rem + env(safe-area-inset-bottom))" }}
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-background/50">

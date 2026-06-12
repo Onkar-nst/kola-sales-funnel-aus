@@ -22,6 +22,8 @@ export function CheckoutForm({
   onBack,
 }: CheckoutFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [onlineStore, setOnlineStore] = useState("");
+  const [websiteType, setWebsiteType] = useState("");
 
   if (submitted) {
     return (
@@ -46,7 +48,7 @@ export function CheckoutForm({
         event.preventDefault();
         setSubmitted(true);
       }}
-      className="rounded-3xl bg-background p-5 md:p-6"
+      className="rounded-3xl bg-background p-6 md:p-9"
     >
       <button
         type="button"
@@ -59,7 +61,7 @@ export function CheckoutForm({
 
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          A few quick questions
+          Step 2 of 2 · Your project
         </p>
         <h3 className="mt-2 font-display text-3xl font-semibold tracking-[-0.02em]">
           Tell us about your project.
@@ -70,32 +72,72 @@ export function CheckoutForm({
         </p>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Field label="Full name" id="checkout-name">
-          <Input id="checkout-name" name="name" placeholder="Your name" required />
-        </Field>
-        <Field label="Business name" id="checkout-business">
-          <Input id="checkout-business" name="business" placeholder="Business name" required />
-        </Field>
-        <Field label="Your WhatsApp number" id="checkout-whatsapp">
-          <Input id="checkout-whatsapp" name="whatsapp" type="tel" placeholder="+91 ..." defaultValue="+91 " required />
-        </Field>
-        <Field label="Your email address" id="checkout-email">
-          <Input id="checkout-email" name="email" type="email" placeholder="you@business.in" required />
-        </Field>
-      </div>
+      <section className="mt-8">
+        <SectionLabel step="1">Your details</SectionLabel>
+        <div className="mt-5 grid gap-x-5 gap-y-5 sm:grid-cols-2">
+          <Field label="Full name" id="checkout-name">
+            <Input id="checkout-name" name="name" className="h-11 rounded-xl" placeholder="Your name" required />
+          </Field>
+          <Field label="Business name" id="checkout-business">
+            <Input id="checkout-business" name="business" className="h-11 rounded-xl" placeholder="Business name" required />
+          </Field>
+          <Field label="Your WhatsApp number" id="checkout-whatsapp">
+            <Input id="checkout-whatsapp" name="whatsapp" type="tel" className="h-11 rounded-xl" placeholder="+91 ..." defaultValue="+91 " required />
+          </Field>
+          <Field label="Your email address" id="checkout-email">
+            <Input id="checkout-email" name="email" type="email" className="h-11 rounded-xl" placeholder="you@business.in" required />
+          </Field>
+        </div>
+      </section>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        <Field label="What type of website do you need?" id="checkout-type">
-          <Select id="checkout-type" name="websiteType">
+      <section className="mt-8 border-t border-hairline pt-8">
+        <SectionLabel step="2">About your project</SectionLabel>
+        <div className="mt-5 grid gap-x-5 gap-y-5 sm:grid-cols-2">
+        <Field label="Do you need an online store? (e-commerce)" id="checkout-store">
+          <Select
+            id="checkout-store"
+            name="onlineStore"
+            value={onlineStore}
+            onChange={(event) => {
+              setOnlineStore(event.target.value);
+              setWebsiteType("");
+            }}
+          >
             <option value="">Select one</option>
-            <option>WordPress</option>
-            <option>Custom Coded</option>
-            <option>Not sure yet</option>
+            <option>Yes</option>
+            <option>No</option>
           </Select>
         </Field>
-        <Field label="Do you need an online store?" id="checkout-store">
-          <Select id="checkout-store" name="onlineStore">
+        <Field
+          label={onlineStore === "Yes" ? "Which e-commerce platform?" : "What type of website do you need?"}
+          id="checkout-type"
+        >
+          <Select
+            id="checkout-type"
+            name="websiteType"
+            value={websiteType}
+            onChange={(event) => setWebsiteType(event.target.value)}
+          >
+            <option value="">Select one</option>
+            {onlineStore === "Yes" ? (
+              <>
+                <option>Shopify</option>
+                <option>WordPress (WooCommerce)</option>
+                <option>Custom-coded store</option>
+                <option>Not sure yet</option>
+              </>
+            ) : (
+              <>
+                <option>WordPress</option>
+                <option>Shopify</option>
+                <option>Custom Coded</option>
+                <option>Not sure yet</option>
+              </>
+            )}
+          </Select>
+        </Field>
+        <Field label="Do you need calling integration?" id="checkout-calling">
+          <Select id="checkout-calling" name="callingIntegration">
             <option value="">Select one</option>
             <option>Yes</option>
             <option>No</option>
@@ -148,34 +190,36 @@ export function CheckoutForm({
           </Select>
         </Field>
         <Field label="Current website or domain (optional)" id="checkout-domain">
-          <Input id="checkout-domain" name="domain" placeholder="yourbusiness.in" />
+          <Input id="checkout-domain" name="domain" className="h-11 rounded-xl" placeholder="yourbusiness.in" />
         </Field>
-      </div>
+        </div>
+      </section>
 
-      <div className="mt-4">
-        <Field label="Attach file (optional)" id="checkout-file">
-          <Input
-            id="checkout-file"
-            name="file"
-            type="file"
-            className="cursor-pointer file:mr-4 file:py-1 file:px-3 file:rounded-md file:border file:border-border file:bg-secondary file:text-foreground hover:file:bg-secondary/80 text-muted-foreground pt-1.5 pb-1.5 h-auto"
-          />
-        </Field>
-      </div>
-
-      <div className="mt-4">
-        <Field label="Project notes (optional)" id="checkout-notes">
-          <Textarea
-            id="checkout-notes"
-            name="notes"
-            rows={4}
-            placeholder="Tell us what you sell, your target customers, and anything you need on the site."
-          />
-        </Field>
-      </div>
+      <section className="mt-8 border-t border-hairline pt-8">
+        <SectionLabel step="3">Anything else?</SectionLabel>
+        <div className="mt-5 grid gap-5">
+          <Field label="Attach file (optional)" id="checkout-file">
+            <Input
+              id="checkout-file"
+              name="file"
+              type="file"
+              className="cursor-pointer rounded-xl file:mr-4 file:py-1 file:px-3 file:rounded-md file:border file:border-border file:bg-secondary file:text-foreground hover:file:bg-secondary/80 text-muted-foreground pt-2 pb-2 h-auto"
+            />
+          </Field>
+          <Field label="Project notes (optional)" id="checkout-notes">
+            <Textarea
+              id="checkout-notes"
+              name="notes"
+              rows={4}
+              className="rounded-xl"
+              placeholder="Tell us what you sell, your target customers, and anything you need on the site."
+            />
+          </Field>
+        </div>
+      </section>
 
       {selectedAddons.length > 0 && (
-        <div className="mt-5 rounded-2xl bg-surface p-4">
+        <div className="mt-8 rounded-2xl bg-surface p-5">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
             Selected add-ons
           </p>
@@ -185,12 +229,31 @@ export function CheckoutForm({
 
       <button
         type="submit"
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.02]"
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 py-4 text-sm font-semibold text-background transition-transform hover:scale-[1.02]"
       >
         Submit and get your quote within 24 hours
         <ArrowRight className="h-4 w-4" />
       </button>
     </form>
+  );
+}
+
+function SectionLabel({
+  step,
+  children,
+}: {
+  step: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-foreground text-xs font-semibold text-background">
+        {step}
+      </span>
+      <h4 className="font-display text-lg font-semibold tracking-[-0.01em] text-foreground">
+        {children}
+      </h4>
+    </div>
   );
 }
 
@@ -205,7 +268,9 @@ function Field({
 }) {
   return (
     <div className="grid gap-2">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} className="text-[13px] font-medium text-muted-foreground">
+        {label}
+      </Label>
       {children}
     </div>
   );
@@ -215,18 +280,23 @@ function Select({
   id,
   name,
   children,
+  value,
+  onChange,
 }: {
   id: string;
   name: string;
   children: React.ReactNode;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }) {
+  const controlled = value !== undefined;
   return (
     <select
       id={id}
       name={name}
-      defaultValue=""
+      {...(controlled ? { value, onChange } : { defaultValue: "" })}
       required
-      className="h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none transition-colors focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 cursor-pointer"
+      className="h-11 w-full rounded-xl border border-input bg-transparent px-3.5 py-1 text-sm shadow-xs outline-none transition-colors focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 cursor-pointer"
     >
       {children}
     </select>
