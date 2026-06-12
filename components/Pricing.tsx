@@ -647,9 +647,10 @@ export function Pricing() {
                   {storeSummaryLabel && (
                     <SummaryRow
                       label={storeSummaryLabel}
-                      value={storePrice > 0 ? `Rs. ${storePrice.toLocaleString("en-IN")}` : "Free"}
+                      value={storePrice > 0 ? `Rs. ${storePrice.toLocaleString("en-IN")}` : <FreeTag />}
                     />
                   )}
+                  <SummaryRow label="Hosting + Maintenance Plan" value={<FreeTag />} />
                   {selectedAddonItems.map((addon) => (
                     <SummaryRow
                       key={addon.name}
@@ -694,6 +695,10 @@ export function Pricing() {
       </Dialog>
     </Section>
   );
+}
+
+function FreeTag() {
+  return <span className="text-amber-400 font-bold">Free</span>;
 }
 
 function SummaryRow({
