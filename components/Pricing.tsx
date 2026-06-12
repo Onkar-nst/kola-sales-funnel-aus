@@ -571,8 +571,8 @@ export function Pricing() {
                     <div className="mt-8 grid gap-3.5">
                       {addons.map((addon) => {
                         const Icon = addon.icon;
-                        const includedWithGrowth =
-                          selectedTier.name === "Professional" && addon.name === "Hosting + Maintenance Plan";
+                        // Hosting + Maintenance is free & pre-selected on every plan, and not unselectable.
+                        const includedWithGrowth = addon.name === "Hosting + Maintenance Plan";
                         const selected = selectedAddons.includes(addon.name) || includedWithGrowth;
 
                         return (
