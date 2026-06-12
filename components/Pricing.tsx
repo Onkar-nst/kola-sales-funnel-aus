@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Check,
+  X,
   ArrowRight,
   Shield,
   Globe,
@@ -12,7 +13,6 @@ import {
   CreditCard,
   Mail,
   Search,
-  CheckCircle,
   MessageCircle,
   Sparkles,
 } from "lucide-react";
@@ -81,6 +81,25 @@ const addons = [
   },
 ];
 
+type StorePlatform = "wordpress" | "shopify" | "custom";
+
+const STORE_PLATFORMS: { key: StorePlatform; label: string }[] = [
+  { key: "wordpress", label: "WordPress (WooCommerce)" },
+  { key: "shopify", label: "Shopify" },
+  { key: "custom", label: "Custom website" },
+];
+
+// E-commerce add-on is a one-time Rs. 7,500 only on Starter; free on Professional & Growth.
+const STORE_PRICE_STARTER = 7500;
+
+type Feature = {
+  label: string;
+  /** false = not included in this tier (shown crossed out in red) */
+  included?: boolean;
+  /** true = highlighted bonus (bold + "Bonus" badge) */
+  bonus?: boolean;
+};
+
 type Tier = {
   name: string;
   tag: string;
@@ -88,13 +107,15 @@ type Tier = {
   original: number;
   cta: string;
   highlight: boolean;
-  features: string[];
+  features: Feature[];
 };
 
 export function Pricing() {
   const isMobile = useIsMobile();
   const [selectedTier, setSelectedTier] = useState<Tier | null>(null);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
+  const [needsStore, setNeedsStore] = useState<"yes" | "no" | null>(null);
+  const [storePlatform, setStorePlatform] = useState<StorePlatform | null>(null);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -129,16 +150,19 @@ export function Pricing() {
       cta: "Get My Website →",
       highlight: false,
       features: [
-        "1 page custom website",
-        "Mobile & tablet responsive",
-        "Contact form + WhatsApp & email alerts",
-        "Google Maps & social embeds",
-        "Basic SEO setup (Google-ready)",
-        "72 hour delivery",
-        "1 revision round",
-        "Professional email (1 GB)",
-        "Annual Maintenance Contract",
-        "Free hosting & domain (1 year)"
+        { label: "Upto 2 pages" },
+        { label: "Mobile & tablet responsive" },
+        { label: "Contact form" },
+        { label: "72 hour delivery" },
+        { label: "1 revision round" },
+        { label: "Professional email (1 GB)" },
+        { label: "Free hosting & domain (1 year)" },
+        { label: "Annual Maintenance Contract", included: false },
+        { label: "SEO setup", included: false },
+        { label: "Email Integration", included: false },
+        { label: "ECommerce Functionality", included: false },
+        { label: "Google Analytics", included: false },
+        { label: "Google Search Console", included: false },
       ],
     },
     {
@@ -149,17 +173,21 @@ export function Pricing() {
       cta: "Get My Website →",
       highlight: true,
       features: [
-        "Up to 5 pages",
-        "Custom design, not a template",
-        "On-page SEO + Search Console",
-        "WhatsApp chat button",
-        "Google Analytics",
-        "Professional email (1 GB)",
-        "30 day post launch support",
-        "3 revision rounds",
-        "5 to 7 working days delivery",
-        "Annual Maintenance Contract",
-        "Free hosting & domain (1 year)"
+        { label: "Up to 5 pages" },
+        { label: "Mobile & tablet responsive" },
+        { label: "Contact Form with Email Integration" },
+        { label: "ECommerce Functionality", bonus: true },
+        { label: "5 to 7 working days delivery" },
+        { label: "3 revision rounds" },
+        { label: "Professional email (1 GB)" },
+        { label: "Free hosting & domain (1 year)" },
+        { label: "AMC 1 Month free" },
+        { label: "On Page SEO" },
+        { label: "WhatsApp chat button" },
+        { label: "Google Maps & social embeds" },
+        { label: "Google Analytics" },
+        { label: "Dedicated project manager", included: false },
+        { label: "Google Search Console", included: false },
       ],
     },
     {
@@ -170,19 +198,22 @@ export function Pricing() {
       cta: "Book a Call →",
       highlight: false,
       features: [
-        "Up to 10 pages / WooCommerce (50 products)",
-        "Custom coded option",
-        "Razorpay / Cashfree integration",
-        "Advanced SEO (schema, sitemap, audit)",
-        "Google Analytics",
-        "Google Search Console",
-        "WhatsApp Business API",
-        "3 month post launch support",
-        "Dedicated project manager",
-        "10 to 14 working days delivery",
-        "Professional email (1 GB)",
-        "Annual Maintenance Contract",
-        "Free hosting & domain (1 year)"
+        { label: "Up to 10 pages" },
+        { label: "Mobile & tablet responsive" },
+        { label: "Contact Form with Email Integration" },
+        { label: "Advanced On-Page SEO", bonus: true },
+        { label: "WhatsApp chat button", bonus: true },
+        { label: "10 to 14 working days delivery" },
+        { label: "5 revision rounds" },
+        { label: "Professional email (1 GB)" },
+        { label: "Free hosting & domain (1 year)" },
+        { label: "AMC 3 Month free" },
+        { label: "ECommerce Functionality" },
+        { label: "Google Maps & social embeds" },
+        { label: "Dedicated project manager" },
+        { label: "Licensed images" },
+        { label: "Google Analytics" },
+        { label: "Google Search Console" },
       ],
     },
   ];
@@ -198,9 +229,21 @@ export function Pricing() {
     .filter((addon) => addon.cadence.includes("/mo"))
     .reduce((sum, addon) => sum + addon.price, 0);
 
+  // E-commerce store: charged only on Starter, free on Professional & Growth.
+  const storeIsPaid = selectedTier?.name === "Starter" && needsStore === "yes";
+  const storePrice = storeIsPaid ? STORE_PRICE_STARTER : 0;
+  const storeSummaryLabel =
+    needsStore === "yes"
+      ? `Online store${storePlatform ? ` · ${STORE_PLATFORMS.find((p) => p.key === storePlatform)?.label}` : ""}`
+      : null;
+
+  const dueOnceTotal = (selectedTier?.price ?? 0) + oneTimeAddonTotal + storePrice;
+
   const openCheckout = (tier: Tier) => {
     setSelectedTier(tier);
     setSelectedAddons([]);
+    setNeedsStore(null);
+    setStorePlatform(null);
     setShowCheckoutForm(false);
   };
 
@@ -324,46 +367,43 @@ export function Pricing() {
             </button>
             <ul className="mt-7 space-y-3 px-1 text-sm">
               {t.features.map((feat) => {
-                const isHosting = feat === "Google Analytics" || feat === "Google Search Console";
+                const missing = feat.included === false;
+                const bonus = feat.bonus === true;
                 return (
                   <li
-                    key={feat}
-                    className={`flex items-center gap-2.5 ${isHosting
+                    key={feat.label}
+                    className={`flex items-center gap-2.5 ${bonus
                         ? t.highlight
-                          ? "rounded-xl bg-gradient-to-r from-amber-400/15 to-amber-500/15 text-amber-200 border border-amber-400/30 px-3 py-1.5 -mx-1 shadow-soft"
-                          : "rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-800 dark:text-amber-300 px-3 py-1.5 -mx-1 border border-amber-500/20 shadow-soft"
-                        : t.highlight
-                          ? "text-background/85"
-                          : "text-foreground"
+                          ? "rounded-xl bg-gradient-to-r from-amber-400/15 to-amber-500/15 border border-amber-400/30 px-3 py-1.5 -mx-1 shadow-soft"
+                          : "rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 px-3 py-1.5 -mx-1 border border-amber-500/20 shadow-soft"
+                        : missing
+                          ? t.highlight
+                            ? "text-background/40"
+                            : "text-muted-foreground"
+                          : t.highlight
+                            ? "text-background/85"
+                            : "text-foreground"
                       }`}
                   >
                     <span
-                      className={`grid h-4 w-4 shrink-0 place-items-center rounded-full ${isHosting
+                      className={`grid h-4 w-4 shrink-0 place-items-center rounded-full ${bonus
                           ? t.highlight
                             ? "bg-amber-400 text-foreground"
                             : "bg-amber-600 text-white"
-                          : t.highlight
-                            ? "bg-background text-foreground"
-                            : "bg-foreground text-background"
+                          : missing
+                            ? "bg-red-500/15 text-red-500"
+                            : "bg-emerald-500 text-white"
                         }`}
                     >
-                      <Check className="h-2.5 w-2.5" />
+                      {missing ? <X className="h-2.5 w-2.5" strokeWidth={3} /> : <Check className="h-2.5 w-2.5" strokeWidth={3} />}
                     </span>
-                    <span className={isHosting ? "font-semibold text-[13px] flex items-center justify-between w-full" : ""}>
-                      {isHosting ? (
-                        <>
-                          <span className={t.highlight ? "text-amber-100 font-bold" : "text-amber-900 dark:text-amber-200 font-bold"}>
-                            {feat}
-                          </span>
-                          <span className={`inline-flex rounded-full px-2 py-0.5 text-[9px] uppercase tracking-wider font-bold ${t.highlight ? "bg-amber-400 text-foreground" : "bg-amber-600 text-white"
-                            }`}>
-                            Bonus
-                          </span>
-                        </>
-                      ) : (
-                        feat
-                      )}
-                    </span>
+                    {bonus ? (
+                      <span className={`font-bold ${t.highlight ? "text-amber-100" : "text-amber-900 dark:text-amber-200"}`}>
+                        {feat.label}
+                      </span>
+                    ) : (
+                      <span className={missing ? "line-through" : ""}>{feat.label}</span>
+                    )}
                   </li>
                 );
               })}
@@ -397,38 +437,15 @@ export function Pricing() {
         ))}
       </div>
 
-      {/* Explainer Panel */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease }}
-        className="mx-auto max-w-3xl mt-6 md:mt-16 rounded-3xl bg-surface p-6 md:p-8 hairline border-brand/20 shadow-soft"
-      >
-        <div className="flex flex-col md:flex-row gap-5 items-start">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand">
-            <CheckCircle className="h-6 w-6 stroke-[2]" />
-          </div>
-          <div>
-            <h4 className="text-base font-semibold text-foreground">
-              What does the Rs. 7,999 Starter offer include?
-            </h4>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              The Rs. 7,999 Starter package is a fully built, 1 page conversion website. It is <strong>a one time payment</strong> the complete price, in INR, with a GST invoice. You get a custom designed, mobile responsive website delivered in 72 hours. If you&apos;re not happy, you get a full refund within 30 days. No catches.
-            </p>
-          </div>
-        </div>
-      </motion.div>
-
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
+      <div className="mt-8 md:mt-16 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1.5">
           <Shield className="h-3.5 w-3.5" /> 30 Day Money Back Guarantee
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <Code2 className="h-3.5 w-3.5" /> You own 100% of the code
+          <Code2 className="h-3.5 w-3.5" /> You own 100% of the website
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <CreditCard className="h-3.5 w-3.5" /> GST invoice provided · UPI, Razorpay & bank transfer
+          <CreditCard className="h-3.5 w-3.5" /> UPI, Razorpay & bank transfer
         </span>
       </div>
 
@@ -452,9 +469,12 @@ export function Pricing() {
                 {showCheckoutForm ? (
                   <CheckoutForm
                     planName={selectedTier.name}
-                    dueOnce={selectedTier.price + oneTimeAddonTotal}
+                    dueOnce={dueOnceTotal}
                     monthlyTotal={monthlyAddonTotal}
-                    selectedAddons={selectedAddonItems.map((addon) => addon.name)}
+                    selectedAddons={[
+                      ...(storeSummaryLabel ? [storeSummaryLabel] : []),
+                      ...selectedAddonItems.map((addon) => addon.name),
+                    ]}
                     onBack={() => setShowCheckoutForm(false)}
                   />
                 ) : (
@@ -470,6 +490,83 @@ export function Pricing() {
                         Add anything extra you need below, or skip straight to checkout. No payment is taken here.
                       </DialogDescription>
                     </DialogHeader>
+
+                    {/* Part 1 — Online store (E-commerce) */}
+                    <div className="mt-8 rounded-3xl hairline bg-surface-elevated p-5">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold">Do you need an online store?</p>
+                          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                            E-commerce functionality to sell products and take payments online.
+                          </p>
+                        </div>
+                        {needsStore === "yes" && (
+                          <span className="shrink-0 rounded-full bg-surface px-2.5 py-1 text-[11px] font-semibold">
+                            {storePrice > 0 ? `Rs. ${storePrice.toLocaleString("en-IN")}` : "Free"}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="mt-4 grid grid-cols-2 gap-3">
+                        {(["yes", "no"] as const).map((opt) => {
+                          const active = needsStore === opt;
+                          return (
+                            <button
+                              key={opt}
+                              type="button"
+                              onClick={() => {
+                                setNeedsStore(opt);
+                                if (opt === "no") setStorePlatform(null);
+                              }}
+                              className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold capitalize transition-all cursor-pointer ${active
+                                ? "bg-foreground text-background"
+                                : "hairline bg-surface-elevated hover:bg-background"
+                                }`}
+                            >
+                              <span
+                                className={`grid h-4 w-4 place-items-center rounded-full border ${active ? "border-background" : "border-hairline"
+                                  }`}
+                              >
+                                {active && <span className="h-1.5 w-1.5 rounded-full bg-background" />}
+                              </span>
+                              {opt}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {needsStore === "yes" && (
+                        <div className="mt-4">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                            Choose your platform
+                          </p>
+                          <div className="mt-3 grid gap-2.5">
+                            {STORE_PLATFORMS.map((p) => {
+                              const active = storePlatform === p.key;
+                              return (
+                                <button
+                                  key={p.key}
+                                  type="button"
+                                  onClick={() => setStorePlatform(p.key)}
+                                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm transition-all cursor-pointer ${active
+                                    ? "bg-background ring-1 ring-foreground/15 shadow-soft"
+                                    : "hairline bg-surface-elevated hover:bg-background"
+                                    }`}
+                                >
+                                  <span
+                                    className={`grid h-4 w-4 shrink-0 place-items-center rounded-full border ${active ? "border-foreground bg-foreground text-background" : "border-hairline"
+                                      }`}
+                                  >
+                                    {active && <Check className="h-2.5 w-2.5" strokeWidth={3} />}
+                                  </span>
+                                  <span className="font-medium">{p.label}</span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
 
                     <div className="mt-8 grid gap-3.5">
                       {addons.map((addon) => {
@@ -537,13 +634,22 @@ export function Pricing() {
                 <h3 className="mt-3 font-display text-3xl font-semibold">{selectedTier.name}</h3>
                 <div className="mt-6 space-y-3 text-sm border-b border-background/10 pb-4">
                   <SummaryRow label={`${selectedTier.name} website package`} value={`Rs. ${selectedTier.price.toLocaleString("en-IN")}`} />
-                  {selectedTier.features.slice(0, 4).map((feat) => (
+                  {selectedTier.features
+                    .filter((feat) => feat.included !== false)
+                    .slice(0, 4)
+                    .map((feat) => (
+                      <SummaryRow
+                        key={feat.label}
+                        label={feat.label}
+                        value="Included"
+                      />
+                    ))}
+                  {storeSummaryLabel && (
                     <SummaryRow
-                      key={feat}
-                      label={feat}
-                      value="Included"
+                      label={storeSummaryLabel}
+                      value={storePrice > 0 ? `Rs. ${storePrice.toLocaleString("en-IN")}` : "Free"}
                     />
-                  ))}
+                  )}
                   {selectedAddonItems.map((addon) => (
                     <SummaryRow
                       key={addon.name}
@@ -558,7 +664,7 @@ export function Pricing() {
                     <div>
                       <p className="text-xs text-background/45">Your package total</p>
                       <p className="mt-1 font-display text-4xl font-semibold tracking-[-0.04em]">
-                        Rs. {(selectedTier.price + oneTimeAddonTotal).toLocaleString("en-IN")}
+                        Rs. {dueOnceTotal.toLocaleString("en-IN")}
                       </p>
                     </div>
                     {monthlyAddonTotal > 0 && (

@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Lock, Menu, Coffee } from "lucide-react";
 
 const avatars = [
-    "https://i.pravatar.cc/80?img=12",
-    "https://i.pravatar.cc/80?img=33",
-    "https://i.pravatar.cc/80?img=15",
-    "https://i.pravatar.cc/80?img=54",
-    "https://i.pravatar.cc/80?img=8",
+    "/avatars/p1.jpg",
+    "/avatars/p2.jpg",
+    "/avatars/p3.jpg",
+    "/avatars/p4.jpg",
+    "/avatars/p5.jpg",
 ];
 
 const tickerItems = [

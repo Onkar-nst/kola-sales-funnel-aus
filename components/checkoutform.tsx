@@ -22,8 +22,6 @@ export function CheckoutForm({
   onBack,
 }: CheckoutFormProps) {
   const [submitted, setSubmitted] = useState(false);
-  const [onlineStore, setOnlineStore] = useState("");
-  const [websiteType, setWebsiteType] = useState("");
 
   if (submitted) {
     return (
@@ -78,10 +76,10 @@ export function CheckoutForm({
           <Field label="Full name" id="checkout-name">
             <Input id="checkout-name" name="name" className="h-11 rounded-xl" placeholder="Your name" required />
           </Field>
-          <Field label="Business name" id="checkout-business">
-            <Input id="checkout-business" name="business" className="h-11 rounded-xl" placeholder="Business name" required />
+          <Field label="Business name (optional)" id="checkout-business">
+            <Input id="checkout-business" name="business" className="h-11 rounded-xl" placeholder="Business name" />
           </Field>
-          <Field label="Your WhatsApp number" id="checkout-whatsapp">
+          <Field label="Your phone number" id="checkout-whatsapp">
             <Input id="checkout-whatsapp" name="whatsapp" type="tel" className="h-11 rounded-xl" placeholder="+91 ..." defaultValue="+91 " required />
           </Field>
           <Field label="Your email address" id="checkout-email">
@@ -91,58 +89,7 @@ export function CheckoutForm({
       </section>
 
       <section className="mt-8 border-t border-hairline pt-8">
-        <SectionLabel step="2">About your project</SectionLabel>
-        <div className="mt-5 grid gap-x-5 gap-y-5 sm:grid-cols-2">
-        <Field label="Do you need an online store? (e-commerce)" id="checkout-store">
-          <Select
-            id="checkout-store"
-            name="onlineStore"
-            value={onlineStore}
-            onChange={(event) => {
-              setOnlineStore(event.target.value);
-              setWebsiteType("");
-            }}
-          >
-            <option value="">Select one</option>
-            <option>Yes</option>
-            <option>No</option>
-          </Select>
-        </Field>
-        <Field
-          label={onlineStore === "Yes" ? "Which e-commerce platform?" : "What type of website do you need?"}
-          id="checkout-type"
-        >
-          <Select
-            id="checkout-type"
-            name="websiteType"
-            value={websiteType}
-            onChange={(event) => setWebsiteType(event.target.value)}
-          >
-            <option value="">Select one</option>
-            {onlineStore === "Yes" ? (
-              <>
-                <option>Shopify</option>
-                <option>WordPress (WooCommerce)</option>
-                <option>Custom-coded store</option>
-                <option>Not sure yet</option>
-              </>
-            ) : (
-              <>
-                <option>WordPress</option>
-                <option>Shopify</option>
-                <option>Custom Coded</option>
-                <option>Not sure yet</option>
-              </>
-            )}
-          </Select>
-        </Field>
-        <Field label="Do you need calling integration?" id="checkout-calling">
-          <Select id="checkout-calling" name="callingIntegration">
-            <option value="">Select one</option>
-            <option>Yes</option>
-            <option>No</option>
-          </Select>
-        </Field>
+        <div className="grid gap-x-5 gap-y-5 sm:grid-cols-2">
         <Field label="What type of business are you?" id="checkout-business-type">
           <Select id="checkout-business-type" name="businessType">
             <option value="">Select one</option>
@@ -153,30 +100,6 @@ export function CheckoutForm({
             <option>Education</option>
             <option>Restaurant</option>
             <option>Other</option>
-          </Select>
-        </Field>
-        <Field label="Do you have your content ready?" id="checkout-content">
-          <Select id="checkout-content" name="contentReady">
-            <option value="">Select one</option>
-            <option>Yes, fully ready</option>
-            <option>Partially ready</option>
-            <option>No, I need help</option>
-          </Select>
-        </Field>
-        <Field label="Do you have a logo?" id="checkout-logo">
-          <Select id="checkout-logo" name="hasLogo">
-            <option value="">Select one</option>
-            <option>Yes</option>
-            <option>No, I need one designed</option>
-          </Select>
-        </Field>
-        <Field label="When do you need your website?" id="checkout-timeline">
-          <Select id="checkout-timeline" name="timeline">
-            <option value="">Select one</option>
-            <option>ASAP</option>
-            <option>Within 2 weeks</option>
-            <option>Within a month</option>
-            <option>No fixed deadline</option>
           </Select>
         </Field>
         <Field label="How did you find us?" id="checkout-source">
@@ -196,9 +119,9 @@ export function CheckoutForm({
       </section>
 
       <section className="mt-8 border-t border-hairline pt-8">
-        <SectionLabel step="3">Anything else?</SectionLabel>
+        <SectionLabel step="2">Anything else?</SectionLabel>
         <div className="mt-5 grid gap-5">
-          <Field label="Attach file (optional)" id="checkout-file">
+          <Field label="Do you have any business file, menu, catalog? (optional)" id="checkout-file">
             <Input
               id="checkout-file"
               name="file"

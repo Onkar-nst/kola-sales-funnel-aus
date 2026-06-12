@@ -26,10 +26,10 @@ export function TrustBar() {
       sub: ["Across India & abroad", "Local traders to brands"],
     },
     {
-      k: 100,
-      suffix: "%",
-      v: "On-Time Delivery Rate",
-      sub: ["Fixed delivery dates", "We deliver when we promise"],
+      k: 10,
+      suffix: "+",
+      v: "Countries Served",
+      sub: ["Clients across the globe", "India & overseas markets"],
     },
   ];
 

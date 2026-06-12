@@ -17,7 +17,7 @@ export function Stats() {
     { k: 214, suffix: "%", v: "Avg. ROI in 30 days" },
     { k: 48, suffix: "h", v: "To launch your funnel" },
     { k: 98, suffix: "/100", v: "PageSpeed Score" },
-    { k: 3, suffix: "x", v: "More local leads" },
+    { k: 10, suffix: "+", v: "Countries" },
   ];
   return (
     <Section>
