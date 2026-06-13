@@ -8,6 +8,10 @@ import AnimatedHeading from "./AnimatedHeading";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function CTA() {
+  const deliveryDay = new Date(Date.now() + 72 * 60 * 60 * 1000).toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+
   return (
     <Section id="final-cta" className="!py-24 border-t border-hairline bg-surface/10 relative overflow-hidden">
       {/* Background decoration elements */}
@@ -27,7 +31,7 @@ export function CTA() {
           </div>
           
           <AnimatedHeading
-            lines={["Your website, live by Friday.", "Let's make it happen."]}
+            lines={[`Your website, live by ${deliveryDay}.`, "Let's make it happen."]}
             className="text-4xl sm:text-5xl font-bold tracking-tight max-w-3xl leading-[1.1]"
           />
 
