@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Sparkles, MessageCircle } from "lucide-react";
+import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
 import { Section } from "./Primitives";
 import AnimatedHeading from "./AnimatedHeading";
 
@@ -36,7 +36,7 @@ export function CTA() {
           />
 
           <p className="max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Join 100+ Indian businesses growing online with Kola Communications. From Rs. 7,999, no hidden charges, no surprises.
+            Join 100+ businesses growing online with Kola Communications. From Rs. 7,999, no hidden charges, no surprises.
           </p>
 
           <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
@@ -48,7 +48,7 @@ export function CTA() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/918928984774"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full hairline bg-surface-elevated px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface cursor-pointer"
@@ -56,18 +56,6 @@ export function CTA() {
               <MessageCircle className="h-4 w-4" />
               Or chat with us on WhatsApp
             </a>
-          </div>
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground font-medium">
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-neutral-900" /> 30 Day Money Back
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-neutral-900" /> Premium Custom Design
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-neutral-900" /> GST Invoice Provided
-            </span>
           </div>
         </motion.div>
       </div>

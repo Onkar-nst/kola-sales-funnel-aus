@@ -13,8 +13,10 @@ import {
   CreditCard,
   Mail,
   Search,
-  MessageCircle,
   Sparkles,
+  Images,
+  BarChart3,
+  LineChart,
 } from "lucide-react";
 import { Section, SectionHeader } from "./Primitives";
 import {
@@ -29,55 +31,98 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const addons = [
+type TierName = "Starter" | "Professional" | "Growth";
+
+// Per-tier add-on pricing. Either a price (with cadence) or free (optionally with a note).
+type AddonPrice =
+  | { amount: number; cadence: "/month" | " one time" }
+  | { free: true; note?: string };
+
+const addons: {
+  icon: typeof Search;
+  name: string;
+  d: string;
+  pricing: Record<TierName, AddonPrice>;
+}[] = [
   {
     icon: Search,
-    name: "SEO Starter Plan",
-    price: 4999,
-    cadence: "/month",
-    d: "Local SEO, Google Business Profile optimisation, monthly performance report.",
+    name: "Advanced SEO",
+    d: "Technical + local SEO, Google Business Profile optimisation, monthly performance report.",
+    pricing: {
+      Starter: { amount: 12500, cadence: "/month" },
+      Professional: { amount: 12500, cadence: "/month" },
+      Growth: { free: true, note: "Free for 1 month" },
+    },
   },
   {
     icon: Calendar,
-    name: "Booking System Integration",
-    price: 2499,
-    cadence: " one time",
+    name: "Calendar Integration",
     d: "Calendly, Cal.com, or custom booking form setup.",
+    pricing: {
+      Starter: { amount: 3500, cadence: " one time" },
+      Professional: { amount: 3500, cadence: " one time" },
+      Growth: { free: true },
+    },
   },
   {
-    icon: CreditCard,
-    name: "Payment Gateway Integration",
-    price: 2999,
-    cadence: " one time",
-    d: "Razorpay, Cashfree, or PayU setup.",
+    icon: Mail,
+    name: "Professional email (1 GB) (1 Year)",
+    d: "Professional business email on your own domain for a year.",
+    pricing: {
+      Starter: { free: true },
+      Professional: { free: true },
+      Growth: { free: true },
+    },
   },
   {
-    icon: MessageCircle,
-    name: "WhatsApp Business Integration",
-    price: 1499,
-    cadence: " one time",
-    d: "WhatsApp chat button + automated welcome message.",
+    icon: Globe,
+    name: "Free hosting & domain (1 year)",
+    d: "Indian server hosting, SSL, and your domain for the first year.",
+    pricing: {
+      Starter: { free: true },
+      Professional: { free: true },
+      Growth: { free: true },
+    },
+  },
+  {
+    icon: Images,
+    name: "Licensed Images",
+    d: "Premium licensed stock imagery sourced for your website.",
+    pricing: {
+      Starter: { amount: 2000, cadence: " one time" },
+      Professional: { amount: 2000, cadence: " one time" },
+      Growth: { free: true },
+    },
   },
   {
     icon: Sparkles,
     name: "Logo Design",
-    price: 3999,
-    cadence: " one time",
     d: "3 logo concepts, 2 revision rounds, all file formats.",
+    pricing: {
+      Starter: { amount: 5000, cadence: " one time" },
+      Professional: { amount: 5000, cadence: " one time" },
+      Growth: { amount: 5000, cadence: " one time" },
+    },
   },
   {
-    icon: Mail,
-    name: "Google Workspace Email",
-    price: 180,
-    cadence: "/month",
-    d: "Professional business email on your domain (per user).",
+    icon: BarChart3,
+    name: "Google Analytics",
+    d: "Full Google Analytics 4 setup and configuration.",
+    pricing: {
+      Starter: { amount: 1500, cadence: " one time" },
+      Professional: { free: true },
+      Growth: { free: true },
+    },
   },
   {
-    icon: Globe,
-    name: "Hosting + Maintenance Plan",
-    price: 999,
-    cadence: "/month",
-    d: "Indian server hosting, SSL, weekly backups, monthly updates.",
+    icon: LineChart,
+    name: "Google Search Console",
+    d: "Search Console setup, sitemap submission, and indexing.",
+    pricing: {
+      Starter: { amount: 1500, cadence: " one time" },
+      Professional: { amount: 1500, cadence: " one time" },
+      Growth: { free: true },
+    },
   },
 ];
 
@@ -218,16 +263,34 @@ export function Pricing() {
     },
   ];
 
+  // Resolve every add-on to the price for the currently selected tier (defaults to Starter).
+  const tierName = (selectedTier?.name ?? "Starter") as TierName;
+  const resolvedAddons = useMemo(
+    () =>
+      addons.map((addon) => {
+        const p = addon.pricing[tierName];
+        return "free" in p
+          ? { name: addon.name, icon: addon.icon, d: addon.d, free: true, amount: 0, cadence: "", note: p.note }
+          : { name: addon.name, icon: addon.icon, d: addon.d, free: false, amount: p.amount, cadence: p.cadence, note: undefined };
+      }),
+    [tierName],
+  );
+
   const selectedAddonItems = useMemo(
-    () => addons.filter((addon) => selectedAddons.includes(addon.name)),
-    [selectedAddons],
+    () => resolvedAddons.filter((addon) => !addon.free && selectedAddons.includes(addon.name)),
+    [resolvedAddons, selectedAddons],
+  );
+  // Add-ons that are free on the selected plan — always shown as included in the order summary.
+  const freeAddonItems = useMemo(
+    () => resolvedAddons.filter((addon) => addon.free),
+    [resolvedAddons],
   );
   const oneTimeAddonTotal = selectedAddonItems
     .filter((addon) => addon.cadence.includes("one time"))
-    .reduce((sum, addon) => sum + addon.price, 0);
+    .reduce((sum, addon) => sum + addon.amount, 0);
   const monthlyAddonTotal = selectedAddonItems
     .filter((addon) => addon.cadence.includes("/mo"))
-    .reduce((sum, addon) => sum + addon.price, 0);
+    .reduce((sum, addon) => sum + addon.amount, 0);
 
   // E-commerce store: charged only on Starter, free on Professional & Growth.
   const storeIsPaid = selectedTier?.name === "Starter" && needsStore === "yes";
@@ -309,7 +372,7 @@ export function Pricing() {
             </span>
           </>
         }
-        subtitle="Every package is fixed price. What you see is what you pay, in full, upfront, in INR. No dollar conversions. No GST surprises. Just a website that works."
+        subtitle="Every package is fixed price. What you see is what you pay, in full, upfront, in INR. No dollar conversions. No hidden extras. Just a website that works."
       />
 
       <div 
@@ -569,22 +632,22 @@ export function Pricing() {
                     </div>
 
                     <div className="mt-8 grid gap-3.5">
-                      {addons.map((addon) => {
+                      {resolvedAddons.map((addon) => {
                         const Icon = addon.icon;
-                        // Hosting + Maintenance is free & pre-selected on every plan, and not unselectable.
-                        const includedWithGrowth = addon.name === "Hosting + Maintenance Plan";
-                        const selected = selectedAddons.includes(addon.name) || includedWithGrowth;
+                        // Items that are free on the selected plan are shown as included and not toggleable.
+                        const free = addon.free;
+                        const selected = free || selectedAddons.includes(addon.name);
 
                         return (
                           <button
                             key={addon.name}
                             type="button"
-                            disabled={includedWithGrowth}
+                            disabled={free}
                             onClick={() => toggleAddon(addon.name)}
                             className={`flex items-start gap-4 rounded-3xl p-5 text-left transition-all cursor-pointer ${selected
                               ? "bg-background ring-1 ring-foreground/15 shadow-soft"
                               : "hairline bg-surface-elevated hover:bg-background"
-                              } ${includedWithGrowth ? "cursor-default opacity-90" : ""}`}
+                              } ${free ? "cursor-default opacity-90" : ""}`}
                           >
                             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-foreground text-background">
                               <Icon className="h-4 w-4" />
@@ -593,14 +656,11 @@ export function Pricing() {
                               <span className="flex items-start justify-between gap-3">
                                 <span className="font-semibold">{addon.name}</span>
                                 <span className="shrink-0 rounded-full bg-surface px-2.5 py-1 text-[11px] font-semibold">
-                                  {includedWithGrowth ? (
-                                    <>
-                                      <span className="mr-1 line-through opacity-50">Rs. 999/month</span>
-                                      Free
-                                    </>
+                                  {free ? (
+                                    addon.note ?? "Free"
                                   ) : (
                                     <>
-                                      Rs. {addon.price.toLocaleString("en-IN")}
+                                      Rs. {addon.amount.toLocaleString("en-IN")}
                                       {addon.cadence}
                                     </>
                                   )}
@@ -625,7 +685,7 @@ export function Pricing() {
               </div>
 
               <aside
-                className={`bg-foreground p-6 text-background md:p-8 md:max-h-[90dvh] md:overflow-y-auto scrollbar-none ${showCheckoutForm ? "hidden md:block" : ""}`}
+                className={`bg-foreground p-6 text-background md:p-8 md:max-h-[90dvh] md:overflow-y-auto overscroll-contain scrollbar-none ${showCheckoutForm ? "hidden md:block" : ""}`}
                 style={{ paddingBottom: "calc(2.5rem + env(safe-area-inset-bottom))" }}
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-background/50">
@@ -650,12 +710,18 @@ export function Pricing() {
                       value={storePrice > 0 ? `Rs. ${storePrice.toLocaleString("en-IN")}` : <FreeTag />}
                     />
                   )}
-                  <SummaryRow label="Hosting + Maintenance Plan" value={<FreeTag />} />
+                  {freeAddonItems.map((addon) => (
+                    <SummaryRow
+                      key={addon.name}
+                      label={addon.name}
+                      value={addon.note ? <span className="text-amber-400 font-bold">{addon.note}</span> : <FreeTag />}
+                    />
+                  ))}
                   {selectedAddonItems.map((addon) => (
                     <SummaryRow
                       key={addon.name}
                       label={addon.name}
-                      value={`Rs. ${addon.price.toLocaleString("en-IN")}${addon.cadence}`}
+                      value={`Rs. ${addon.amount.toLocaleString("en-IN")}${addon.cadence}`}
                     />
                   ))}
                 </div>

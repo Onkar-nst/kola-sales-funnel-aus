@@ -27,7 +27,6 @@ export function Footer() {
             </p>
 
             <p className="mt-3 text-xs font-medium text-muted-foreground/80">
-              Founded by Anmol Kanodia ·{" "}
               <a
                 href="https://kolacommunications.com"
                 target="_blank"
@@ -46,13 +45,13 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 shrink-0 text-muted-foreground/60" />
-                <a href="tel:+919999999999" className="transition-colors hover:text-foreground">
-                  +91 99999 99999
+                <a href="tel:+918928984774" className="transition-colors hover:text-foreground">
+                  +91-8928984774
                 </a>
               </li>
             </ul>
 
-            {/* Payment methods & GST */}
+            {/* Payment methods */}
             <div className="mt-6 flex flex-wrap items-center gap-2">
               {["UPI", "Razorpay", "Bank Transfer"].map((m) => (
                 <span
@@ -62,9 +61,6 @@ export function Footer() {
                   {m}
                 </span>
               ))}
-              <span className="rounded-md border border-hairline bg-surface-elevated px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                GST No: XXXXXXXXXXXXXXX
-              </span>
             </div>
           </div>
 
@@ -131,7 +127,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start gap-1">
             <span>© {new Date().getFullYear()} Kola Communications. All rights reserved.</span>
             <span className="text-[10px] text-muted-foreground/75">
-              Registered Indian Business · Mumbai, Maharashtra
+              Mumbai, Maharashtra
             </span>
           </div>
 

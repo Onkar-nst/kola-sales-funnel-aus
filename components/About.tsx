@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react";
 import AnimatedHeading from "./AnimatedHeading";
 
 const cards = [
-    { t: "Custom, Never Templated", d: "Every business gets a site built around what they actually need, not a template filled in with their logo and colour." },
-    { t: "One Team, One Price", d: "We handle design, development, content structure, SEO setup, and launch. No coordinating between five different people." },
-    { t: "Built For Your Industry", d: "We've built for clinics, consultants, real estate firms, coaches, exporters, and D2C brands across India." },
+    { t: "Premium Design, Every Time", d: "Every website we deliver looks like it cost a lot more than it did. Clean layouts, sharp typography, intentional spacing. Whether you are a local service provider or a growing brand, your website should make visitors stop and take notice. That is the standard we hold every project to." },
+    { t: "Your Platform, Your Choice", d: "WordPress for a powerful, flexible website. Shopify for a high-converting online store. Custom coded for complete control. You choose what fits your business. We build it to the highest standard." },
+    { t: "Built For Mobile From Day One", d: "More than 75% of your visitors will land on your website from their phone. Every website we build is fully optimised for mobile before anything else. Fast, responsive, and tested across devices so your business looks sharp on every screen." },
 ];
 
 export function About() {

@@ -17,7 +17,7 @@ export function TrustBar() {
       k: 4.8,
       suffix: "/5",
       v: "Client Satisfaction Score",
-      sub: ["Verified client reviews", "Real Indian businesses"],
+      sub: ["Verified client reviews", "Businesses across India and abroad"],
     },
     {
       k: 150,

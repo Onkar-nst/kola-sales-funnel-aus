@@ -38,7 +38,7 @@ export function Showcase() {
       city: "Mumbai",
       grad: "linear-gradient(135deg, oklch(0.78 0.08 220), oklch(0.48 0.12 250))",
       url: "https://www.lasertechnologies.co.in/",
-      img: "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Laser-Technologies-Pvt.-Ltd.jpg",
+      img: "/portfolio/laser-technologies.jpg",
       description:
         "A leading industrial laser machinery manufacturer and supplier serving automotive, aerospace, fabrication, and engineering industries across India. We designed and developed a high-performance website showcasing their fiber laser cutting, welding, marking, engraving, CO2, and UV laser solutions while generating qualified industrial enquiries.",
       subtitle: "High-Performance B2B Catalog & Machinery Showcases",
@@ -57,7 +57,7 @@ export function Showcase() {
         text: "We built a customized, lightweight specs directory with instant client-side filtering. By applying static site generation (SSG) for machine model pages, we decreased load times to 0.4s and boosted organic search visibility."
       },
       gallery: [
-        "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Laser-Technologies-Pvt.-Ltd.jpg",
+        "/portfolio/laser-technologies.jpg",
         "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800",
         "https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=800",
         "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800",
@@ -94,7 +94,7 @@ export function Showcase() {
       city: "Lonavala",
       grad: "linear-gradient(135deg, oklch(0.82 0.08 95), oklch(0.58 0.12 45))",
       url: "https://claytonholidays.com/",
-      img: "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Clayton-Holidays.jpg",
+      img: "/portfolio/clayton-holidays.jpg",
       description:
         "A luxury private pool villa nestled in the Western Ghats of Lonavala. We designed an immersive, visual-first website that showcases the property's premium amenities, scenic surroundings, and exclusive stay experience while driving direct booking enquiries.",
       subtitle: "Luxury Private Villa Immersive Showcase",
@@ -113,7 +113,7 @@ export function Showcase() {
         text: "We built an immersive website showcasing Clayton villa's premium pool, views, and bedrooms. A streamlined mobile inquiry flow sends bookings directly to their WhatsApp team, cutting out intermediate fees."
       },
       gallery: [
-        "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Clayton-Holidays.jpg",
+        "/portfolio/clayton-holidays.jpg",
         "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800",
         "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=800",
         "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=800",
@@ -150,7 +150,7 @@ export function Showcase() {
       city: "Mumbai",
       grad: "linear-gradient(135deg, oklch(0.78 0.12 145), oklch(0.55 0.15 110))",
       url: "https://livyor.com/",
-      img: "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Livyor.jpg",
+      img: "/portfolio/livyor.jpg",
       description:
         "A premium healthy snacks and dry fruits brand offering nuts, seeds, and wellness products across India. We developed a scalable Shopify store focused on smooth navigation, fast checkout experiences, and high-converting product discovery.",
       subtitle: "Premium Organic Snacks E-Commerce Storefront",
@@ -169,7 +169,7 @@ export function Showcase() {
         text: "We completely optimized the checkout funnel and integrated a blazing fast cart side-drawer. We implemented advanced smart tags for filtering, allowing users to find healthy snacks instantly."
       },
       gallery: [
-        "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Livyor.jpg",
+        "/portfolio/livyor.jpg",
         "https://images.unsplash.com/photo-1596489815182-748af815d909?q=80&w=800",
         "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800",
         "https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?q=80&w=800",
@@ -206,7 +206,7 @@ export function Showcase() {
       city: "Mumbai",
       grad: "linear-gradient(135deg, oklch(0.76 0.08 35), oklch(0.50 0.10 20))",
       url: "https://veenadevelopers.com/",
-      img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
+      img: "/portfolio/veena-developers.jpg",
       description:
         "One of Mumbai's established real estate developers known for premium residential and redevelopment projects. We built a custom-coded website featuring immersive property showcases, global performance optimization, and a premium browsing experience for homebuyers.",
       subtitle: "Premium Property Showcase & Lead Gen",
@@ -225,7 +225,7 @@ export function Showcase() {
         text: "We developed a static website built with Next.js and distributed assets via an edge CDN. We compressed site models and high-res layout plans, which reduced loading times across the globe by 300%."
       },
       gallery: [
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop",
+        "/portfolio/veena-developers.jpg",
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800",
         "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800",
         "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800",
@@ -262,7 +262,7 @@ export function Showcase() {
       city: "Mumbai",
       grad: "linear-gradient(135deg, oklch(0.78 0.18 330), oklch(0.50 0.22 290))",
       url: "https://purvadesai.com",
-      img: "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Purva-Desai-Co.jpg",
+      img: "/portfolio/purva-desai.jpg",
       description:
         "A creative social media and branding agency helping businesses grow through impactful digital campaigns. We crafted a portfolio first WordPress website with immersive animations, video storytelling, and premium project showcases to elevate brand perception.",
       subtitle: "Interactive Storytelling Portfolio for Creative Agency",
@@ -281,7 +281,7 @@ export function Showcase() {
         text: "We built an animation-heavy, visual-first WordPress site featuring video backgrounds, customized case study layouts, and sleek scroll animations to mirror their high-end creative identity."
       },
       gallery: [
-        "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Purva-Desai-Co.jpg",
+        "/portfolio/purva-desai.jpg",
         "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800",
         "https://images.unsplash.com/photo-1542744094-3a31f103e35f?q=80&w=800",
         "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800",
@@ -318,7 +318,7 @@ export function Showcase() {
       city: "Mumbai",
       grad: "linear-gradient(135deg, oklch(0.82 0.12 30), oklch(0.55 0.18 10))",
       url: "https://tazaari.com/",
-      img: "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Tazaari.jpg",
+      img: "/portfolio/tazaari.jpg",
       description:
         "An online fashion brand offering stylish clothing for men and women. We developed a modern WooCommerce-powered shopping platform focused on seamless product discovery, secure transactions, and conversion-driven user journeys.",
       subtitle: "High-Performance WooCommerce Storefront",
@@ -337,7 +337,7 @@ export function Showcase() {
         text: "We built an optimized checkout process on WooCommerce and custom-designed the product grid with lightning-fast AJAX filtering, helping shoppers find fashion items instantly."
       },
       gallery: [
-        "https://cms.kolacommunications.com/wp-content/uploads/2026/04/Tazaari.jpg",
+        "/portfolio/tazaari.jpg",
         "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800",
         "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800",
         "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800",
@@ -369,60 +369,160 @@ export function Showcase() {
       outcome: "Boosted monthly organic traffic by 120% and reduced cart abandonment rate by implementing a fast WooCommerce checkout."
     },
     {
-      tag: "Energy Infrastructure",
-      name: "Sterlite Grid",
+      tag: "Technology",
+      name: "BluFeather Solutions",
       city: "Mumbai",
       grad: "linear-gradient(135deg, oklch(0.72 0.10 220), oklch(0.48 0.14 250))",
-      url: "https://www.sterlitegrid.com/",
-      img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1000&auto=format&fit=crop",
+      url: "https://blufeathersolution.com/",
+      img: "/portfolio/blufeather-v2.jpg",
       description:
-        "A leading power transmission infrastructure company connecting critical energy networks across India. We developed a modern enterprise website that highlights infrastructure projects, sustainability initiatives, and stakeholder communication through a scalable digital experience.",
-      subtitle: "Scalable Enterprise ESG & Projects Portal",
+        "An enterprise technology company providing secure AI infrastructure, dedicated compute resources, and high-performance services for businesses that need confidential, scalable AI environments. We built a clean, professional WordPress website that presents their services clearly and builds trust with enterprise buyers.",
+      subtitle: "Enterprise-Grade AI Infrastructure Website",
       stats: {
         delivery: "72 Hours",
-        pagespeed: "99/100",
-        conversion: "100%",
+        pagespeed: "98/100",
+        conversion: "Enterprise Leads",
         mobile: "99%"
       },
       challenge: {
-        title: "Heavy Content Maintenance Overhead",
-        text: "Sterlite Grid wanted to present power transmission projects and sustainability charts to global investors. However, updating pages was slow and required writing code, blocking swift investor updates."
+        title: "Communicating Complex AI Services with Clarity",
+        text: "BluFeather Solutions needed to present technical AI infrastructure and compute services to enterprise buyers without overwhelming them. The challenge was building immediate credibility and trust while keeping highly technical offerings clear and easy to navigate."
       },
       solution: {
-        title: "Headless Content Management",
-        text: "We built a static enterprise website utilizing static site generation (SSG). A headless content editor enables team members to modify news, documents, and ESG details without technical overhead."
+        title: "Clean, Structured Enterprise Web Presence",
+        text: "We developed a professional WordPress website with services organised across dedicated, well-structured sections. Considered branding and usability enhancements established credibility and positioned BluFeather as a secure, enterprise-grade AI infrastructure provider."
       },
       gallery: [
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1000&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=800",
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=800",
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800",
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800"
+        "/portfolio/blufeather-v2.jpg"
       ],
       featuresDelivered: [
-        "Structured Headless CMS",
-        "Investor Document Hub",
-        "ESG Interactive Charts",
-        "Global Enterprise Search",
-        "Static Page Rendering",
+        "Custom WordPress Build",
+        "Structured Service Pages",
+        "Enterprise Brand Identity",
+        "Lead Generation Funnel",
+        "Trust & Credibility Design",
         "Mobile First Responsive",
-        "Enterprise SEO Setup",
+        "On Page SEO Setup",
         "SSL Security Shield"
       ],
       results: {
-        lighthouse: "99/100",
-        loadTime: "0.2s",
+        lighthouse: "98/100",
+        loadTime: "0.3s",
         deliveryDuration: "72 Hours",
         responsiveness: "99% Score"
       },
       details: {
-        industry: "Energy Infrastructure",
+        industry: "AI Infrastructure & Technology",
         location: "Mumbai, India",
         timeline: "72 Hours",
-        techStack: ["Next.js", "React JS", "Tailwind CSS", "Headless CMS"],
+        techStack: ["WordPress", "Tailwind CSS", "PHP", "MySQL"],
         year: "2026"
       },
-      outcome: "Enhanced corporate communication and stakeholder engagement with a robust, accessible enterprise platform."
+      outcome: "Established a credible, enterprise-grade digital presence that clearly communicates BluFeather's secure AI infrastructure services to high-value business clients."
+    },
+    {
+      tag: "Luxury Hospitality",
+      name: "Aashiyaanaa Villas",
+      city: "Lonavala",
+      grad: "linear-gradient(135deg, oklch(0.82 0.10 60), oklch(0.55 0.12 30))",
+      url: "https://aashiyaanaavilla.com/",
+      img: "/portfolio/aashiyaanaa.jpg",
+      description:
+        "A luxury private villa destination in Lonavala offering exclusive stays with premium interiors and amenities. We designed a visually immersive WordPress website featuring rich imagery, property highlights, and direct booking functionality, conveying elegance and exclusivity for high-end travellers.",
+      subtitle: "Immersive Luxury Villa Booking Experience",
+      stats: {
+        delivery: "48 Hours",
+        pagespeed: "97/100",
+        conversion: "Direct Bookings",
+        mobile: "100%"
+      },
+      challenge: {
+        title: "Standing Out in a Crowded Luxury Stay Market",
+        text: "Aashiyaanaa Villas needed to convey exclusivity and premium lifestyle appeal while driving direct booking enquiries rather than depending on third-party travel platforms. The website had to feel as premium as the stay itself."
+      },
+      solution: {
+        title: "Visual-First Immersive Showcase",
+        text: "We built an immersive WordPress site with rich photography, property highlights, amenities, and a streamlined booking enquiry flow that sends guests straight to the team. The design conveyed elegance and exclusivity tailored to high-end clientele."
+      },
+      gallery: [
+        "/portfolio/aashiyaanaa.jpg"
+      ],
+      featuresDelivered: [
+        "Immersive Villa Showcase",
+        "Direct Booking Enquiry",
+        "Rich Image Galleries",
+        "WhatsApp Integration",
+        "Mobile First Responsive",
+        "Premium Brand Design",
+        "On Page SEO Setup",
+        "SSL Security Shield"
+      ],
+      results: {
+        lighthouse: "97/100",
+        loadTime: "0.4s",
+        deliveryDuration: "48 Hours",
+        responsiveness: "100% Score"
+      },
+      details: {
+        industry: "Luxury Hospitality",
+        location: "Lonavala, India",
+        timeline: "48 Hours",
+        techStack: ["WordPress", "Elementor", "Tailwind CSS", "PHP"],
+        year: "2026"
+      },
+      outcome: "Delivered an elegant, immersive digital presence that positions Aashiyaanaa Villas as a premium Lonavala destination and drives direct booking enquiries."
+    },
+    {
+      tag: "Energy Infrastructure",
+      name: "Resonia Group",
+      city: "Northeast India",
+      grad: "linear-gradient(135deg, oklch(0.78 0.10 180), oklch(0.50 0.13 200))",
+      url: "https://nbtl.co.in/",
+      img: "/portfolio/resonia-nbtl.jpg",
+      description:
+        "Resonia (formerly Sterlite Power), a leading name in India's power transmission sector, needed a project website for the Nangalbibra-Bongaigaon Transmission Line. We built a clear, structured WordPress site presenting objectives, milestones, and engineering highlights, reinforcing stakeholder confidence in this strategic Northeast India infrastructure initiative.",
+      subtitle: "Nangalbibra-Bongaigaon Transmission Line",
+      stats: {
+        delivery: "72 Hours",
+        pagespeed: "98/100",
+        conversion: "Stakeholder Trust",
+        mobile: "99%"
+      },
+      challenge: {
+        title: "Presenting a Complex Infrastructure Project",
+        text: "Resonia needed to communicate the strategic importance, milestones, and engineering practices of a major transmission line to a range of stakeholders. The information had to be accessible, transparent, and professional without becoming overwhelming."
+      },
+      solution: {
+        title: "Structured Stakeholder-Focused Website",
+        text: "We developed a clearly structured WordPress site presenting project objectives, milestones, and innovative engineering practices. Dedicated sections and gallery visuals showcased project highlights, ensuring transparency and reinforcing stakeholder confidence."
+      },
+      gallery: [
+        "/portfolio/resonia-nbtl.jpg"
+      ],
+      featuresDelivered: [
+        "Structured Project Pages",
+        "Milestone Highlights",
+        "Project Gallery",
+        "Stakeholder Information Hub",
+        "Mobile First Responsive",
+        "Professional Brand Design",
+        "On Page SEO Setup",
+        "SSL Security Shield"
+      ],
+      results: {
+        lighthouse: "98/100",
+        loadTime: "0.3s",
+        deliveryDuration: "72 Hours",
+        responsiveness: "99% Score"
+      },
+      details: {
+        industry: "Power Transmission Infrastructure",
+        location: "Northeast India",
+        timeline: "72 Hours",
+        techStack: ["WordPress", "Tailwind CSS", "PHP", "MySQL"],
+        year: "2026"
+      },
+      outcome: "Delivered a transparent, professional project website that reinforces stakeholder confidence in Resonia's strategic Nangalbibra-Bongaigaon transmission initiative."
     }
     ];
     return rawCards.map(card => {
@@ -581,10 +681,10 @@ export function Showcase() {
           Portfolio
         </div>
         <AnimatedHeading
-          lines={["Real websites.", "Real Indian businesses."]}
+          lines={["Real websites.", "Real results."]}
           className="max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.02em] md:text-5xl lg:text-6xl text-center"
         />
-        <p className="max-w-xl text-balance text-muted-foreground">{`Every single one of these custom websites was designed, built, and launched in as little as 72 hours.`}</p>
+        <p className="max-w-xl text-balance text-muted-foreground">{`Every one of these websites was custom designed and built from scratch. No templates. No shortcuts.`}</p>
       </div>
 
       <div className="relative w-full py-4 mt-8">

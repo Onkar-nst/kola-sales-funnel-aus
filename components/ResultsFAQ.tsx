@@ -75,28 +75,44 @@ const reviews: ReviewItem[] = [
 
 const faqs = [
   {
-    q: "Will my website show up on Google?",
-    a: "Yes. Every website we build includes basic on page SEO and submission to Google Search Console. Professional and Growth packages include advanced SEO configuration. Ranking takes time and ongoing effort, but we make sure Google can find and index your site from day one.",
+    q: "Which platform will my website be built on?",
+    a: "It depends on what your business needs. WordPress works well for most business websites. Shopify or WooCommerce for online stores. Custom coded for businesses that need something built entirely from scratch. We will recommend the right option after understanding your brief.",
   },
   {
     q: "Do I own my website after the project?",
-    a: "Absolutely. Once the project is delivered and payment is complete, you own everything: the domain, the hosting account, and every file on the website.",
+    a: "Yes, completely. Once the project is delivered and payment is complete, you own the domain, the hosting account, and every file on the website. We do not hold access or retain anything after handover.",
   },
   {
     q: "Can I pay in instalments?",
-    a: "Yes. For Professional and Growth packages, we offer a 50% upfront and 50% on delivery payment structure. We accept UPI, bank transfer, and Razorpay.",
+    a: "Yes. For the Professional and Growth packages, we accept 50% upfront and 50% on delivery. The Starter package requires full payment upfront given the short turnaround. We accept UPI, bank transfer, and Razorpay.",
   },
   {
-    q: "What if I do not have content or images ready?",
-    a: "We will guide you through exactly what we need. For Professional and Growth packages, we also offer basic copywriting support to get your key pages written. Stock images are included at no extra cost.",
+    q: "What if I do not know what to write on my website?",
+    a: "Most of our clients feel the same way. During onboarding we ask you a set of simple questions about your business, your customers, and what you want visitors to do. We use your answers to structure the content for you. You do not need to be a writer to get a website that reads well.",
   },
   {
     q: "How do I communicate with your team during the project?",
-    a: "Primarily via WhatsApp and email. You will have a dedicated point of contact for your project, so there is no confusion about who to reach out to.",
+    a: "Primarily via WhatsApp and email. You will have one point of contact from start to finish. No confusion, no being passed around.",
+  },
+  {
+    q: "What is the difference between the three packages?",
+    a: "Starter at Rs. 7,999 is for businesses that need a clean, professional presence online quickly. Professional at Rs. 24,999 is a full multi-page website built for enquiry generation with more features and support. Growth at Rs. 59,999 is for businesses that need a complete digital setup including eCommerce, advanced integrations, and longer support.",
+  },
+  {
+    q: "How does delivery timing work?",
+    a: "Timelines start from the moment we have everything we need from you, including your content, logo, and any references. Starter packages are delivered within 72 hours. Professional within 5 to 7 working days. Growth within 10 to 14 working days. The sooner you send us your material, the faster we move.",
   },
   {
     q: "Do you build websites in Hindi or other Indian languages?",
-    a: "Yes. We can build bilingual websites in English and Hindi, or any regional language. Let us know your requirement when filling out the project form.",
+    a: "Yes. We can build bilingual websites in English and Hindi or any regional language. Just mention it when you fill out the project form.",
+  },
+  {
+    q: "Will my website show up on Google?",
+    a: "Google finds most websites on its own over time. Professional and Growth packages include proper SEO configuration and Search Console setup to speed that up. Starter is built clean and fast, which helps, but ranking depends on your industry, competition, and whether you invest in SEO work over time.",
+  },
+  {
+    q: "What happens after my post-launch support period ends?",
+    a: "We offer ongoing maintenance plans starting at Rs. 999 per month covering updates, backups, and security. It is optional but recommended, especially for WordPress websites.",
   },
 ];
 

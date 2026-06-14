@@ -129,7 +129,7 @@ export function Hero() {
                                 className="inline-flex max-w-full overflow-hidden rounded-xl group active:scale-95 transition-transform"
                             >
                                 <div className="bg-white text-neutral-950 px-5 sm:px-6 py-3.5 text-[13px] sm:text-[15px] font-bold transition-colors group-hover:bg-neutral-100 whitespace-nowrap">
-                                    Get my website, From Rs. 7,999
+                                    Get My Website, From Rs. 7,999
                                 </div>
                                 <div className="bg-white text-neutral-950 px-4 py-3.5 flex items-center border-l border-neutral-200 transition-colors group-hover:bg-neutral-100">
                                     <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
