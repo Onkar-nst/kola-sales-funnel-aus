@@ -1,5 +1,4 @@
 import Image from "next/image";
-import team from "@/app/team.jpg";
 import { ArrowRight } from "lucide-react";
 import AnimatedHeading from "./AnimatedHeading";
 
@@ -53,11 +52,13 @@ export function About() {
                 </div>
 
                 {/* Bottom Image Block */}
-                <div className="mt-16 relative rounded-3xl overflow-hidden border border-neutral-900 shadow-elevated">
-                    <Image 
-                        src={team} 
-                        alt="Kola Communications team" 
-                        className="w-full h-[420px] md:h-[560px] object-cover" 
+                <div className="mt-16 relative h-[420px] md:h-[560px] rounded-3xl overflow-hidden border border-neutral-900 shadow-elevated">
+                    <Image
+                        src="/kola-about.jpg"
+                        alt="Kola Communications"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 1280px"
+                        className="object-cover"
                         priority
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />

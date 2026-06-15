@@ -248,7 +248,7 @@ export function ResultsFAQ() {
           </div>
 
           {/* ═══════════════ RIGHT COLUMN: Preview animation (Moved from Hero) ═══════════════ */}
-          <div className="lg:col-span-6 flex flex-col justify-between h-full gap-10">
+          <div className="lg:col-span-6 flex flex-col justify-center h-full gap-10">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}

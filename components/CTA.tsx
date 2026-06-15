@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, MessageCircle } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Section } from "./Primitives";
 import AnimatedHeading from "./AnimatedHeading";
 
@@ -42,9 +42,15 @@ export function CTA() {
           <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <a
               href="#pricing"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(
+                  new CustomEvent("kola:open-checkout", { detail: { tier: "Starter" } }),
+                );
+              }}
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-black text-white px-8 py-4 text-sm font-semibold shadow-soft transition-all hover:bg-neutral-900 active:scale-[0.98] cursor-pointer"
             >
-              Get My Website Now
+              Get My Website, From Rs. 7,999
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
@@ -53,7 +59,6 @@ export function CTA() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full hairline bg-surface-elevated px-8 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface cursor-pointer"
             >
-              <MessageCircle className="h-4 w-4" />
               Or chat with us on WhatsApp
             </a>
           </div>

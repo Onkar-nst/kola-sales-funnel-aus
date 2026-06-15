@@ -18,13 +18,224 @@ import {
   Calendar,
   Layers,
   MapPin,
-  Check
+  Check,
+  Plus
 } from "lucide-react";
 import { Section, SectionHeader } from "./Primitives";
 import AnimatedHeading from "./AnimatedHeading";
 import Image from "next/image";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+// Case-study content sourced from the live Kola CMS (cms.kolacommunications.com),
+// keyed by card name. Each entry mirrors the project page: client requirement,
+// the "how we crafted" write-up, and the FAQ.
+type CaseStudy = {
+  clientRequirement: string;
+  crafted: { title: string; text: string };
+  faqs: { q: string; a: string }[];
+};
+
+const CASE_STUDIES: Record<string, CaseStudy> = {
+  "Laser Technologies": {
+    clientRequirement:
+      "Laser Technologies required a professional, high-performing custom-coded website to showcase their extensive range of industrial laser machines — including fiber laser cutting, CO2 engraving, laser welding, and laser marking systems. With over 7,200 customers and 5,500 machines installed across India, the goal was to build a digital presence that matched their scale, made it easy for industrial buyers to explore detailed product specifications, and drove qualified enquiries from manufacturers across automotive, aerospace, and fabrication industries.",
+    crafted: {
+      title: "How we made Laser Technologies discoverable to industrial buyers online",
+      text: "Kola Communications developed a custom-coded website for Laser Technologies built entirely around the industrial buyer's decision process. Product categories — cutting, welding, marking, engraving, fiber laser, CO2, and UV systems — were structured with detailed specifications and high-quality imagery so a procurement manager could evaluate options without making a call first. Multiple office locations across Navi Mumbai, Pune, Ahmedabad, and Delhi were clearly presented to establish national reach. SEO architecture was built around high-intent industrial search terms to ensure Laser Technologies appeared when buyers were actively searching for solutions. The Kola team treated the website as a 24-hour sales representative for a company that has been building India's laser industry since 2011.",
+    },
+    faqs: [
+      {
+        q: "What machines does Laser Technologies offer?",
+        a: "Laser Technologies Pvt Ltd offers a comprehensive range of industrial laser machines including fiber laser cutting systems, CO2 laser engravers, laser welding machines, laser marking systems, CNC bending machines, and related consumables and accessories — serving industries including automotive, aerospace, manufacturing, and metal fabrication.",
+      },
+      {
+        q: "How many customers does Laser Technologies have in India?",
+        a: "Laser Technologies has served over 7,200 customers across India with more than 5,500 machines installed, making them one of India's most established industrial laser solution providers. Their offices span Navi Mumbai, Pune, Ahmedabad, and Delhi.",
+      },
+      {
+        q: "What does an industrial laser machinery company need from its website that a standard B2B site does not?",
+        a: "Industrial machinery buyers are technical by nature — they arrive at a website with specific requirements already in mind, and they are evaluating whether a supplier can meet those requirements before they invest time in a conversation. A website that leads with marketing copy rather than specifications wastes that evaluation window. Kola Communications built the Laser Technologies website so that product categories, machine specs, and application details are front and centre — because a procurement engineer in the automotive or aerospace sector does not need to be sold to, they need to be informed. The Kola team also ensured that Laser Technologies' national footprint was clearly communicated, because for a capital equipment purchase, knowing that local service and support exists in your city is often the deciding factor between two equally capable suppliers.",
+      },
+    ],
+  },
+  "Clayton Holidays": {
+    clientRequirement:
+      "Clayton Holidays required a visually immersive website to promote their luxury private villa perched above the Western Ghats in Lonavala. The objective was to capture the exclusivity of the property, highlight premium amenities, and drive direct booking enquiries through an elegant and high-converting digital presence.",
+    crafted: {
+      title: "Bringing Clayton Holidays to life — our immersive villa website approach",
+      text: "Kola Communications developed a WordPress website with a rich, visual-first design that brought the villa's stunning Western Ghats surroundings to life on screen. High-resolution imagery, immersive layouts, and carefully crafted copy conveyed the property's premium appeal and architectural character. Key amenities were showcased in a clean format, while clear calls-to-action — including WhatsApp and direct call integrations — made it effortless for visitors to book their stay.",
+    },
+    faqs: [
+      {
+        q: "Where is Clayton Holidays located?",
+        a: "Clayton Holidays is a luxury private villa in Lonavala, perched above the Western Ghats and offering stunning natural views alongside premium amenities.",
+      },
+      {
+        q: "How do I book Clayton Holidays?",
+        a: "You can book Clayton Holidays directly via WhatsApp or through the enquiry form on their official website at claytonholidays.com for a quick and easy reservation.",
+      },
+      {
+        q: "Who built the Clayton Holidays website?",
+        a: "The Clayton Holidays website was designed and developed by Kola Communications, a digital agency specialising in luxury hospitality and travel websites with immersive visual storytelling and WhatsApp booking integration.",
+      },
+    ],
+  },
+  "Livyor": {
+    clientRequirement:
+      "Livyor sought a scalable Shopify-based e-commerce solution for their premium dry fruits, nuts, seeds, and healthy snacks brand. The requirements included sleek design, smooth navigation, and a secure, optimised platform to deliver a superior shopping experience.",
+    crafted: {
+      title: "From brief to build — how we brought Livyor's health brand to Shopify",
+      text: "Kola Communications developed a Shopify store for Livyor with a modern, conversion-oriented layout. Product filters, responsive design, and a simplified checkout flow improved usability. The combination of scalability, speed, and sleek visuals ensured a fast and enjoyable shopping journey for health-conscious customers across India.",
+    },
+    faqs: [
+      {
+        q: "What does Livyor sell?",
+        a: "Livyor is a health nutrition brand selling premium dry fruits, exotic nuts, seeds, millets, berries, dates, and breakfast cereals online in India.",
+      },
+      {
+        q: "Does Livyor offer free shipping?",
+        a: "Yes, Livyor offers free shipping on all prepaid orders. Use code LIVYOR5 for a flat 5% discount on your order.",
+      },
+      {
+        q: "Who built the Livyor online store?",
+        a: "The Livyor Shopify store was designed and developed by Kola Communications, a digital marketing agency with expertise in Shopify e-commerce, conversion rate optimisation, and health brand positioning.",
+      },
+    ],
+  },
+  "Veena Developers": {
+    clientRequirement:
+      "Veena Developers needed a premium website to highlight their real estate projects with high-quality visuals and complete property details. Another requirement was optimisation for speed across regions to ensure a smooth experience for global audiences.",
+    crafted: {
+      title: "How we translated Veena Developers' legacy into a premium digital presence",
+      text: "Kola Communications built a custom-coded website with immersive digital design to resonate with homebuyers. Region-specific CDNs were implemented for global speed optimisation. The platform combined premium visuals with fast performance, creating a seamless browsing experience that reinforced Veena Developers' brand positioning across Mumbai's real estate market.",
+    },
+    faqs: [
+      {
+        q: "What types of projects does Veena Developers offer?",
+        a: "Veena Developers offers residential and commercial real estate projects across Mumbai, including ongoing, upcoming, and completed developments.",
+      },
+      {
+        q: "Does Veena Developers offer redevelopment services?",
+        a: "Yes, Veena Developers provides housing society redevelopment services in Mumbai with end-to-end support for residents and stakeholders.",
+      },
+      {
+        q: "Who built the Veena Developers website?",
+        a: "The Veena Developers website was custom-coded and delivered by Kola Communications, a digital agency specialising in premium real estate web development with CDN optimisation and immersive property showcases.",
+      },
+    ],
+  },
+  "Purva Desai & Co": {
+    clientRequirement:
+      "Purva Desai & Co required a WordPress website that captured the creative spirit of a social media agency. The objective was to highlight flagship projects on the homepage and showcase how these campaigns contributed to client growth and brand positioning.",
+    crafted: {
+      title: "How we crafted a portfolio-first website for Purva Desai & Co",
+      text: "Our team at Kola Communications designed an animation-rich website powered by JavaScript for an engaging look and feel. A homepage video showreel introduced their creativity instantly, while premium-styled client and project sections elevated brand perception. Each project page was crafted to explain the creative process and results in depth.",
+    },
+    faqs: [
+      {
+        q: "What does Purva Desai & Co do?",
+        a: "Purva Desai & Co is a Mumbai-based social media and creative agency that delivers campaign-driven brand growth strategies and creative portfolio work for businesses.",
+      },
+      {
+        q: "What kind of projects does Purva Desai & Co showcase?",
+        a: "The agency showcases flagship brand campaigns, social media strategies, and creative projects that highlight measurable client growth and brand positioning.",
+      },
+      {
+        q: "Who built the Purva Desai & Co website?",
+        a: "The Purva Desai & Co website was designed and developed by Kola Communications, a full-service digital marketing agency specialising in WordPress development, SEO, AEO, content creation, and AI tools.",
+      },
+    ],
+  },
+  "Tazaari": {
+    clientRequirement:
+      "Tazaari required a scalable e-commerce platform to deliver a seamless shopping experience while managing a wide range of men's and women's fashion products and ensuring smooth, secure transactions.",
+    crafted: {
+      title: "Building Tazaari — our approach to fashion e-commerce that converts",
+      text: "Kola Communications built a modern, responsive WordPress + WooCommerce website with intuitive navigation, secure payment gateways, and advanced product filtering. A streamlined checkout flow and optimised performance improved user convenience and conversions, while well-structured product pages with reviews and recommendations enhanced customer trust and engagement.",
+    },
+    faqs: [
+      {
+        q: "What does Tazaari sell?",
+        a: "Tazaari is a fashion brand selling premium men's and women's clothing, including casual and occasion wear, with a focus on comfort and style.",
+      },
+      {
+        q: "Is Tazaari available for online shopping?",
+        a: "Yes, Tazaari has a fully functional WooCommerce online store with secure payment gateways, product filtering, and a streamlined checkout experience.",
+      },
+      {
+        q: "Who built the Tazaari website?",
+        a: "The Tazaari e-commerce website was built by Kola Communications, a digital marketing agency specialising in WooCommerce development, conversion optimisation, and e-commerce SEO.",
+      },
+    ],
+  },
+  "BluFeather Solutions": {
+    clientRequirement:
+      "BluFeather Solutions required a business website to present their AI infrastructure and technology services effectively and build a professional digital identity. The focus was on clarity, branding, and trust-building for enterprise client acquisition.",
+    crafted: {
+      title: "How we shaped BluFeather Solutions as an enterprise-grade AI brand online",
+      text: "Kola Communications developed a WordPress site for BluFeather Solutions with a clean, professional design. Services were clearly structured across dedicated sections, while branding and usability enhancements encouraged engagement. The platform established credibility and supported their digital presence as a secure AI infrastructure provider.",
+    },
+    faqs: [
+      {
+        q: "What does BluFeather Solutions do?",
+        a: "BluFeather Solutions provides secure AI infrastructure, dedicated compute resources, and technology services for enterprise clients requiring high-performance and confidential AI environments.",
+      },
+      {
+        q: "What industries does BluFeather Solutions serve?",
+        a: "BluFeather Solutions serves enterprises across industries that need secure AI deployment, dedicated resourcing, and scalable technology infrastructure solutions.",
+      },
+      {
+        q: "Who built the BluFeather Solutions website?",
+        a: "The BluFeather Solutions website was designed and developed by Kola Communications, a digital agency with expertise in building enterprise-grade tech company websites on WordPress with a focus on trust, clarity, and lead generation.",
+      },
+    ],
+  },
+  "Aashiyaanaa Villas": {
+    clientRequirement:
+      "Aashiyaanaa Villas needed a digital platform to promote their luxury properties in Lonavala. The aim was to highlight interiors, amenities, and booking details while emphasising exclusivity and premium lifestyle appeal.",
+    crafted: {
+      title: "Our approach to showcasing Aashiyaanaa Villas as a premium destination online",
+      text: "Kola Communications designed a visually immersive WordPress website for Aashiyaanaa Villas featuring rich imagery, property highlights, and booking functionality. The design conveyed elegance and exclusivity, creating a seamless browsing experience tailored to high-end clientele looking for luxury villa stays in Lonavala.",
+    },
+    faqs: [
+      {
+        q: "Where is Aashiyaanaa Villas located?",
+        a: "Aashiyaanaa Villas is a luxury property located in Lonavala, offering exclusive villa stays with premium interiors and amenities for high-end travellers.",
+      },
+      {
+        q: "How can I book Aashiyaanaa Villas?",
+        a: "You can book Aashiyaanaa Villas directly via WhatsApp or through the booking enquiry form on their official website at aashiyaanaavilla.com.",
+      },
+      {
+        q: "Who built the Aashiyaanaa Villas website?",
+        a: "The Aashiyaanaa Villas website was designed and developed by Kola Communications, a digital agency specialising in luxury hospitality and property websites with immersive visual design and direct booking integrations.",
+      },
+    ],
+  },
+  "Resonia Group": {
+    clientRequirement:
+      "Resonia (previously Sterlite Power) required a project website for the Nangalbibra-Bongaigaon Transmission Line. The focus was on highlighting strategic importance, key milestones, and providing stakeholders with an accessible digital reference for project progress.",
+    crafted: {
+      title: "Behind the build — how we approached the NBTL project website",
+      text: "Kola Communications developed the NBTL site on WordPress with a clear structure to present objectives, milestones, and innovative engineering practices. Dedicated sections showcased project highlights and gallery visuals, ensuring transparency and professionalism while reinforcing stakeholder confidence in the initiative.",
+    },
+    faqs: [
+      {
+        q: "What is NBTL?",
+        a: "NBTL stands for the Nangalbibra-Bongaigaon Transmission Line, a strategic power infrastructure project managed by Resonia (formerly Sterlite Power) in Northeast India.",
+      },
+      {
+        q: "Where can I find NBTL project updates?",
+        a: "NBTL project milestones, press releases, and stakeholder updates are available on the official NBTL website at nbtl.co.in.",
+      },
+      {
+        q: "Who built the NBTL project website?",
+        a: "The NBTL project website was designed and developed by Kola Communications, a digital marketing agency with experience building stakeholder-facing infrastructure and energy sector websites.",
+      },
+    ],
+  },
+};
 
 export function Showcase() {
   const [selectedCard, setSelectedCard] = useState<typeof cards[0] | null>(null);
@@ -562,6 +773,8 @@ export function Showcase() {
           .replace(/([A-Za-z0-9])-([A-Za-z0-9])/g, "$1 $2");
       };
 
+      const cs = CASE_STUDIES[card.name];
+
       return {
         ...card,
         tag: cleanString(card.tag),
@@ -576,6 +789,13 @@ export function Showcase() {
           title: cleanString(card.solution.title),
           text: cleanString(card.solution.text),
         },
+        // Live Kola CMS case-study content (falls back to existing copy if a card has no entry).
+        clientRequirement: cleanString(cs?.clientRequirement ?? card.description),
+        crafted: {
+          title: cleanString(cs?.crafted.title ?? card.solution.title),
+          text: cleanString(cs?.crafted.text ?? card.solution.text),
+        },
+        faqs: (cs?.faqs ?? []).map((f) => ({ q: cleanString(f.q), a: cleanString(f.a) })),
         featuresDelivered: card.featuresDelivered.map(cleanString),
         stats: {
           ...card.stats,
@@ -771,14 +991,14 @@ export function Showcase() {
                 </div>
 
                 {/* 2. Featured Banner Image */}
-                <div className="relative aspect-video md:aspect-[21/9] w-full overflow-hidden rounded-xl bg-neutral-50 border border-neutral-200/60 shadow-xs">
+                <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-neutral-50 border border-neutral-200/60 shadow-xs">
                   <Image
                     src={selectedCard.img}
                     alt={selectedCard.name}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 950px"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
 
@@ -806,45 +1026,50 @@ export function Showcase() {
                   </div>
                 </div>
 
-                {/* Description Text */}
-                <div className="max-w-3xl text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
-                  {selectedCard.description}
+                {/* Client Requirement */}
+                <div className="max-w-3xl flex flex-col gap-3">
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Client Requirement</span>
+                  <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
+                    {selectedCard.clientRequirement}
+                  </p>
                 </div>
 
-                {/* 4. Challenge vs Solution */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 py-4">
-                  <div className="flex flex-col gap-2">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">01 / Challenge</span>
-                    <h4 className="text-base font-semibold text-neutral-950">{selectedCard.challenge.title}</h4>
-                    <p className="text-sm text-neutral-500 leading-relaxed">{selectedCard.challenge.text}</p>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">02 / Solution</span>
-                    <h4 className="text-base font-semibold text-neutral-950">{selectedCard.solution.title}</h4>
-                    <p className="text-sm text-neutral-500 leading-relaxed">{selectedCard.solution.text}</p>
-                  </div>
+                {/* How We Crafted */}
+                <div className="max-w-3xl flex flex-col gap-3">
+                  <h4 className="text-xl md:text-2xl font-semibold text-neutral-900 tracking-tight leading-snug">
+                    {selectedCard.crafted.title}
+                  </h4>
+                  <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
+                    {selectedCard.crafted.text}
+                  </p>
                 </div>
 
-                {/* 6. Features & Info Details */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-neutral-100">
-                  <div>
-                    <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Features</h4>
-                    <ul className="space-y-2">
-                      {selectedCard.featuresDelivered.map((feat) => (
-                        <li key={feat} className="flex items-center gap-2 text-xs text-neutral-600">
-                          <span className="h-1 w-1 rounded-full bg-neutral-300 shrink-0" />
-                          <span>{feat}</span>
-                        </li>
+                {/* Frequently Asked Questions */}
+                {selectedCard.faqs.length > 0 && (
+                  <div className="flex flex-col gap-4 pt-8 border-t border-neutral-100">
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Frequently Asked Questions</span>
+                    <div className="flex flex-col divide-y divide-neutral-100">
+                      {selectedCard.faqs.map((faq) => (
+                        <details key={faq.q} className="group py-4">
+                          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm md:text-base font-semibold text-neutral-900 [&::-webkit-details-marker]:hidden">
+                            <span>{faq.q}</span>
+                            <Plus className="h-4 w-4 shrink-0 text-neutral-400 transition-transform duration-300 group-open:rotate-45" />
+                          </summary>
+                          <p className="mt-3 text-sm text-neutral-500 leading-relaxed">{faq.a}</p>
+                        </details>
                       ))}
-                    </ul>
+                    </div>
                   </div>
+                )}
 
+                {/* Tech Stack & Project Info */}
+                <div className="flex flex-col gap-8 pt-8 border-t border-neutral-100">
                   <div>
                     <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap items-center gap-1.5">
                       {selectedCard.details.techStack.map((tech) => (
-                        <span 
-                          key={tech} 
+                        <span
+                          key={tech}
                           className="inline-block bg-neutral-50 text-neutral-700 text-[10px] font-semibold px-2.5 py-1 rounded border border-neutral-200"
                         >
                           {tech}
@@ -855,21 +1080,21 @@ export function Showcase() {
 
                   <div>
                     <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Project Info</h4>
-                    <dl className="space-y-2 text-xs">
-                      <div className="flex justify-between border-b border-neutral-50 pb-1.5">
-                        <dt className="text-neutral-400">Industry</dt>
+                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-2.5 text-xs max-w-2xl">
+                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
+                        <dt className="text-neutral-400 w-20 shrink-0">Industry</dt>
                         <dd className="text-neutral-800 font-semibold">{selectedCard.details.industry}</dd>
                       </div>
-                      <div className="flex justify-between border-b border-neutral-50 pb-1.5">
-                        <dt className="text-neutral-400">Location</dt>
+                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
+                        <dt className="text-neutral-400 w-20 shrink-0">Location</dt>
                         <dd className="text-neutral-800 font-semibold">{selectedCard.details.location}</dd>
                       </div>
-                      <div className="flex justify-between border-b border-neutral-50 pb-1.5">
-                        <dt className="text-neutral-400">Timeline</dt>
+                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
+                        <dt className="text-neutral-400 w-20 shrink-0">Timeline</dt>
                         <dd className="text-neutral-800 font-semibold">{selectedCard.details.timeline}</dd>
                       </div>
-                      <div className="flex justify-between">
-                        <dt className="text-neutral-400">Year</dt>
+                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
+                        <dt className="text-neutral-400 w-20 shrink-0">Year</dt>
                         <dd className="text-neutral-800 font-semibold">{selectedCard.details.year}</dd>
                       </div>
                     </dl>

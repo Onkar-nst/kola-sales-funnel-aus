@@ -20,19 +20,22 @@ const tickerItems = [
 ];
 
 export function Hero() {
-    const bgImage = "/taj-mahal-bg.png";
-
     return (
         <section
             id="top"
             className="relative bg-neutral-950 overflow-hidden min-h-[100svh] flex flex-col pt-16 pb-28 md:pb-48"
         >
-            {/* background image */}
+            {/* background image — mobile vs desktop */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src={bgImage}
+                    src="/hero-mobile.jpg"
                     alt="Kola Communications Banner"
-                    className="w-full h-full object-cover brightness-[0.45] contrast-[1.05]"
+                    className="w-full h-full object-cover brightness-[0.45] contrast-[1.05] md:hidden"
+                />
+                <img
+                    src="/hero-desktop.jpg"
+                    alt="Kola Communications Banner"
+                    className="hidden w-full h-full object-cover brightness-[0.45] contrast-[1.05] md:block"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
             </div>
@@ -126,6 +129,12 @@ export function Hero() {
                         >
                             <a
                                 href="#pricing"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    window.dispatchEvent(
+                                        new CustomEvent("kola:open-checkout", { detail: { tier: "Starter" } }),
+                                    );
+                                }}
                                 className="inline-flex max-w-full overflow-hidden rounded-xl group active:scale-95 transition-transform"
                             >
                                 <div className="bg-white text-neutral-950 px-5 sm:px-6 py-3.5 text-[13px] sm:text-[15px] font-bold transition-colors group-hover:bg-neutral-100 whitespace-nowrap">
