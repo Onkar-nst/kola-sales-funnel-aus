@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Paperclip, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -22,6 +22,33 @@ export function CheckoutForm({
   onBack,
 }: CheckoutFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const addFiles = (incoming: FileList | null) => {
+    if (!incoming) return;
+    setFiles((prev) => {
+      const merged = [...prev];
+      Array.from(incoming).forEach((file) => {
+        // De-dupe by name + size so re-picking the same file doesn't add it twice.
+        const exists = merged.some((f) => f.name === file.name && f.size === file.size);
+        if (!exists) merged.push(file);
+      });
+      return merged;
+    });
+    // Reset the input so selecting the same file again still fires onChange.
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const removeFile = (index: number) => {
+    setFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  };
 
   if (submitted) {
     return (
@@ -121,13 +148,38 @@ export function CheckoutForm({
       <section className="mt-8 border-t border-hairline pt-8">
         <SectionLabel step="2">Anything else?</SectionLabel>
         <div className="mt-5 grid gap-5">
-          <Field label="Do you have any business file, menu, catalog? (optional)" id="checkout-file">
+          <Field label="Do you have any business files, menu, catalog? (optional)" id="checkout-file">
             <Input
+              ref={fileInputRef}
               id="checkout-file"
               name="file"
               type="file"
+              multiple
+              onChange={(event) => addFiles(event.target.files)}
               className="cursor-pointer rounded-xl file:mr-4 file:py-1 file:px-3 file:rounded-md file:border file:border-border file:bg-secondary file:text-foreground hover:file:bg-secondary/80 text-muted-foreground pt-2 pb-2 h-auto"
             />
+            {files.length > 0 && (
+              <ul className="mt-3 grid gap-2">
+                {files.map((file, index) => (
+                  <li
+                    key={`${file.name}-${file.size}-${index}`}
+                    className="flex items-center gap-3 rounded-xl border border-hairline bg-surface px-3 py-2 text-sm"
+                  >
+                    <Paperclip className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span className="min-w-0 flex-1 truncate font-medium">{file.name}</span>
+                    <span className="shrink-0 text-xs text-muted-foreground">{formatSize(file.size)}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeFile(index)}
+                      aria-label={`Remove ${file.name}`}
+                      className="shrink-0 rounded-full p-1 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </Field>
           <Field label="Project notes (optional)" id="checkout-notes">
             <Textarea

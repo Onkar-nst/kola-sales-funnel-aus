@@ -134,6 +134,12 @@ const STORE_PLATFORMS: { key: StorePlatform; label: string }[] = [
   { key: "custom", label: "Custom website" },
 ];
 
+// When no online store is needed, only website platforms apply (no Shopify, no WooCommerce).
+const NO_STORE_PLATFORMS: { key: StorePlatform; label: string }[] = [
+  { key: "wordpress", label: "WordPress" },
+  { key: "custom", label: "Custom website" },
+];
+
 // E-commerce add-on is a one-time Rs. 7,500 only on Starter; free on Professional & Growth.
 const STORE_PRICE_STARTER = 7500;
 
@@ -276,6 +282,19 @@ export function Pricing() {
     [tierName],
   );
 
+  // Render order: unselected add-ons stay on top, selected ones (incl. free/included) sink to the bottom.
+  const displayAddons = useMemo(() => {
+    const isSelected = (addon: (typeof resolvedAddons)[number]) =>
+      addon.free || selectedAddons.includes(addon.name);
+    return resolvedAddons
+      .map((addon, index) => ({ addon, index }))
+      .sort((a, b) => {
+        const diff = Number(isSelected(a.addon)) - Number(isSelected(b.addon));
+        return diff !== 0 ? diff : a.index - b.index;
+      })
+      .map((entry) => entry.addon);
+  }, [resolvedAddons, selectedAddons]);
+
   const selectedAddonItems = useMemo(
     () => resolvedAddons.filter((addon) => !addon.free && selectedAddons.includes(addon.name)),
     [resolvedAddons, selectedAddons],
@@ -298,7 +317,9 @@ export function Pricing() {
   const storeSummaryLabel =
     needsStore === "yes"
       ? `Online store${storePlatform ? ` · ${STORE_PLATFORMS.find((p) => p.key === storePlatform)?.label}` : ""}`
-      : null;
+      : needsStore === "no" && storePlatform
+        ? `Website platform · ${NO_STORE_PLATFORMS.find((p) => p.key === storePlatform)?.label}`
+        : null;
 
   const dueOnceTotal = (selectedTier?.price ?? 0) + oneTimeAddonTotal + storePrice;
 
@@ -563,9 +584,11 @@ export function Pricing() {
                             E-commerce functionality to sell products and take payments online.
                           </p>
                         </div>
-                        {needsStore === "yes" && (
+                        {needsStore && (
                           <span className="shrink-0 rounded-full bg-surface px-2.5 py-1 text-[11px] font-semibold">
-                            {storePrice > 0 ? `Rs. ${storePrice.toLocaleString("en-IN")}` : "Free"}
+                            {needsStore === "no" || storePrice === 0
+                              ? "Free"
+                              : `Rs. ${storePrice.toLocaleString("en-IN")}`}
                           </span>
                         )}
                       </div>
@@ -579,7 +602,8 @@ export function Pricing() {
                               type="button"
                               onClick={() => {
                                 setNeedsStore(opt);
-                                if (opt === "no") setStorePlatform(null);
+                                // Shopify only applies to online stores — clear it when switching to "no".
+                                if (opt === "no" && storePlatform === "shopify") setStorePlatform(null);
                               }}
                               className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold capitalize transition-all cursor-pointer ${active
                                 ? "bg-foreground text-background"
@@ -598,13 +622,13 @@ export function Pricing() {
                         })}
                       </div>
 
-                      {needsStore === "yes" && (
+                      {needsStore && (
                         <div className="mt-4">
                           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                             Choose your platform
                           </p>
                           <div className="mt-3 grid gap-2.5">
-                            {STORE_PLATFORMS.map((p) => {
+                            {(needsStore === "yes" ? STORE_PLATFORMS : NO_STORE_PLATFORMS).map((p) => {
                               const active = storePlatform === p.key;
                               return (
                                 <button
@@ -632,7 +656,7 @@ export function Pricing() {
                     </div>
 
                     <div className="mt-8 grid gap-3.5">
-                      {resolvedAddons.map((addon) => {
+                      {displayAddons.map((addon) => {
                         const Icon = addon.icon;
                         // Items that are free on the selected plan are shown as included and not toggleable.
                         const free = addon.free;
@@ -707,7 +731,13 @@ export function Pricing() {
                   {storeSummaryLabel && (
                     <SummaryRow
                       label={storeSummaryLabel}
-                      value={storePrice > 0 ? `Rs. ${storePrice.toLocaleString("en-IN")}` : <FreeTag />}
+                      value={
+                        needsStore === "no"
+                          ? "Included"
+                          : storePrice > 0
+                            ? `Rs. ${storePrice.toLocaleString("en-IN")}`
+                            : <FreeTag />
+                      }
                     />
                   )}
                   {freeAddonItems.map((addon) => (
