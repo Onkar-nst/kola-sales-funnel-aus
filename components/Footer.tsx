@@ -37,20 +37,6 @@ export function Footer() {
               </a>
             </p>
 
-            {/* Address, phone & GST */}
-            <ul className="mt-6 space-y-2.5 text-sm text-muted-foreground font-medium">
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 shrink-0 text-muted-foreground/60" />
-                Mumbai, Maharashtra, India
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0 text-muted-foreground/60" />
-                <a href="tel:+918928984774" className="transition-colors hover:text-foreground">
-                  +91-8928984774
-                </a>
-              </li>
-            </ul>
-
             {/* Payment methods */}
             <div className="mt-6 flex flex-wrap items-center gap-2">
               {["UPI", "Razorpay", "Bank Transfer"].map((m) => (
@@ -99,6 +85,16 @@ export function Footer() {
               Let&apos;s Chat
             </h4>
             <ul className="mt-4 space-y-3.5 text-sm text-muted-foreground font-medium">
+              <li className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 shrink-0 text-muted-foreground/60" />
+                Mumbai, Maharashtra, India
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 shrink-0 text-muted-foreground/60" />
+                <a href="tel:+918928984774" className="transition-colors hover:text-foreground">
+                  +91-8928984774
+                </a>
+              </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0 text-muted-foreground/60" />
                 <a href="mailto:hello@kolacommunications.com" className="transition-colors hover:text-foreground">

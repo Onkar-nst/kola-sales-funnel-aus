@@ -174,7 +174,7 @@ function MinimalFAQItem({
 
 export function ResultsFAQ() {
   const isMobile = useIsMobile();
-  const [openFAQ, setOpenFAQ] = useState<number | null>(0);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [activePage, setActivePage] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 

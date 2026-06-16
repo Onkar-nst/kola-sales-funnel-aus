@@ -63,7 +63,7 @@ export function About() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                     <div className="absolute bottom-8 left-8 font-display text-3xl md:text-5xl font-extrabold text-white tracking-tight">
-                        KOLA<span className="text-neutral-400 font-medium">COMMUNICATIONS</span><span className="text-white">.</span>
+                        KOLA <span className="text-neutral-400 font-medium">COMMUNICATIONS</span><span className="text-white">.</span>
                     </div>
                 </div>
             </div>

@@ -126,16 +126,15 @@ export function Scarcity() {
           </div>
 
           {/* Quality Rationale Grid */}
-          <div className="mt-6 w-full max-w-sm border-t border-background/10 pt-5">
+          <div className="mt-6 w-full max-w-2xl border-t border-background/10 pt-5">
             <h4 className="text-[10px] font-bold uppercase tracking-widest text-background/50 text-center mb-3">
               Why We Cap Intake:
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-left">
               {[
                 "Founder reviews every project",
                 "Fast revision turnaround",
                 "Guaranteed 72 hour delivery",
-                "Custom built, no templates",
               ].map((reason, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <div className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-background/10 text-background">

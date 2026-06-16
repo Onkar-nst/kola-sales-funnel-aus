@@ -1002,30 +1002,6 @@ export function Showcase() {
                   />
                 </div>
 
-                {/* 3. Stats Strip */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 py-6 border-y border-neutral-100">
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Delivery Time</span>
-                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.delivery}</span>
-                    <span className="text-xs text-neutral-400 font-medium">Concept to Live</span>
-                  </div>
-                  <div className="flex flex-col gap-1 md:border-l md:border-neutral-100 md:pl-6">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">PageSpeed Score</span>
-                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.pagespeed}</span>
-                    <span className="text-xs text-neutral-400 font-medium">Core Web Vitals</span>
-                  </div>
-                  <div className="flex flex-col gap-1 border-l border-neutral-100 pl-6">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Conversion</span>
-                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.conversion}</span>
-                    <span className="text-xs text-neutral-400 font-medium">Enquiries & Sales</span>
-                  </div>
-                  <div className="flex flex-col gap-1 border-l border-neutral-100 pl-6">
-                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Mobile Score</span>
-                    <span className="text-xl md:text-2xl font-semibold text-neutral-900 leading-none">{selectedCard.stats.mobile}</span>
-                    <span className="text-xs text-neutral-400 font-medium">Responsive Layout</span>
-                  </div>
-                </div>
-
                 {/* Client Requirement */}
                 <div className="max-w-3xl flex flex-col gap-3">
                   <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold">Client Requirement</span>
@@ -1062,7 +1038,7 @@ export function Showcase() {
                   </div>
                 )}
 
-                {/* Tech Stack & Project Info */}
+                {/* Tech Stack */}
                 <div className="flex flex-col gap-8 pt-8 border-t border-neutral-100">
                   <div>
                     <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Tech Stack</h4>
@@ -1076,28 +1052,6 @@ export function Showcase() {
                         </span>
                       ))}
                     </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Project Info</h4>
-                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-2.5 text-xs max-w-2xl">
-                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
-                        <dt className="text-neutral-400 w-20 shrink-0">Industry</dt>
-                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.industry}</dd>
-                      </div>
-                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
-                        <dt className="text-neutral-400 w-20 shrink-0">Location</dt>
-                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.location}</dd>
-                      </div>
-                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
-                        <dt className="text-neutral-400 w-20 shrink-0">Timeline</dt>
-                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.timeline}</dd>
-                      </div>
-                      <div className="flex items-center gap-2 border-b border-neutral-50 pb-1.5">
-                        <dt className="text-neutral-400 w-20 shrink-0">Year</dt>
-                        <dd className="text-neutral-800 font-semibold">{selectedCard.details.year}</dd>
-                      </div>
-                    </dl>
                   </div>
                 </div>
 
@@ -1124,10 +1078,6 @@ export function Showcase() {
                       <ChevronLeft className="h-3.5 w-3.5" />
                       <span>Prev</span>
                     </button>
-                    
-                    <span className="text-[10px] font-bold text-neutral-400 select-none px-2">
-                      {currentIndex + 1} / {cards.length}
-                    </span>
 
                     <button
                       onClick={handleNextProject}
