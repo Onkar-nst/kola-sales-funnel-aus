@@ -28,14 +28,9 @@ export function Hero() {
             {/* background image — mobile vs desktop */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/hero-mobile.jpg"
+                    src="/kola%20communications%20banner.jpg"
                     alt="Kola Communications Banner"
-                    className="w-full h-full object-cover brightness-[0.45] contrast-[1.05] md:hidden"
-                />
-                <img
-                    src="/hero-desktop.jpg"
-                    alt="Kola Communications Banner"
-                    className="hidden w-full h-full object-cover brightness-[0.45] contrast-[1.05] md:block"
+                    className="w-full h-full object-cover brightness-[0.45] contrast-[1.05]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
             </div>
